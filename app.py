@@ -8,12 +8,8 @@ import pydeck as pdk
 
 import streamlit as st
 from streamlit.hello.utils import show_code
-from sklearn.preprocessing import QuantileTransformer
 
 df = pd.read_csv(r"C:\Users\User\Python_Practice\빅프로젝트\데이터\data.csv", encoding = 'cp949')
-df.head()
-scaler = QuantileTransformer()
-df['출동건수_r'] = scaler.fit_transform(df[['출동건수_r']])
 df.head()
 # df = r"C:\Users\User\Downloads\csvjson (1).json"
 def mapping_demo():
