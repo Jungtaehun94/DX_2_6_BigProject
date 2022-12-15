@@ -8,10 +8,13 @@ import pydeck as pdk
 
 import streamlit as st
 from streamlit.hello.utils import show_code
+from sklearn.preprocessing import QuantileTransformer
 
-df = pd.read_csv("data.csv", encoding = 'cp949')
+df = pd.read_csv(r"C:\Users\User\Python_Practice\빅프로젝트\데이터\data.csv", encoding = 'cp949')
 df.head()
-
+scaler = QuantileTransformer()
+df['출동건수_r'] = scaler.fit_transform(df[['출동건수_r']])
+df.head()
 # df = r"C:\Users\User\Downloads\csvjson (1).json"
 def mapping_demo():
     try:
@@ -34,18 +37,21 @@ def mapping_demo():
                 get_position=["lng", "lat"],
                 get_elevation="전체출동건수",
                 radius=300,
-                elevation_scale=10,
+                elevation_scale=0.1,
                 pickable=True,
                 elevation_range=[0, 400],
-                get_fill_color=["출동건수_r", 0, 0, "출동건수_a"],
+#                 get_fill_color=["전체출동건수*0.007", 1,"전체출동건수*0.7", 128],
+                get_fill_color=["0", "0","전체출동건수*0.007", "128"],
                 extruded=True,
             )
         }
+        with st.sidebar:
+            to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '자치구별 출동건수'))
         st.sidebar.markdown("### Map Layers")
         selected_layers = [
             layer
             for layer_name, layer in ALL_LAYERS.items()
-            if st.sidebar.checkbox(layer_name, True)
+            if to_show == layer_name
         ]
         if selected_layers:
             st.pydeck_chart(
