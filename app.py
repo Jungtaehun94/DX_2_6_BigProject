@@ -9,14 +9,14 @@ import pydeck as pdk
 import streamlit as st
 from streamlit.hello.utils import show_code
 
-df = pd.read_csv("data.csv", encoding = 'cp949')
+df = pd.read_csv(r"C:\Users\User\Python_Practice\빅프로젝트\데이터\서울시_자치구_좌표_구로금천제거.csv", encoding = 'cp949')
 df.head()
 
 # df = r"C:\Users\User\Downloads\csvjson (1).json"
 def mapping_demo():
     try:
         ALL_LAYERS = {
-            "Required Personnel Allocation By Gu": pdk.Layer(
+            "자치구별 인력 배치": pdk.Layer(
                 "ColumnLayer",
                 data=df,
                 get_position=["lng", "lat"],
@@ -26,6 +26,18 @@ def mapping_demo():
                 pickable=True,
                 elevation_range=[0, 400],
                 get_fill_color=["val*0.71", 0, 0, "(val-100)*0.71"],
+                extruded=True,
+            ),
+            "자치구별 출동건수": pdk.Layer(
+                "ColumnLayer",
+                data=df,
+                get_position=["lng", "lat"],
+                get_elevation="전체출동건수",
+                radius=300,
+                elevation_scale=10,
+                pickable=True,
+                elevation_range=[0, 400],
+                get_fill_color=["출동건수_r", 0, 0, "출동건수_a"],
                 extruded=True,
             )
         }
@@ -60,11 +72,11 @@ def mapping_demo():
         )
 
 
-st.set_page_config(page_title="Mapping Demo", page_icon="🌍")
-st.markdown("# Mapping Demo")
-st.sidebar.header("Mapping Demo")
+st.set_page_config(page_title="자치구별 필요 인력", page_icon="🌍")
+st.markdown("# 자치구별 필요 인력")
+st.sidebar.header("자치구별 필요 인력")
 st.write()
 
 mapping_demo()
 
-show_code(mapping_demo)
+# show_code(mapping_demo)
