@@ -25,7 +25,7 @@ def mapping_demo():
                 elevation_scale=10,
                 pickable=True,
                 elevation_range=[0, 400],
-                get_fill_color=["출동건수_r", 0, 0, "출동건수_a"],
+                get_fill_color=["val*0.71", 0, 0, "(val-100)*0.71"],
                 extruded=True,
             ),
             "자치구별 출동건수": pdk.Layer(
@@ -37,7 +37,7 @@ def mapping_demo():
                 elevation_scale=10,
                 pickable=True,
                 elevation_range=[0, 400],
-                get_fill_color=["val*0.71", 0, 0, "(val-100)*0.71"],
+                get_fill_color=["출동건수_r", 0, 0, "출동건수_a"],
                 extruded=True,
             )
         }
