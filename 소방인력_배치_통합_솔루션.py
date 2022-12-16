@@ -82,6 +82,9 @@ with cols_title[0]:
     st.markdown("## 자치구별 필요 인력")
 with cols_title[1]:
     st.markdown("## 현재 인력현황")
+    st.markdown("""
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" color="inherit" class="e1fb0mya1 css-jhkj9c ex0cdmw0"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path></svg>
+    """, unsafe_allow_html=True)
 cols =st.columns((12,1,1,1))
 # cols[1].metric("","")
 # cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
