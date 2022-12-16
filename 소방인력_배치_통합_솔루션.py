@@ -77,8 +77,12 @@ def mapping_demo():
             % e.reason
         )
 # st.subheader(" 실시간 서울시 내 소방서")
+cols_title = st.columns((12,3))
+with cols_title[0]:
+    st.markdown("## 자치구별 필요 인력")
+with cols_title[1]:
+    st.markdown("## 현재 인력현황")
 cols =st.columns((12,1,1,1))
-cols[0].markdown("## 자치구별 필요 인력")
 # cols[1].metric("","")
 # cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
 # cols[1].metric("12/30", "0 ℃", "3Ｆ")
