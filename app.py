@@ -122,7 +122,7 @@ cols[2].metric("중랑소방서","184","20")
 cols[2].metric("강북소방서","268","50")
 cols[2].metric("성북소방서","177")
 
-with cols[3]:
+with cols[4]:
     st.altair_chart(bar_chart, use_container_width=True)
 
 
