@@ -76,7 +76,7 @@ def mapping_demo():
             % e.reason
         )
 st.subheader(" 실시간 서울시 내 소방서")
-cols =st.columns((1,1,1,6))
+cols =st.columns((1,1,1,10))
 # cols[1].metric("","")
 # cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
 # cols[1].metric("12/30", "0 ℃", "3Ｆ")
@@ -120,7 +120,7 @@ cols[2].metric("중랑소방서","184","20")
 cols[2].metric("강북소방서","268","50")
 cols[2].metric("성북소방서","177")
 
-cols2 = st.columns((3,6))
+cols2 = st.columns((3,10))
 with cols2[0]:
     st.altair_chart(bar_chart, use_container_width=True)
 
