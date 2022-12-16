@@ -99,7 +99,7 @@ bar_chart = alt.Chart(df).transform_fold(
 
 for dpt in df['출동소방서'].unique().tolist():
     temp_df = df.loc[df['출동소방서'] == dpt,:]
-    cols[1].metric(dpt, temp_df['22년 실제 소방공무원'], temp_df['오차'])
+    cols[1].metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0])
 # cols[3].metric("마포소방서","280","2")
 # cols[3].metric("관악소방서","68","-4")
 # cols[3].metric("동작소방서","280")
