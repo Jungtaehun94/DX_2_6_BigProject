@@ -13,7 +13,8 @@ st.set_page_config(layout="wide",
 st.markdown("# 자치구별 필요 인력")
 st.sidebar.header("자치구별 필요 인력")
 st.write()
-df = pd.read_csv("./data.csv", encoding = 'cp949')
+
+df = pd.read_csv(r"./data.csv", encoding = 'cp949')
 # df = r"C:\Users\User\Downloads\csvjson (1).json"
 def mapping_demo():
     try:
@@ -85,21 +86,30 @@ with cols[0]:
     mapping_demo()
 import altair as alt
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
-df['총원'] = df['총원'] - df['가용인원'] - df['출동인원']
-order="{'출동인원':0, '가용인원': 1, '총원': 2}"
+df['22년 실제 소방공무원'] = df['22년 실제 소방공무원'] + df['감원']
+df['감원'] = df['감원'].abs()
+order="{'22년 실제 소방공무원':0, '증원': 1, '감원': 2}"
+column = "['#0000FF', '#00FF00', '#FF0000]"
 bar_chart = alt.Chart(df).transform_fold(
-  ['출동인원', '가용인원', '총원'],
+  ['22년 실제 소방공무원', '증원', '감원'],
   as_=['column', 'value']
 ).mark_bar().encode(
     y='gu:N',
     x='value:Q',
-    color='column:N',
+    color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', 'green', 'red:'])),
+#     color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),%%!
     order="order:O"
 )
-
+metric_counter = 0
 for dpt in df['출동소방서'].unique().tolist():
-    temp_df = df.loc[df['출동소방서'] == dpt,:]
-    cols[1].metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0])
+    temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
+    with cols[metric_counter%3+1]:
+        st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+    metric_counter +=1
+#     with cols[1]:
+#         st.write(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+#         st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str)abs)
+
 # cols[3].metric("마포소방서","280","2")
 # cols[3].metric("관악소방서","68","-4")
 # cols[3].metric("동작소방서","280")
@@ -122,6 +132,7 @@ for dpt in df['출동소방서'].unique().tolist():
 # cols[2].metric("은평소방서","155")
 # cols[2].metric("중랑소방서","184","20")
 # cols[2].metric("강북소방서","268","50")
+# cols[2].metric("성북소방서","177")
 
 st.altair_chart(bar_chart, use_container_width=True)
 
