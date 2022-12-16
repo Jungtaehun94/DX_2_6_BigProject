@@ -22,7 +22,7 @@ def mapping_demo():
                 "ColumnLayer",
                 data=df,
                 get_position=["lng", "lat"],
-                get_elevation="val",
+                get_elevation="val(22년 인력예측 값)",
                 radius=300,
                 elevation_scale=10,
                 pickable=True,
