@@ -82,20 +82,20 @@ cols =st.columns((6,1,1,1))
 # cols[1].metric("12/30", "0 ℃", "3Ｆ")
 with cols[0]:
     mapping_demo()
-    import altair as alt
-    df = pd.read_csv(r"./data.csv", encoding = 'cp949')
-    df['총원'] = df['총원'] - df['가용인원'] - df['출동인원']
-    order="{'출동인원':0, '가용인원': 1, '총원': 2}"
-    bar_chart = alt.Chart(df).transform_fold(
-      ['출동인원', '가용인원', '총원'],
-      as_=['column', 'value']
-    ).mark_bar().encode(
-        y='gu:N',
-        x='value:Q',
-        color='column:N',
-        order="order:O"
-    )
-    st.altair_chart(bar_chart, use_container_width=True)
+import altair as alt
+df = pd.read_csv(r"./data.csv", encoding = 'cp949')
+df['총원'] = df['총원'] - df['가용인원'] - df['출동인원']
+order="{'출동인원':0, '가용인원': 1, '총원': 2}"
+bar_chart = alt.Chart(df).transform_fold(
+  ['출동인원', '가용인원', '총원'],
+  as_=['column', 'value']
+).mark_bar().encode(
+    y='gu:N',
+    x='value:Q',
+    color='column:N',
+    order="order:O"
+)
+st.altair_chart(bar_chart, use_container_width=True)
 cols[1].metric("마포소방서","280","2")
 cols[1].metric("관악소방서","68","-4")
 cols[1].metric("동작소방서","280")
