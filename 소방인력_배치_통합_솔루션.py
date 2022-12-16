@@ -187,12 +187,12 @@ if add_selectbox == '재난':
         with col2:
             st.subheader('실시간 현장CCTV')
             st.markdown("""
-            <video controls width = 400 autoplay="true" muted="true" loop="true">
+            <video controls width = 450 autoplay="true" muted="true" loop="true">
             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Campsite%20Fire.mp4" type="video/mp4" />
             </video>
             """, unsafe_allow_html=True)
             st.markdown("""
-            <video controls width = 400 autoplay="true" muted="true" loop="true">
+            <video controls width = 450 autoplay="true" muted="true" loop="true">
             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Seoul_Night_View.mp4" type="video/mp4" />
             </video>
             """, unsafe_allow_html=True)
@@ -226,12 +226,12 @@ if add_selectbox == '재난':
             st.subheader('실시간 현장 CCTV')
 #             st.image('https://cdn.kado.net/news/photo/202205/1126349_551566_0650.jpg')
             st.markdown("""
-            <video controls width = 400 autoplay="true" muted="true" loop="true">
+            <video controls width = 450 autoplay="true" muted="true" loop="true">
             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/paramedics.mp4" type="video/mp4" />
             </video>
             """, unsafe_allow_html=True)
             st.markdown("""
-            <video controls width = 400 autoplay="true" muted="true" loop="true">
+            <video controls width = 450 autoplay="true" muted="true" loop="true">
             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Namsan.mp4" type="video/mp4" />
             </video>
             """, unsafe_allow_html=True)
@@ -255,7 +255,7 @@ if add_selectbox == '재난':
             st.subheader('실시간 현장 CCTV')
 #             st.image('https://pip-thumb.zumst.com/api/v1/swyze_VC002_77445815_content.jpeg?w=880&h=495')
             st.markdown("""
-                <video controls width = 400 autoplay="true" muted="true" loop="true">
+                <video controls width = 450 autoplay="true" muted="true" loop="true">
                 <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Flood.mp4" type="video/mp4" />
                 </video>
                 """, unsafe_allow_html=True)
@@ -279,12 +279,12 @@ if add_selectbox == '재난':
                 st.subheader('🚨🚨실시간 현장 CCTV🚨🚨')
 #                 st.image('https://ichef.bbci.co.uk/news/640/cpsprodpb/16EEF/production/_109053939_origin_100_3.jpg')
                 st.markdown("""
-                <video controls width = 400 autoplay="true" muted="true" loop="true">
+                <video controls width = 450 autoplay="true" muted="true" loop="true">
                 <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/candlelight vigil.mp4" type="video/mp4" />
                 </video>
                 """, unsafe_allow_html=True)
                 st.markdown("""
-                <video controls width = 400 autoplay="true" muted="true" loop="true">
+                <video controls width = 450 autoplay="true" muted="true" loop="true">
                 <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/X-mas.mp4" type="video/mp4" />
                 </video>
                 """, unsafe_allow_html=True)
