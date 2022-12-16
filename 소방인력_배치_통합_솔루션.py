@@ -20,12 +20,21 @@ def mapping_demo():
     try:
         ALL_LAYERS = {
             "자치구별 인력 배치": pdk.Layer(
-                "ColumnLayer",
+                "ScatterplotLayer",
+#                 "ColumnLayer",
                 data=df,
                 get_position=["lng", "lat"],
-                get_elevation="val",
-                radius=300,
-                elevation_scale=10,
+                get_radius="(val-150)*1.5",
+                get_elevation = 10,
+#                 get_elevation="val",
+#                 radius=300,
+#                 elevation_scale=10,
+                stroked=True,
+                get_line_color=[255, 0, 0],
+                radius_min_pixels=15,
+                radius_max_pixels=100,
+                line_width_min_pixels=1,
+                radius_scale=6,
                 pickable=True,
                 elevation_range=[0, 400],
                 get_fill_color=["val*0.71", 0, 0, "(val-100)*0.71"],
@@ -76,7 +85,6 @@ def mapping_demo():
         """
             % e.reason
         )
-# st.subheader(" 실시간 서울시 내 소방서")
 cols_title = st.columns((12,2,1))
 with cols_title[0]:
     st.markdown("## 자치구별 필요 인력")
@@ -87,9 +95,6 @@ with cols_title[2]:
     st.markdown("""<div data-testid="stMetricDelta" class="css-wnm74r e16fv1kl0" style="color: rgb(9, 171, 59);"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" color="inherit" class="e1fb0mya1 css-jhkj9c ex0cdmw0"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path></svg><div class="css-50ug3q e16fv1kl3"> 증원 </div></div>""", unsafe_allow_html=True)
     st.markdown("""<div data-testid="stMetricDelta" class="css-wnm74r e16fv1kl0" style="color: rgb(255, 43, 43);"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" color="inherit" class="e1fb0mya1 css-jhkj9c ex0cdmw0"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path></svg><div class="css-50ug3q e16fv1kl3"> -감소 </div></div>""", unsafe_allow_html=True)
 cols =st.columns((12,1,1,1))
-# cols[1].metric("","")
-# cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
-# cols[1].metric("12/30", "0 ℃", "3Ｆ")
 
 import altair as alt
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
