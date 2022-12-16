@@ -11,7 +11,7 @@ from streamlit.hello.utils import show_code
 st.set_page_config(layout="wide",
     page_title="2반6조빅프로젝트 ",
     page_icon="🚒")
-cols[0].markdown("## 자치구별 필요 인력")
+
 st.write()
 
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
@@ -78,6 +78,7 @@ def mapping_demo():
         )
 # st.subheader(" 실시간 서울시 내 소방서")
 cols =st.columns((12,1,1,1))
+cols[0].markdown("## 자치구별 필요 인력")
 # cols[1].metric("","")
 # cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
 # cols[1].metric("12/30", "0 ℃", "3Ｆ")
