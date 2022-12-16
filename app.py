@@ -100,6 +100,9 @@ bar_chart = alt.Chart(df).transform_fold(
 #     color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),%%!
     order="order:O"
 )
+cols[1].metric('','현재','증원')
+cols[2].metric('','인력','-감소')
+cols[3].metric('','현황','')
 metric_counter = 0
 for dpt in df['출동소방서'].unique().tolist():
     temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
