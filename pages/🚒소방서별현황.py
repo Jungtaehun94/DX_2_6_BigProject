@@ -64,7 +64,7 @@ if add_selectbox == '마포소방서':
 
         base = alt.Chart(source).encode(
     theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None)
-).properties(width='container')
+)
 
         pie = base.mark_arc(outerRadius=120)
         text = base.mark_text(radius=140, size=20).encode(text="category:N")
@@ -79,9 +79,9 @@ if add_selectbox == '마포소방서':
         
     with col3:
         source = pd.DataFrame({'a': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'],'b': [28, 55, 43, 91, 81, 53, 19, 87, 52]})
-        bar = alt.Chart(source).mark_bar().encode(x='a',y='b').properties(width='container')
+        bar = alt.Chart(source).mark_bar().encode(x='a',y='b')
         source = pd.DataFrame({"category": ["a", "b", "c", "d", "e", "f"], "value": [4, 6, 10, 3, 7, 8]})
-        base = alt.Chart(source).encode(theta=alt.Theta("value:Q", stack=True).properties(width='container'), color=alt.Color("category:N", legend=None))
+        base = alt.Chart(source).encode(theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None))
         pie = base.mark_arc(outerRadius=120)
         text = base.mark_text(radius=140, size=20).encode(text="category:N")
         pie + text
