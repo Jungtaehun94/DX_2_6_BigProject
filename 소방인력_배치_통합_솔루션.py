@@ -88,10 +88,10 @@ df['22년 실제 소방공무원'] = df['22년 실제 소방공무원'] + df['�
 df['감원'] = df['감원'].abs()
 order="{'22년 실제 소방공무원':0, '증원': 1, '감원': 2}"
 column = "['#0000FF', '#00FF00', '#FF0000]"
-bar_chart = alt.Chart(df, height = 400).transform_fold(
+bar_chart = alt.Chart(df, height = 450).transform_fold(
   ['22년 실제 소방공무원', '증원', '감원'],
   as_=['column', 'value']
-).mark_bar(size=10).encode(
+).mark_bar(size=12).encode(
     y='gu:N',
     x='value:Q',
     color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', 'green', 'red'])),
