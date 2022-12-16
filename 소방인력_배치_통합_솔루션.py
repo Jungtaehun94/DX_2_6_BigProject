@@ -11,7 +11,7 @@ from streamlit.hello.utils import show_code
 st.set_page_config(layout="wide",
     page_title="2반6조빅프로젝트 ",
     page_icon="🚒")
-st.markdown("## 자치구별 필요 인력")
+cols[0].markdown("## 자치구별 필요 인력")
 st.write()
 
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
