@@ -60,8 +60,8 @@ def mapping_demo():
                         "latitude": 37.55,
                         "longitude": 126.99,
                         "zoom": 11,
-                        "pitch": 50,
-                        "height": 800
+                        "pitch": 55,
+                        "height": 650
                     },tooltip={'html': '<b>{출동소방서}</b><br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
                     layers=selected_layers,
                 )
@@ -88,10 +88,10 @@ df['22년 실제 소방공무원'] = df['22년 실제 소방공무원'] + df['�
 df['감원'] = df['감원'].abs()
 order="{'22년 실제 소방공무원':0, '증원': 1, '감원': 2}"
 column = "['#0000FF', '#00FF00', '#FF0000]"
-bar_chart = alt.Chart(df, height = 450).transform_fold(
+bar_chart = alt.Chart(df, height = 500).transform_fold(
   ['22년 실제 소방공무원', '증원', '감원'],
   as_=['column', 'value']
-).mark_bar(size=12).encode(
+).mark_bar(size=13).encode(
     y='gu:N',
     x='value:Q',
     color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', 'green', 'red'])),
@@ -172,8 +172,16 @@ if add_selectbox == '재난':
 #    columns=['lat', 'lon'])
         with col2:
             st.subheader('실시간 현장CCTV')
-            st.video('Campsite Fire.mp4')
-            st.video('Seoul_Night_View.mp4')
+            st.markdown("""
+            <video controls width = 400 autoplay="true" muted="true" loop="true">
+            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Campsite%20Fire.mp4" type="video/mp4" />
+            </video>
+            """, unsafe_allow_html=True)
+            st.markdown("""
+            <video controls width = 400 autoplay="true" muted="true" loop="true">
+            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Seoul_Night_View.mp4" type="video/mp4" />
+            </video>
+            """, unsafe_allow_html=True)
 #         with col3:
 #             st.subheader("서울시 내 소방서 표시")
 # #             st.pydeck_chart(pdk.Deck(
@@ -203,8 +211,16 @@ if add_selectbox == '재난':
         with col2:
             st.subheader('실시간 현장 CCTV')
 #             st.image('https://cdn.kado.net/news/photo/202205/1126349_551566_0650.jpg')
-            st.video('paramedics.mp4')
-            st.video('Namsan.mp4')
+            st.markdown("""
+            <video controls width = 400 autoplay="true" muted="true" loop="true">
+            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/paramedics.mp4" type="video/mp4" />
+            </video>
+            """, unsafe_allow_html=True)
+            st.markdown("""
+            <video controls width = 400 autoplay="true" muted="true" loop="true">
+            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Namsan.mp4" type="video/mp4" />
+            </video>
+            """, unsafe_allow_html=True)
 #         with col3:
 #             st.subheader("서울시 내 소방서 표시")
 #             df = pd.DataFrame(
@@ -224,7 +240,11 @@ if add_selectbox == '재난':
         with col2:
             st.subheader('실시간 현장 CCTV')
 #             st.image('https://pip-thumb.zumst.com/api/v1/swyze_VC002_77445815_content.jpeg?w=880&h=495')
-            st.video('Flood.mp4')
+            st.markdown("""
+                <video controls width = 400 autoplay="true" muted="true" loop="true">
+                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Flood.mp4" type="video/mp4" />
+                </video>
+                """, unsafe_allow_html=True)
 #         with col3:
 #             st.subheader("서울시 내 소방서 표시")
 #             df = pd.DataFrame(
@@ -244,8 +264,16 @@ if add_selectbox == '재난':
             with col2:
                 st.subheader('🚨🚨실시간 현장 CCTV🚨🚨')
 #                 st.image('https://ichef.bbci.co.uk/news/640/cpsprodpb/16EEF/production/_109053939_origin_100_3.jpg')
-                st.video('candlelight vigil.mp4')
-                st.video('X-mas.mp4')
+                st.markdown("""
+                <video controls width = 400 autoplay="true" muted="true" loop="true">
+                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/candlelight vigil.mp4" type="video/mp4" />
+                </video>
+                """, unsafe_allow_html=True)
+                st.markdown("""
+                <video controls width = 400 autoplay="true" muted="true" loop="true">
+                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/X-mas.mp4" type="video/mp4" />
+                </video>
+                """, unsafe_allow_html=True)
 #         with col3:
 #             st.subheader("서울시 내 소방서 표시")
 #             df = pd.DataFrame(
