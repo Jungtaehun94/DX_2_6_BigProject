@@ -103,7 +103,7 @@ bar_chart = alt.Chart(df).transform_fold(
 cols[1].metric('','현재','증원')
 cols[2].metric('','인력','-감소')
 cols[3].metric('','현황','')
-cols[3].text()
+cols[3].text('')
 metric_counter = 0
 for dpt in df['출동소방서'].unique().tolist():
     temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
