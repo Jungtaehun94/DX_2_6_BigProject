@@ -77,7 +77,7 @@ def mapping_demo():
             % e.reason
         )
 st.subheader(" 실시간 서울시 내 소방서")
-cols =st.columns((1,1,1,12,8))
+cols =st.columns((1,1,1,8,8))
 # cols[1].metric("","")
 # cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
 # cols[1].metric("12/30", "0 ℃", "3Ｆ")
