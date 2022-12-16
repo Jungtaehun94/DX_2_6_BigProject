@@ -83,7 +83,8 @@ with cols_title[0]:
 with cols_title[1]:
     st.markdown("## 인력현황")
 with cols_title[2]:
-    st.markdown("""<br style="line-height: 1px" /><div data-testid="stMetricDelta" class="css-wnm74r e16fv1kl0" style="color: rgb(9, 171, 59);"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" color="inherit" class="e1fb0mya1 css-jhkj9c ex0cdmw0"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path></svg><div class="css-50ug3q e16fv1kl3"> 증원 </div></div>""", unsafe_allow_html=True)
+    st.markdown("""<br style="line-height: 1px" />""", unsafe_allow_html=True)
+    st.markdown("""<div data-testid="stMetricDelta" class="css-wnm74r e16fv1kl0" style="color: rgb(9, 171, 59);"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" color="inherit" class="e1fb0mya1 css-jhkj9c ex0cdmw0"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path></svg><div class="css-50ug3q e16fv1kl3"> 증원 </div></div>""", unsafe_allow_html=True)
     st.markdown("""<div data-testid="stMetricDelta" class="css-wnm74r e16fv1kl0" style="color: rgb(255, 43, 43);"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" color="inherit" class="e1fb0mya1 css-jhkj9c ex0cdmw0"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path></svg><div class="css-50ug3q e16fv1kl3"> -감소 </div></div>""", unsafe_allow_html=True)
 cols =st.columns((12,1,1,1))
 # cols[1].metric("","")
