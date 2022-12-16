@@ -15,7 +15,7 @@ st.sidebar.header("자치구별 필요 인력")
 st.write()
 df = pd.read_csv("./data.csv", encoding = 'cp949')
 # df = r"C:\Users\User\Downloads\csvjson (1).json"
-mapping_demo():
+def mapping_demo():
     try:
         ALL_LAYERS = {
             "자치구별 인력 배치": pdk.Layer(
