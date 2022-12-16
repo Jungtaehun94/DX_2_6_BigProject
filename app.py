@@ -82,6 +82,9 @@ cols =st.columns((1,1,1,8,3))
 # cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
 # cols[1].metric("12/30", "0 ℃", "3Ｆ")
 with cols[3]:
+    st.markdown('')
+    st.markdown('')
+    st.markdown('')
     mapping_demo()
 import altair as alt
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
