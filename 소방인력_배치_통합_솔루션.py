@@ -48,7 +48,6 @@ def mapping_demo():
         }
         with st.sidebar:
             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '자치구별 출동건수'))
-        st.sidebar.markdown("### Map Layers")
         selected_layers = [
             layer
             for layer_name, layer in ALL_LAYERS.items()
