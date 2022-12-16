@@ -82,8 +82,7 @@ cols =st.columns((12,1,1,1))
 # cols[1].metric("","")
 # cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
 # cols[1].metric("12/30", "0 ℃", "3Ｆ")
-with cols[0]:
-    mapping_demo()
+
 import altair as alt
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
 df['22년 실제 소방공무원'] = df['22년 실제 소방공무원'] + df['감원']
@@ -140,7 +139,8 @@ for dpt in df['출동소방서'].unique().tolist():
 
 with cols[0]:
     st.altair_chart(bar_chart, use_container_width=True)
-
+with cols[0]:
+    mapping_demo()
 
 
 # show_code(mapping_demo)
