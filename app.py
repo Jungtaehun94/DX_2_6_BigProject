@@ -137,7 +137,8 @@ for dpt in df['출동소방서'].unique().tolist():
 # cols[2].metric("강북소방서","268","50")
 # cols[2].metric("성북소방서","177")
 
-st.altair_chart(bar_chart, use_container_width=True)
+with cols[0]:
+    st.altair_chart(bar_chart, use_container_width=True)
 
 
 
