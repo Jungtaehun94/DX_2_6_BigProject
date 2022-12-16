@@ -91,7 +91,7 @@ column = "['#0000FF', '#00FF00', '#FF0000]"
 bar_chart = alt.Chart(df).transform_fold(
   ['22년 실제 소방공무원', '증원', '감원'],
   as_=['column', 'value']
-).mark_bar(barSize=10).encode(
+).mark_bar(size=10).encode(
     y='gu:N',
     x='value:Q',
     color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', 'green', 'red'])),
