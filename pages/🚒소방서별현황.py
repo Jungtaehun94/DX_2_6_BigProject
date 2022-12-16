@@ -119,4 +119,4 @@ if add_selectbox == '마포소방서':
 #         alt.SortField("diff", order="descending"),
 #     ],
 #         groupby=["matchday"],
-# ).properties(title="World Cup 2018: Group F Rankings",width='container')
+# ).properties(title="World Cup 2018: Group F Rankings")
