@@ -76,11 +76,11 @@ def mapping_demo():
             % e.reason
         )
 st.subheader(" 실시간 서울시 내 소방서")
-cols =st.columns((6,1,1,1))
+cols =st.columns((1,1,1,6))
 # cols[1].metric("","")
 # cols[1].metric("12/29", "-4 ℃", "-1Ｆ")
 # cols[1].metric("12/30", "0 ℃", "3Ｆ")
-with cols[0]:
+with cols[3]:
     mapping_demo()
 import altair as alt
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
@@ -95,33 +95,34 @@ bar_chart = alt.Chart(df).transform_fold(
     color='column:N',
     order="order:O"
 )
-st.altair_chart(bar_chart, use_container_width=True)
-cols[1].metric("마포소방서","280","2")
-cols[1].metric("관악소방서","68","-4")
-cols[1].metric("동작소방서","280")
-cols[1].metric("양천소방서","280","5")
-cols[1].metric("강서소방서","340")
-cols[1].metric("노원소방서","350","-1")
-cols[1].metric("강동소방서","200")
-cols[1].metric("영등포소방서","262","2")
-cols[2].metric("송파소방서","262")
-cols[2].metric("성북소방서","264","2")
-cols[2].metric("종로소방서","302")
-cols[2].metric("서초소방서","166")
-cols[2].metric("강남소방서","269","-9")
-cols[2].metric("중부소방서","203")
-cols[2].metric("동대문소방서","165")
-cols[2].metric("도봉소방서","205")
-cols[3].metric("용산소방서","360","20")
-cols[3].metric("광진소방서","201")
-cols[3].metric("서대문소방서","206")
-cols[3].metric("은평소방서","155")
-cols[3].metric("중랑소방서","184","20")
-cols[3].metric("강북소방서","268","50")
-cols[3].metric("성북소방서","177")
 
+cols[0].metric("마포소방서","280","2")
+cols[0].metric("관악소방서","68","-4")
+cols[0].metric("동작소방서","280")
+cols[0].metric("양천소방서","280","5")
+cols[0].metric("강서소방서","340")
+cols[0].metric("노원소방서","350","-1")
+cols[0].metric("강동소방서","200")
+cols[0].metric("영등포소방서","262","2")
+cols[1].metric("송파소방서","262")
+cols[1].metric("성북소방서","264","2")
+cols[1].metric("종로소방서","302")
+cols[1].metric("서초소방서","166")
+cols[1].metric("강남소방서","269","-9")
+cols[1].metric("중부소방서","203")
+cols[1].metric("동대문소방서","165")
+cols[1].metric("도봉소방서","205")
+cols[2].metric("용산소방서","360","20")
+cols[2].metric("광진소방서","201")
+cols[2].metric("서대문소방서","206")
+cols[2].metric("은평소방서","155")
+cols[2].metric("중랑소방서","184","20")
+cols[2].metric("강북소방서","268","50")
+cols[2].metric("성북소방서","177")
 
-
+cols2 = st.columns((6,3))
+with cols2[1]:
+    st.altair_chart(bar_chart, use_container_width=True)
 
 
 
