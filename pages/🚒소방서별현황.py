@@ -7,9 +7,9 @@ import pydeck as pdk
 from urllib.error import URLError
 import base64
 import altair as alt
+from add_logo import add_logo
 
-
-
+add_logo()
 add_selectbox = st.sidebar.selectbox('소방서를 선택하세요',
                                  ('마포소방서','관악소방서',
 '동작소방서'
