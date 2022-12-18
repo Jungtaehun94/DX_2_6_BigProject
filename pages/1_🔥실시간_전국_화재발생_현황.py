@@ -12,14 +12,11 @@ im = Image.open(BytesIO(res))
 st.set_page_config(page_icon=im, layout="wide")
 add_logo()
 
-with st.spinner("Loading..."):
-    st.markdown("""
-    <body>
-        <div style="border: 3px solid rgb(255, 255, 255); overflow: hidden; margin: 15px auto; max-width: 1600px; ">
-            <iframe scrolling="no" src=https://nfds.go.kr/dashboard/monitor.do style="border: 0px none; margin-left: 0px; height: 2160px; margin-top: -550px; width: 1200px;">
-            </iframe>
-        </div>
-    </body>
-    """, unsafe_allow_html = True)
-    time.sleep(3)
+<div class="holds-the-iframe"><iframe id = fire scrolling="no" src=https://nfds.go.kr/dashboard/monitor.do style="border: 0px none; margin-left: 0px; height: 2160px; margin-top: -550px; width: 1200px;"></iframe></div>
+
+.holds-the-iframe {
+  background:url(https://nfds.go.kr/favicon.ico) center center no-repeat;
+}
+
+
 # http://nfds.go.kr/dashboard/monitor.do
