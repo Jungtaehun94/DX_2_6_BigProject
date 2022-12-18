@@ -9,7 +9,7 @@ def add_logo():
                 background-size:220px, 120px;
                 background-repeat: no-repeat;
                 width:220px;
-                height:120px;
+                height:10px;
                 display:inline-block;
                 margin-left: 20px;
                 font-size: 30px;
