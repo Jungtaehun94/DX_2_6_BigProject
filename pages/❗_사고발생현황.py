@@ -3,15 +3,25 @@ import pandas as pd
 import time
 import numpy as np
 import streamlit as st
+from add_logo import add_logo
 
 st.set_page_config(layout="wide",
                    
     page_title="2반6조빅프로젝트 ",
     page_icon="🚒",
 )
-
-
-st.markdown("## 서울에서 발생된 출동건수 그래프입니다")
+add_logo()
+st.markdown("### 한 눈에 보는 화재 현황")
+st.markdown("""
+<body>
+    <div style="frameBorder=0; overflow: hidden; margin: 15px auto; max-width: 1600px; ">
+        <iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -600px; width: 1200px;">
+        </iframe>
+    </div>
+</body>
+""", unsafe_allow_html = True)
+# st.markdown("## 서울에서 발생된 출동건수 그래프입니다")
+st.markdown("### 서울 출동 건수")
 st.sidebar.header("서울 출동 건수")
 st.write(
     """### 구조+화재+구급+재난""")
@@ -38,4 +48,3 @@ chart_data = pd.DataFrame(
     columns=['화재', '구조', '시위','구급'])
 
 st.area_chart(chart_data)
-
