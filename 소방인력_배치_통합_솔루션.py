@@ -7,10 +7,31 @@ import numpy as np
 
 import streamlit as st
 from streamlit.hello.utils import show_code
+from io import BytesIO
+from urllib import request
+from PIL import Image
+from add_logo import add_logo
+
+url = "https://nfds.go.kr/images/common/logo_emb.png"
+res = request.urlopen(url).read()
+logo_im = Image.open(BytesIO(res))
 
 st.set_page_config(layout="wide",
     page_title="2반6조빅프로젝트 ",
     page_icon="🚒")
+
+#     st.markdown('### 소방인력 배치 통합 솔루션')
+add_logo()
+# pages = st.source_util.get_pages('소방인력_배치_통합_솔루션.py')
+# pages
+# new_page_names = {
+#   '사고발생현황': im,
+#   '소방서별현황': im,
+# }
+
+# for key, page in pages.items():
+#     if page['page_name'] in new_page_names:
+#         page['icon'] = new_page_names[page['page_name']]
 
 st.write()
 
