@@ -15,7 +15,7 @@ st.markdown("### 한 눈에 보는 화재 현황")
 st.markdown("""
 <body>
     <div style="border: 3px solid rgb(255, 255, 255); overflow: hidden; margin: 15px auto; max-width: 1600px; ">
-        <iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -550px; width: 1200px;">
+        <iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -600px; width: 1200px;">
         </iframe>
     </div>
 </body>
