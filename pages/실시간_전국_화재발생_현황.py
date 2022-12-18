@@ -1,5 +1,8 @@
+from PIL import Image
 import streamlit as st
-st.set_page_config(layout="wide")
+
+im = Image.open("https://nfds.go.kr/favicon.ico")
+st.set_page_config(page_title="Hello world", page_icon=im, layout="wide")
 st.markdown("""
 <body>
 	<div style="border: 3px solid rgb(255, 255, 255); overflow: hidden; margin: 15px auto; max-width: 1600px; ">
