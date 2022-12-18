@@ -4,14 +4,13 @@ from io import BytesIO
 from urllib import request
 import time
 from add_logo import add_logo
-add_logo()
 
 url = "https://nfds.go.kr/favicon.ico"
 res = request.urlopen(url).read()
 
 im = Image.open(BytesIO(res))
 st.set_page_config(page_title="실시간 전국 화재발생 ", page_icon=im, layout="wide")
-
+add_logo()
 st.markdown("""
 <body>
 	<div style="border: 3px solid rgb(255, 255, 255); overflow: hidden; margin: 15px auto; max-width: 1600px; ">
