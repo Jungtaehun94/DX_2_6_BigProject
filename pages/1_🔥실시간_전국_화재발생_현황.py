@@ -19,7 +19,7 @@ with st.spinner("Loading..."):
     </iframe>
     </body>
     """, unsafe_allow_html = True)
-    time.sleep(3)
+    time.sleep(30)
     
 # http://nfds.go.kr/dashboard/monitor.do
 # <div style="frameBorder=0; overflow: hidden; margin: 15px auto; max-width: 1600px;"></div>
