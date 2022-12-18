@@ -21,5 +21,5 @@ with st.spinner("Loading..."):
         </div>
     </body>
     """, unsafe_allow_html = True)
-    time.sleep(2)
+    time.sleep(3)
 # http://nfds.go.kr/dashboard/monitor.do
