@@ -9,10 +9,10 @@ st.markdown("""
 }
 </style>
 </head>
-<script>$('#target-div').load('http://www.example.com/portfolio.php #portfolio-sports');</script>
+<script>$('#myDiv').load('https://nfds.go.kr/dashboard/monitor.do #print > div > div');</script>
 <body>
 
-<div class="myDiv">
+<div id="myDiv">
   <h2>This is a heading in a div element</h2>
   <p>This is some text in a div element.</p>
 </div>
