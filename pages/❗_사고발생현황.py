@@ -3,13 +3,14 @@ import pandas as pd
 import time
 import numpy as np
 import streamlit as st
+from add_logo import add_logo
 
 st.set_page_config(layout="wide",
                    
     page_title="2반6조빅프로젝트 ",
     page_icon="🚒",
 )
-
+add_logo()
 
 st.markdown("## 서울에서 발생된 출동건수 그래프입니다")
 st.sidebar.header("서울 출동 건수")
