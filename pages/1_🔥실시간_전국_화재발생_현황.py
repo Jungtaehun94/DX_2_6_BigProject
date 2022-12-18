@@ -14,7 +14,7 @@ add_logo()
 st.markdown("""
 <div class="holds-the-iframe"><iframe id = fire scrolling="no" src=https://nfds.go.kr/dashboard/monitor.do style="border: 0px none; margin-left: 0px; height: 2160px; margin-top: -550px; width: 1200px;"></iframe></div>
 .holds-the-iframe {
-  background:url(https://nfds.go.kr/favicon.ico) center center no-repeat;
+  background:url(https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/sample.gif) center center no-repeat;
 }
 """, unsafe_allow_html = True)
 
