@@ -11,9 +11,15 @@ res = request.urlopen(url).read()
 im = Image.open(BytesIO(res))
 st.set_page_config(page_icon=im, layout="wide")
 add_logo()
-st.markdown("""
-<iframe id = fire scrolling="no" src=https://nfds.go.kr/dashboard/monitor.do style="border: 0px none; margin-left: 0px; height: 2160px; margin-top: -550px; width: 1200px;">
-<div id="loadingMessage">Loading...</div>
-""", unsafe_allow_html = True)
 
+with st.spinner("Loading..."):
+    st.markdown("""
+    <body>
+        <div style="border: 3px solid rgb(255, 255, 255); overflow: hidden; margin: 15px auto; max-width: 1600px; ">
+            <iframe scrolling="no" src=https://nfds.go.kr/dashboard/monitor.do style="border: 0px none; margin-left: 0px; height: 2160px; margin-top: -550px; width: 1200px;">
+            </iframe>
+        </div>
+    </body>
+    """, unsafe_allow_html = True)
+    time.sleep(3)
 # http://nfds.go.kr/dashboard/monitor.do
