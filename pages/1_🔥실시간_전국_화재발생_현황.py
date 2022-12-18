@@ -15,11 +15,10 @@ add_logo()
 with st.spinner("Loading..."):
     st.markdown("""
     <body>
-        <div style="overflow: hidden; margin: 15px auto; max-width: 1600px; frameBorder=0;">
             <iframe scrolling="no" src=https://nfds.go.kr/dashboard/monitor.do style="border: 0px none; margin-left: 0px; height: 2160px; margin-top: -550px; width: 1200px;">
             </iframe>
-        </div>
     </body>
     """, unsafe_allow_html = True)
     time.sleep(3)
 # http://nfds.go.kr/dashboard/monitor.do
+# <div style="frameBorder=0; overflow: hidden; margin: 15px auto; max-width: 1600px;"></div>
