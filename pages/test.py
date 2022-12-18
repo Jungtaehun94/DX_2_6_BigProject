@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(layout="wide")
 st.markdown("""
 <body>
 	<div style="border: 3px solid rgb(255, 255, 255); overflow: hidden; margin: 15px auto; max-width: 1600px; ">
