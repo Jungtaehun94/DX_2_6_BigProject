@@ -1,9 +1,10 @@
 from PIL import Image
 import streamlit as st
 from add_logo import add_logo
-add_logo()
+
 
 st.set_page_config(page_title="실시간 전국 화재발생 ", page_icon=im, layout="wide")
+add_logo()
 st.markdown("""
 <body>
 	<div style="border: 3px solid rgb(255, 255, 255); overflow: hidden; margin: 15px auto; max-width: 1600px; ">
