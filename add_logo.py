@@ -5,7 +5,7 @@ def add_logo():
         <style>
             [data-testid="stSidebarNav"]::before {
                 content: "";
-                background-image: url(../logo.png);
+                background-image: url("logo.png");
                 background-size:139px, 76px;
                 background-repeat: no-repeat;
                 width:139px;
