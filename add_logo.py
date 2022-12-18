@@ -1,7 +1,7 @@
 import streamlit as st
 @st.cache(persist=True)
 def add_logo():
-    st.markdown(    
+    output = st.markdown(
         """
         <style>
             [data-testid="stSidebarNav"]::before {
@@ -19,3 +19,5 @@ def add_logo():
             }
         </style>
         """,unsafe_allow_html=True)
+    return output
+    
