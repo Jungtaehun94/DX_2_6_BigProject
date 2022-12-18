@@ -1,5 +1,8 @@
 from PIL import Image
 import streamlit as st
+from io import BytesIO
+from urllib import request
+import time
 from add_logo import add_logo
 add_logo()
 
