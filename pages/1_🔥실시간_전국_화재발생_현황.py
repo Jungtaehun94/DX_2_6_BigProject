@@ -3,13 +3,14 @@ import streamlit as st
 from io import BytesIO
 from urllib import request
 import time
+from add_logo import add_logo
 
 url = "https://nfds.go.kr/favicon.ico"
 res = request.urlopen(url).read()
 
 im = Image.open(BytesIO(res))
 st.set_page_config(page_icon=im, layout="wide")
-
+add_logo()
 
 with st.spinner("Loading..."):
     st.markdown("""
