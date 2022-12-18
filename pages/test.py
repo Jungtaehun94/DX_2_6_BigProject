@@ -2,7 +2,7 @@ import streamlit as st
 st.markdown("""
 <body>
 	<div>
-		<iframe scrolling="yes" src=http://nfds.go.kr/dashboard/monitor.do>
+		<iframe scrolling="yes" src=http://www.google.com>
 		</iframe>
 	</div>
 </body>
