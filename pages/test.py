@@ -1,6 +1,5 @@
 import streamlit as st
-st.markdown("""
-<div class="contents-wrap">
+st.markdown("""<div class="contents-wrap">
         <div class="guide-message silent">전국119상황실 | 화재발생현황</div>
         <!-- Page Top Section -->
         <div class="page-top">
@@ -188,5 +187,4 @@ st.markdown("""
                 </div>
             </div>
         </section>
-    </div>
-    """, unsafe_allow_html = True)
+    </div>""", unsafe_allow_html = True)
