@@ -218,7 +218,7 @@ if add_selectbox == '재난':
             </video>
             """, unsafe_allow_html=True)
         with col3:
-            st.markdown('##')
+            st.markdown('###')
             st.markdown('##')
             st.markdown("""
             <video controls width = 450 autoplay="true" muted="true" loop="true">
