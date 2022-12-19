@@ -188,7 +188,6 @@ with cols[0]:
     mapping_demo()
 if to_show == '실시간 출동 현황':
     with cols[1]:
-        st.markdown("""<video src="https://video-weaver.sel04.hls.ttvnw.net/v1/playlist/CqYFCfbme3I-Be2vL-vuUiH0eU6td-lZOvCskp3JeNAAql2jN0ynxQGsVZwk_G3Qu52XQRR4cf9yXtxH_rEBhFprv8w5S-ryW8UQz8c_ynT3RK3wmnpemfthoRZY4sf4L1rL9w1GJJUAADZnwwmqyQjTNXADHjMobBDmnU_oDgNv8XLIUFuRjFs6bDgDxb0nGKNUrqHeJwleAOEpyTN4vSCtPyk1GIQIGbntnXwJm-K3p0isCFQz69ICpVLksMKYf5jZKqdg9MiM_xzRFh8QYgU6ouQ2fGgHhVpeTN2M6l1u_JN8q68e7y2QyBPBs3SDi_X9kTX7S4-takItWx6c3Hb5ODBeC_bdFajLq8m6o_qCfM0kjqq3mI4U4socq4SfogSZGhiNbJdZ69W_Fh0ZM69_HrNwFlGZhz4nrSv_Y1NsNxVEUlqyNTxzorVf7YmHpYzhATwKbi1nWMTYJGsiQurTh-uznHEgqZ8ZGmCoGmr3B8_4SOHZpj5HQht3h3yoHpOFbsAzbqZh3Uh6cnybhSi2BZjGGzl2upvzRlbMF8Wg_7559o2aADSOBE1kH1te5bBIoKDtN7x9iIuFxboQ1q06qVRS0-Mwo60KuDROTSR0gFLVYsVW9-NWOKrHgU2YQexzLlmKYa39ncjuZUSI5Qzq3xI5rps0lyWvkUcGqwzCeS1sW6PFAUYOih2r7r01vIafVDj0o94zmCLoQEKd9irXM59bN4sMlmxmvvDMEUh7xsVt3JZW1etZgSNVGxSDdqLp-KyIiBw041nvx9DpKT757TCx3IJ2TMPI00xz1Sht-x5MRHvgl26OPPm27zHFyvHD7NO_biCsRIvqqEFgQQpIyGPF0CRSBxLtlcGp5iH6mmsAEM7aEaN6o80XiEIqcQALf8TPmbmGGgzwgDVLZBTwrUTqSYggASoJdXMtd2VzdC0yMLUF.m3u8"></video>""", unsafe_allow_html=True)
         st.markdown("""
             <video controls height=325 autoplay="true" muted="true" loop="true">
             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
