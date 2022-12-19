@@ -24,7 +24,7 @@ if toggle_value:
     </body>
     """, unsafe_allow_html = True)
 else:
-    st.markdown("")
+    st.markdown("숨김")
 
 with st.spinner("Loading..."):
     st.markdown("""
