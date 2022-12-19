@@ -62,7 +62,7 @@ elif ques =='전국출동현황':
     st.markdown("### 화재 발생 원인")
     chart_data = pd.DataFrame(
     np.random.randn(20, 4),
-    columns=['화재', '구조', '시위','구급'])
+    columns=['부주의' ,'전기적요인','기계적요인','원인미상'])
 
     st.area_chart(chart_data)
 
