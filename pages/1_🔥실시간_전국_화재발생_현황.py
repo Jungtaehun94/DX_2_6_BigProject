@@ -10,6 +10,7 @@ res = request.urlopen(url).read()
 
 im = Image.open(BytesIO(res))
 st.set_page_config(page_icon=im, layout="wide")
+
 add_logo()
 
 toggle_value = st.sidebar.checkbox("Show additional information")
