@@ -214,12 +214,13 @@ if add_selectbox == '재난':
             """, unsafe_allow_html=True)
             st.markdown("""
             <video controls width = 450 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
+            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Seoul_Night_View.mp4" type="video/mp4" />
             </video>
             """, unsafe_allow_html=True)
+        with cols3:
             st.markdown("""
             <video controls width = 450 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Seoul_Night_View.mp4" type="video/mp4" />
+            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
             </video>
             """, unsafe_allow_html=True)
 #         with col3:
