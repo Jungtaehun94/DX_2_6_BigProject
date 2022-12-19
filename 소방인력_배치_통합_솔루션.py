@@ -11,6 +11,7 @@ from io import BytesIO
 from urllib import request
 from PIL import Image
 from add_logo import add_logo
+from up_down import up,down
 
 url = "https://nfds.go.kr/images/common/logo_emb.png"
 res = request.urlopen(url).read()
@@ -80,11 +81,6 @@ def mapping_demo():
 #         with st.sidebar:
 #             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
         selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
-        if to_show == '자치구별 인력 배치':
-            map_width = "100%"
-        else:
-            map_width = "50%"
-        map_width
         if selected_layers:
             st.pydeck_chart(
                 pdk.Deck(map_style=None,
@@ -93,7 +89,7 @@ def mapping_demo():
                         "longitude": 126.99,
                         "zoom": 11,
                         "pitch": 55,
-                        "width": map_width,
+                        "width": '100%',
                         "height": 650,                        
                     },tooltip={'html': '<b>{출동소방서}</b><br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
                     layers=selected_layers,
@@ -109,17 +105,33 @@ def mapping_demo():
         """
             % e.reason
         )
-cols_title = st.columns((12,2,1))
-i = 0
-with cols_title[0]:
-    st.markdown("## 자치구별 필요 인력")
-with cols_title[1]:
-    st.markdown("## 인력현황")
-with cols_title[2]:
-    st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
-    st.markdown("""<div data-testid="stMetricDelta" class="css-wnm74r e16fv1kl0" style="color: rgb(9, 171, 59);"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" color="inherit" class="e1fb0mya1 css-jhkj9c ex0cdmw0"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path></svg><div class="css-50ug3q e16fv1kl3"> 증원 </div></div>""", unsafe_allow_html=True)
-    st.markdown("""<div data-testid="stMetricDelta" class="css-wnm74r e16fv1kl0" style="color: rgb(255, 43, 43);"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" xmlns="http://www.w3.org/2000/svg" color="inherit" class="e1fb0mya1 css-jhkj9c ex0cdmw0"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path></svg><div class="css-50ug3q e16fv1kl3"> -감소 </div></div>""", unsafe_allow_html=True)
-cols =st.columns((12,1,1,1))
+if to_show == '자치구별 인력 배치':
+    cols_title = st.columns((12,2,1))
+    i = 0
+    with cols_title[0]:
+        st.markdown("## 자치구별 필요 인력")
+    with cols_title[1]:
+        st.markdown("## 인력현황")
+    with cols_title[2]:
+        st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
+        st.markdown(up(), unsafe_allow_html=True)
+        st.markdown(down(), unsafe_allow_html=True)
+    cols =st.columns((12,1,1,1))
+else:
+    cols_title = st.columns((6,6,2,1))
+    i = 1
+    with cols_title[0]:
+        st.markdown("## 자치구별 필요 인력")
+    with cols_title[1]:
+        st.markdown("## CCTV")
+    with cols_title[2]:
+        st.markdown("## 인력현황")
+    with cols_title[3]:
+        st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
+        st.markdown(up(), unsafe_allow_html=True)
+        st.markdown(down(), unsafe_allow_html=True)
+    cols =st.columns((6,6,1,1,1))
+
 
 import altair as alt
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
@@ -139,7 +151,7 @@ bar_chart = alt.Chart(df, height = 500).transform_fold(
 )
 
 df3 = pd.read_csv("LOCAL_PEOPLE_20221211.csv", encoding = 'cp949', low_memory=False, index_col=False)
-st.markdown('자치구별 생활인구 현황')
+
 #     df3['TOT_LVPOP_CO'].astype(float)
 df3 = df3.groupby(by = ['행정동코드', '기준일ID', '시간대구분'], as_index=False).sum()
 df3 = df3.loc[df3["기준일ID"] == df3["기준일ID"].unique().tolist()[-1], :]
@@ -152,17 +164,41 @@ chart_data = df3[["행정동코드", "총생활인구수"]]
 metric_counter = 0
 for dpt in df['출동소방서'].unique().tolist():
     temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
-    with cols[metric_counter%3+1]:
+    with cols[metric_counter%3+i+1]:
         st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
     metric_counter +=1
+    if metric_counter > 17:
+        break;
 
 with cols[0]:
     mapping_demo()
-    if to_show == '실시간 출동 현황':
-        st.bar_chart(chart_data, x="행정동코드", y="총생활인구수")
-    else:
-        to_show
-        st.altair_chart(bar_chart, use_container_width=True)
+if to_show == '실시간 출동 현황':
+    with cols[1]:
+        st.markdown("""
+            <video controls width = 450 autoplay="true" muted="true" loop="true">
+            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
+            </video>
+            """, unsafe_allow_html=True)
+        st.markdown("""
+            <video controls width = 450 autoplay="true" muted="true" loop="true">
+            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
+            </video>
+            """, unsafe_allow_html=True)
+    new_cols = st.columns((12,1,1,1))
+    st.markdown('자치구별 생활인구 현황')
+    new_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
+else:
+    new_cols = st.columns((12,1,1,1))
+    cols[0].altair_chart(bar_chart, use_container_width=True)
+    
+metric_counter = 0
+for dpt in df['출동소방서'].unique().tolist()[17:]:
+    temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
+    with new_cols[metric_counter%3+1]:
+        st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+    metric_counter +=1
+    if metric_counter > 17:
+        break;
         
 
 # show_code(mapping_demo)
