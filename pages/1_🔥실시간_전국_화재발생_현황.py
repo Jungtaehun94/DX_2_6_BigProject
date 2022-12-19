@@ -23,7 +23,7 @@ expander = st.expander(title)
 
 # Use an if statement to check the state of the expander
 if expander:
-    st.write(hidden_content)
+    hidden_content
     
 with st.spinner("Loading..."):
     st.markdown("""
