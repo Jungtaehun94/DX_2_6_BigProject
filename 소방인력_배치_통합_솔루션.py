@@ -118,7 +118,7 @@ if to_show == '자치구별 인력 배치':
         st.markdown(down(), unsafe_allow_html=True)
     cols =st.columns((12,1,1,1))
 else:
-    cols_title = st.columns((6,6,2,1))
+    cols_title = st.columns((7,5,2,1))
     i = 1
     with cols_title[0]:
         st.markdown("## 자치구별 필요 인력")
