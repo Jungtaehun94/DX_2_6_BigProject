@@ -16,7 +16,7 @@ add_logo()
 title = "오늘자 화재 현황"
 
 # Create the content that you want to hide/reveal
-hidden_content = st.markdown("""<body><div style="frameBorder=0; overflow: hidden; margin: 15px auto; max-width: 1600px; "><iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -600px; width: 1200px;"></iframe></div></body>""", unsafe_allow_html = True)
+# hidden_content = st.markdown("""<body><div style="frameBorder=0; overflow: hidden; margin: 15px auto; max-width: 1600px; "><iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -600px; width: 1200px;"></iframe></div></body>""", unsafe_allow_html = True)
 
 # Use the collapsible function to create the fold/unfold button
 expander = st.expander(title)
