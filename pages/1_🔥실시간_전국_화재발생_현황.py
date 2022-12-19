@@ -11,7 +11,6 @@ res = request.urlopen(url).read()
 im = Image.open(BytesIO(res))
 st.set_page_config(page_icon=im, layout="wide")
 add_logo()
-import streamlit as st
 
 # Create a title for the collapsible section
 title = "오늘자 화재 현황"
