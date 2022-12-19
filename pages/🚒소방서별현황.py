@@ -332,11 +332,7 @@ if add_selectbox == '노원소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
         st.subheader('센터 CCTV')
-         st.markdown("""
-                <video controls width = 450 autoplay="true" muted="true" loop="true">
-                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.mp4" type="video/mp4"/>
-                </video>
-                """, unsafe_allow_html=True)
+        st.markdown("""<video controls width = 450 autoplay="true" muted="true" loop="true"><source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.mp4" type="video/mp4"/></video>""", unsafe_allow_html=True)
         st.video('paramedics.mp4')
         st.video('candlelight vigil.mp4')
         
