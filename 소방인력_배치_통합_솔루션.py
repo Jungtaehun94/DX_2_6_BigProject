@@ -311,7 +311,11 @@ if add_selectbox == '재난':
             st.map(df)
             with col2:
                 st.subheader('🚨🚨실시간 현장 CCTV🚨🚨')
-#                 st.image('https://ichef.bbci.co.uk/news/640/cpsprodpb/16EEF/production/_109053939_origin_100_3.jpg')
+                st.markdown("""
+                <video controls width = 450 autoplay="true" muted="true" loop="true">
+                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/blob/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.webm" />
+                </video>
+                """, unsafe_allow_html=True)
                 st.markdown("""
                 <video controls width = 450 autoplay="true" muted="true" loop="true">
                 <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/candlelight vigil.mp4" type="video/mp4" />
