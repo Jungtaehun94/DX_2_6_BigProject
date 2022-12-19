@@ -203,7 +203,7 @@ if to_show == '실시간 출동 현황':
     new_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
 else:
     new_cols = st.columns((12,1,1,1))
-    cols[0].altair_chart(bar_chart, use_container_width=True)
+    new_cols[0].altair_chart(bar_chart, use_container_width=True)
     
 metric_counter = 0
 for dpt in df['출동소방서'].unique().tolist()[17:]:
