@@ -10,9 +10,7 @@ res = request.urlopen(url).read()
 
 im = Image.open(BytesIO(res))
 st.set_page_config(page_icon=im, layout="wide")
-
 add_logo()
-
 toggle_value = st.sidebar.checkbox("Show additional information")
 if toggle_value:
     st.markdown("### 한 눈에 보는 화재 현황")
@@ -26,7 +24,6 @@ if toggle_value:
     """, unsafe_allow_html = True)
 else:
     st.markdown("숨김")
-
 with st.spinner("Loading..."):
     st.markdown("""
     <body>
