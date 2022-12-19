@@ -218,7 +218,7 @@ if add_selectbox == '재난':
             </video>
             """, unsafe_allow_html=True)
         with col3:
-             st.subheader(' ')
+            st.subheader(' ')
             st.markdown("""
             <video controls width = 450 autoplay="true" muted="true" loop="true">
             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
