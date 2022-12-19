@@ -188,7 +188,7 @@ with cols[0]:
     mapping_demo()
 if to_show == '실시간 출동 현황':
     with cols[1]:
-        st.video('https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4', height=325, autoplay=True, muted=True)
+        st.video('https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4', autoplay=True, muted=True)
         st.markdown("""
             <video controls height=325 autoplay="true" muted="true" loop="true">
             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
