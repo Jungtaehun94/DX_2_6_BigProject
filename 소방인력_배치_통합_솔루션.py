@@ -313,7 +313,7 @@ if add_selectbox == '재난':
                 st.subheader('🚨🚨실시간 현장 CCTV🚨🚨')
                 st.markdown("""
                 <video controls width = 450 autoplay="true" muted="true" loop="true">
-                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/blob/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.webm" />
+                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/blob/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.webm" type="video/webm"/>
                 </video>
                 """, unsafe_allow_html=True)
                 st.markdown("""
