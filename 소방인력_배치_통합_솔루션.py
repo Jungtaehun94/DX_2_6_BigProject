@@ -130,7 +130,7 @@ else:
         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
         st.markdown(up(), unsafe_allow_html=True)
         st.markdown(down(), unsafe_allow_html=True)
-    cols =st.columns((6,6,1,1,1))
+    cols =st.columns((7,5,1,1,1))
 
 
 import altair as alt
