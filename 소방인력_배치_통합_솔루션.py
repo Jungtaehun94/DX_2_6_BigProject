@@ -185,7 +185,7 @@ if to_show == '실시간 출동 현황':
             </video>
             """, unsafe_allow_html=True)
     new_cols = st.columns((12,1,1,1))
-    new_cols[0].markdown('자치구별 생활인구 현황')
+    new_cols[0].markdown('### 자치구별 생활인구 현황')
     new_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
 else:
     new_cols = st.columns((12,1,1,1))
