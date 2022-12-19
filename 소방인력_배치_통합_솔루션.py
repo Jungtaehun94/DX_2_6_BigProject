@@ -37,6 +37,8 @@ st.write()
 
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
 # df = r"C:\Users\User\Downloads\csvjson (1).json"
+with st.sidebar:
+            to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
 def mapping_demo():
     try:
         ALL_LAYERS = {
@@ -61,7 +63,7 @@ def mapping_demo():
                 get_fill_color=["val*0.71", 0, 0, "(val-100)*0.71"],
                 extruded=True,
             ),
-            "자치구별 출동건수": pdk.Layer(
+            "실시간 출동 현황": pdk.Layer(
                 "ColumnLayer",
                 data=df,
                 get_position=["lng", "lat"],
@@ -75,23 +77,24 @@ def mapping_demo():
                 extruded=True,
             )
         }
-        with st.sidebar:
-            to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '자치구별 출동건수'))
-        selected_layers = [
-            layer
-            for layer_name, layer in ALL_LAYERS.items()
-            if to_show == layer_name
-        ]
+#         with st.sidebar:
+#             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
+        selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
+        if to_show == '자치구별 인력 배치':
+            map_width = "100%"
+        else:
+            map_width = "50%"
+        map_width
         if selected_layers:
             st.pydeck_chart(
-                pdk.Deck(
-                    map_style=None,
+                pdk.Deck(map_style=None,
                     initial_view_state={
                         "latitude": 37.55,
                         "longitude": 126.99,
                         "zoom": 11,
                         "pitch": 55,
-                        "height": 650
+                        "width": '60%',
+                        "height": 650,                        
                     },tooltip={'html': '<b>{출동소방서}</b><br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
                     layers=selected_layers,
                 )
@@ -107,6 +110,7 @@ def mapping_demo():
             % e.reason
         )
 cols_title = st.columns((12,2,1))
+i = 0
 with cols_title[0]:
     st.markdown("## 자치구별 필요 인력")
 with cols_title[1]:
@@ -133,6 +137,14 @@ bar_chart = alt.Chart(df, height = 500).transform_fold(
 #     color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),%%!
     order="order:O"
 )
+
+df3 = pd.read_csv(r"C:\Users\User\Downloads\LOCAL_PEOPLE_20221211.csv", encoding = 'cp949', low_memory=False, index_col=False)
+st.markdown('자치구별 생활인구 현황')
+#     df3['TOT_LVPOP_CO'].astype(float)
+df3 = df3.groupby(by = ['행정동코드', '기준일ID', '시간대구분'], as_index=False).sum()
+df3 = df3.loc[df3["기준일ID"] == df3["기준일ID"].unique().tolist()[-1], :]
+df3['총생활인구수'].replace({0:np.NaN}, inplace = True)
+chart_data = df3[["행정동코드", "총생활인구수"]]
 # cols[1].metric('','현재','증원')
 # cols[2].metric('','인력','-감소')
 # cols[3].metric('','현황',' ')
@@ -143,38 +155,15 @@ for dpt in df['출동소방서'].unique().tolist():
     with cols[metric_counter%3+1]:
         st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
     metric_counter +=1
-#     with cols[1]:
-#         st.write(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
-#         st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str)abs)
-
-# cols[3].metric("마포소방서","280","2")
-# cols[3].metric("관악소방서","68","-4")
-# cols[3].metric("동작소방서","280")
-# cols[3].metric("양천소방서","280","5")
-# cols[3].metric("강서소방서","340")
-# cols[3].metric("노원소방서","350","-1")
-# cols[3].metric("강동소방서","200")
-# cols[3].metric("영등포소방서","262","2")
-# cols[1].metric("송파소방서","262")
-# cols[1].metric("성북소방서","264","2")
-# cols[1].metric("종로소방서","302")
-# cols[1].metric("서초소방서","166")
-# cols[1].metric("강남소방서","269","-9")
-# cols[1].metric("중부소방서","203")
-# cols[1].metric("동대문소방서","165")
-# cols[1].metric("도봉소방서","205")
-# cols[2].metric("용산소방서","360","20")
-# cols[2].metric("광진소방서","201")
-# cols[2].metric("서대문소방서","206")
-# cols[2].metric("은평소방서","155")
-# cols[2].metric("중랑소방서","184","20")
-# cols[2].metric("강북소방서","268","50")
-# cols[2].metric("성북소방서","177")
 
 with cols[0]:
     mapping_demo()
-    st.altair_chart(bar_chart, use_container_width=True)
-
+    if to_show == '실시간 출동 현황':
+        st.bar_chart(chart_data, x="행정동코드", y="총생활인구수")
+    else:
+        to_show
+        st.altair_chart(bar_chart, use_container_width=True)
+        
 
 # show_code(mapping_demo)
 with st.sidebar:
