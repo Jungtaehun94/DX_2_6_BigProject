@@ -161,7 +161,9 @@ latest_time_hr = df3.loc[df3['총생활인구수'] != 0, :]["시간대구분"].u
 
 # 실시간 데이터가 없으므로 일단 현재시각 덮어씌우기
 import datetime
-current_time = datetime.datetime.now()
+import pytz
+kst = pytz.timezone('Asia/Seoul')
+current_time = datetime.datetime.now(kst)
 latest_time_hr = latest_time_ = current_time.hour
 
 df3 = df3.loc[df3["시간대구분"] == latest_time_hr, :]
