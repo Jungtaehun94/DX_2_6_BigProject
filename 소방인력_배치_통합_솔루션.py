@@ -138,7 +138,7 @@ bar_chart = alt.Chart(df, height = 500).transform_fold(
     order="order:O"
 )
 
-df3 = pd.read_csv(r"C:\Users\User\Downloads\LOCAL_PEOPLE_20221211.csv", encoding = 'cp949', low_memory=False, index_col=False)
+df3 = pd.read_csv("LOCAL_PEOPLE_20221211.csv", encoding = 'cp949', low_memory=False, index_col=False)
 st.markdown('자치구별 생활인구 현황')
 #     df3['TOT_LVPOP_CO'].astype(float)
 df3 = df3.groupby(by = ['행정동코드', '기준일ID', '시간대구분'], as_index=False).sum()
