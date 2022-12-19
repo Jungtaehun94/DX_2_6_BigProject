@@ -149,12 +149,24 @@ bar_chart = alt.Chart(df, height = 500).transform_fold(
 #     color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),%%!
     order="order:O"
 )
-
+import pandas as pd
 df3 = pd.read_csv("LOCAL_PEOPLE_20221211.csv", encoding = 'cp949', low_memory=False, index_col=False)
 
 #     df3['TOT_LVPOP_CO'].astype(float)
 df3 = df3.groupby(by = ['행정동코드', '기준일ID', '시간대구분'], as_index=False).sum()
 df3 = df3.loc[df3["기준일ID"] == df3["기준일ID"].unique().tolist()[-1], :]
+
+# 최종 데이터 시각
+latest_time_hr = df3.loc[df3['총생활인구수'] != 0, :]["시간대구분"].unique().tolist()[-1]
+
+# 실시간 데이터가 없으므로 일단 현재시각 덮어씌우기
+import datetime
+current_time = datetime.datetime.now()
+latest_time_hr = latest_time_ = current_time.hour
+
+df3 = df3.loc[df3["시간대구분"] == latest_time_hr, :]
+ampm = "오후" if latest_time_hr > 12 else "오전"
+latest_time_hr = (latest_time_hr - 12) if latest_time_hr > 12 else latest_time_hr
 df3['총생활인구수'].replace({0:np.NaN}, inplace = True)
 chart_data = df3[["행정동코드", "총생활인구수"]]
 # cols[1].metric('','현재','증원')
@@ -185,7 +197,7 @@ if to_show == '실시간 출동 현황':
             </video>
             """, unsafe_allow_html=True)
     new_cols = st.columns((12,1,1,1))
-    new_cols[0].markdown('### 자치구별 생활인구 현황')
+    new_cols[0].markdown(f'### 자치구별 생활인구 현황 ({ampm} {latest_time_hr}시 기준)')
     new_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
 else:
     new_cols = st.columns((12,1,1,1))
