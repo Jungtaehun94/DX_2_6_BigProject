@@ -142,7 +142,7 @@ def mapping_demo():
         ddd = pdk.Layer(
                 "TextLayer",
                 data=df_dec,
-                get_position=["lng+0.013", "lat+0.01"],
+                get_position=["lng+0.017", "lat"],
                 get_text="소방공무원_22 + 감원",
                 get_size=30,
                 get_color=[192, 64, 64],
