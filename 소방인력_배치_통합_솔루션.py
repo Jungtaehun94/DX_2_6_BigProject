@@ -70,13 +70,13 @@ def mapping_demo():
                 "ColumnLayer",
                 data=df_dpt.sample(1),
                 get_position=["lng", "lat"],
-                get_elevation="deficiency*10",
+                get_elevation="deficiency*100",
                 radius=300,
                 elevation_scale=1,
                 pickable=True,
                 elevation_range=[0, 400],
 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
-                get_fill_color=["0", "0","deficiency*0.07", "128"],
+                get_fill_color=["0", "0","deficiency*5", "128"],
                 extruded=True,
             )
         }
