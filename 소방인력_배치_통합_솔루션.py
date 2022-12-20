@@ -43,7 +43,7 @@ df_text = df.copy()
 df_text['증원'] = df_text['증원'].where(df_text['증원'] > 0, '')
 df_text['감원'] = df_text['감원'].where(df_text['감원'] < 0, '')
 
-df_text['22년 실제 소방공무원'] = df_text['22년 실제 소방공무원'].astype(str)
+df_text['소방공무원_22'] = df_text['소방공무원_22'].astype(str)
 
 df_text['오차'] = df_text['오차'].astype(str)
 df_text['증원'] = df_text['증원'].astype(str)
@@ -120,7 +120,7 @@ def mapping_demo():
                 "TextLayer",
                 data=df_text,
                 get_position=["lng", "lat-0.01"],
-                get_text="22년 실제 소방공무원 + 증원",
+                get_text="소방공무원_22 + 증원",
                 get_size=40,
                 get_color=[64, 192, 64],
                 get_angle=0,
@@ -133,7 +133,7 @@ def mapping_demo():
                 "TextLayer",
                 data=df_text,
                 get_position=["lng+0.013", "lat+0.01"],
-                get_text="22년 실제 소방공무원 + 감원",
+                get_text="소방공무원_22 + 감원",
                 get_size=40,
                 get_color=[192, 64, 64],
                 get_angle=0,
@@ -160,7 +160,7 @@ def mapping_demo():
                         "pitch": 40,
                         "width": '100%',
                         "height": 650,
-                    },tooltip={'html': '<b>{출동소방서}</b><br>현원: {22년 실제 소방공무원}<br>예측 적정인력: {22년 실제 소방공무원} + {오차}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
+                    },tooltip={'html': '<b>{출동소방서}</b><br>현원: {소방공무원_22}<br>예측 적정인력: {소방공무원_22} + {오차}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
                     layers=selected_layers,
                 )
             )
@@ -208,18 +208,18 @@ else:
 
 import altair as alt
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
-df['22년 실제 소방공무원'] = df['22년 실제 소방공무원'] + df['감원']
+df['소방공무원_22'] = df['소방공무원_22'] + df['감원']
 df['감원'] = df['감원'].abs()
-order="{'22년 실제 소방공무원':0, '증원': 1, '감원': 2}"
+order="{'소방공무원_22':0, '증원': 1, '감원': 2}"
 column = "['#0000FF', '#00FF00', '#FF0000]"
 bar_chart = alt.Chart(df, height = 500).transform_fold(
-  ['22년 실제 소방공무원', '증원', '감원'],
+  ['소방공무원_22', '증원', '감원'],
   as_=['column', 'value']
 ).mark_bar(size=13).encode(
     y='gu:N',
     x='value:Q',
-    color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', 'green', 'red'])),
-#     color=alt.Color('column:N',scale=alt.Scale(domain=['22년 실제 소방공무원', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),%%!
+    color=alt.Color('column:N',scale=alt.Scale(domain=['소방공무원_22', '증원', '감원'],range=['#264b96', 'green', 'red'])),
+#     color=alt.Color('column:N',scale=alt.Scale(domain=['소방공무원_22', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),%%!
     order="order:O"
 )
 import pandas as pd
@@ -263,7 +263,7 @@ else:
     for dpt in df['출동소방서'].unique().tolist():
         temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
         with cols[metric_counter%3+i+1]:
-            st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+            st.metric(dpt, temp_df['소방공무원_22'][0], temp_df['오차'][0].astype(str))
         metric_counter +=1
         if metric_counter > 17:
             break;
@@ -302,7 +302,7 @@ else:
     for dpt in df['출동소방서'].unique().tolist()[17:]:
         temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
         with new_cols[metric_counter%3+1]:
-            st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+            st.metric(dpt, temp_df['소방공무원_22'][0], temp_df['오차'][0].astype(str))
         metric_counter +=1
         if metric_counter > 17:
             break;
