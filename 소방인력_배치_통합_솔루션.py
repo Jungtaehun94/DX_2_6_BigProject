@@ -114,8 +114,8 @@ def mapping_demo():
                 data=df,
                 get_position=["lng", "lat"],
                 get_text="오차",
-                get_size=16,
-                get_color=[0, 0, 0],
+                get_size=40,
+                get_color=[128, 128, 128],
                 # Note that string constants in pydeck are explicitly passed as strings
                 # This distinguishes them from columns in a data set
                 get_text_anchor=String("middle"),
