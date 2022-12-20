@@ -43,6 +43,8 @@ df_text = df.copy()
 df_text['증원'] = df_text['증원'].where(df_text['증원'] > 0, '')
 df_text['감원'] = df_text['감원'].where(df_text['감원'] < 0, '')
 
+df_text['22년 실제 소방공무원'] = df_text['22년 실제 소방공무원'].astype(str)
+
 df_text['오차'] = df_text['오차'].astype(str)
 df_text['증원'] = df_text['증원'].astype(str)
 df_text['감원'] = df_text['감원'].astype(str)
@@ -118,7 +120,7 @@ def mapping_demo():
                 "TextLayer",
                 data=df_text,
                 get_position=["lng", "lat-0.01"],
-                get_text="증원",
+                get_text="22년 실제 소방공무원 + 증원",
                 get_size=40,
                 get_color=[64, 192, 64],
                 get_angle=0,
@@ -131,7 +133,7 @@ def mapping_demo():
                 "TextLayer",
                 data=df_text,
                 get_position=["lng+0.013", "lat+0.01"],
-                get_text="감원",
+                get_text="22년 실제 소방공무원 + 감원",
                 get_size=40,
                 get_color=[192, 64, 64],
                 get_angle=0,
