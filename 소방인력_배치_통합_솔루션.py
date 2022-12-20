@@ -56,6 +56,8 @@ df_inc = df_text.copy()
 df_inc['소방공무원_22'] = df_inc['소방공무원_22'].where(df_text['증원'] != '', '')
 df_dec = df_text.copy()
 df_dec['소방공무원_22'] = df_dec['소방공무원_22'].where(df_text['감원'] != '', '')
+df_zero = df_text.copy()
+df_zero['소방공무원_22'] = df_zero['소방공무원_22'].where(df_zero['오차'] = '0', '')
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
 with st.sidebar:
@@ -150,13 +152,26 @@ def mapping_demo():
                 get_text_anchor=String("middle"),
                 get_alignment_baseline=String("center"),
             )
+        eee = pdk.Layer(
+                "TextLayer",
+                data=df_zero,
+                get_position=["lng+0.013", "lat+0.01"],
+                get_text="소방공무원_22",
+                get_size=30,
+                get_color=[64, 64, 64],
+                get_angle=0,
+                # Note that string constants in pydeck are explicitly passed as strings
+                # This distinguishes them from columns in a data set
+                get_text_anchor=String("middle"),
+                get_alignment_baseline=String("center"),
+            )
 
 #         with st.sidebar:
 #             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
         selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         selected_layer_name = [layer_name for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         if selected_layer_name[0] == '자치구별 인력 배치':
-            selected_layers += [aaa,bbb,ccc,ddd]
+            selected_layers += [aaa,bbb,ccc,ddd,eee]
 #             selected_layers = [ccc]
         if selected_layers:
             st.pydeck_chart(
