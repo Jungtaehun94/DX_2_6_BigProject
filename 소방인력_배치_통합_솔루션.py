@@ -3,6 +3,7 @@ import textwrap
 from urllib.error import URLError
 import pandas as pd
 import pydeck as pdk
+from pydeck.types import String
 import numpy as np
 
 import streamlit as st
