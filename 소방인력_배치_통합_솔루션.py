@@ -85,7 +85,6 @@ def mapping_demo():
                 data=df,
                 get_position=["lng", "lat"],
                 get_elevation="-오차*100",
-                get_text = "오차",
                 radius=300,
                 elevation_scale=1,
                 pickable=True,
@@ -99,7 +98,6 @@ def mapping_demo():
                 data=df,
                 get_position=["lng", "lat"],
                 get_elevation="오차*100",
-                get_text = "오차",
                 radius=300,
                 elevation_scale=1,
                 pickable=True,
@@ -108,6 +106,19 @@ def mapping_demo():
                 get_fill_color=["0", "192","128", "128"],
                 extruded=True,
             )
+        ccc = pdk.Layer(
+                "TextLayer",
+                df,
+                get_position=["lng", "lat"],
+                get_text="오차",
+                get_size=16,
+                get_color=[0, 0, 0],
+                # Note that string constants in pydeck are explicitly passed as strings
+                # This distinguishes them from columns in a data set
+                get_text_anchor=String("middle"),
+                get_alignment_baseline=String("center"),
+            )
+
 #         with st.sidebar:
 #             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
         selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
