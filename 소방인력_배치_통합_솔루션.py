@@ -41,11 +41,11 @@ df = pd.read_csv(r"./data.csv", encoding = 'cp949')
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
 with st.sidebar:
-            to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
+            to_show = st.radio("지도 레이어 선택",('평시', '재난발생시'))
 def mapping_demo():
     try:
         ALL_LAYERS = {
-            "자치구별 인력 배치": pdk.Layer(
+            "평시": pdk.Layer(
                 "ScatterplotLayer",
 #                 "ColumnLayer",
                 data=df,
@@ -66,7 +66,7 @@ def mapping_demo():
                 get_fill_color=["val*0.71", 0, 0, "(val-100)*0.71"],
                 extruded=True,
             ),
-            "실시간 출동 현황": pdk.Layer(
+            "재난발생시": pdk.Layer(
                 "ColumnLayer",
                 data=df_dpt.sample(1),
                 get_position=["lng", "lat"],
@@ -81,7 +81,7 @@ def mapping_demo():
             )
         }
 #         with st.sidebar:
-#             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
+#             to_show = st.radio("지도 레이어 선택",('평시', '재난발생시'))
         selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         if selected_layers:
             st.pydeck_chart(
@@ -107,7 +107,7 @@ def mapping_demo():
         """
             % e.reason
         )
-if to_show == '자치구별 인력 배치':
+if to_show == '평시':
     cols_title = st.columns((12,2,1))
     i = 0
     with cols_title[0]:
@@ -188,7 +188,7 @@ for dpt in df['출동소방서'].unique().tolist():
 
 with cols[0]:
     mapping_demo()
-if to_show == '실시간 출동 현황':
+if to_show == '재난발생시':
     with cols[1]:
         autoplay_muted_video('바디캠1.mp4')
         autoplay_muted_video('바디캠2.mp4')
@@ -210,7 +210,7 @@ for dpt in df['출동소방서'].unique().tolist()[17:]:
         break;
         
 
-if to_show == '실시간 출동 현황':
+if to_show == '재난발생시':
     with st.sidebar:
         st.title('119 종합 상황 센터')
     add_selectbox = st.sidebar.selectbox('신고 유형을 선택하세요',
