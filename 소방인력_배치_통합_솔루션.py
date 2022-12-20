@@ -89,7 +89,7 @@ def mapping_demo():
                     initial_view_state={
                         "latitude": 37.55,
                         "longitude": 126.99,
-                        "zoom": 11,
+                        "zoom": 10,
                         "pitch": 55,
                         "width": '100%',
                         "height": 650,                        
