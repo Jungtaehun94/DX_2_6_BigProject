@@ -206,14 +206,24 @@ chart_data = df3[["행정동코드", "총생활인구수"]]
 # cols[2].metric('','인력','-감소')
 # cols[3].metric('','현황',' ')
 # cols[3].markdown('###')
-metric_counter = 0
-for dpt in df['출동소방서'].unique().tolist():
-    temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
-    with cols[metric_counter%3+i+1]:
-        st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
-    metric_counter +=1
-    if metric_counter > 17:
-        break;
+if to_show == '실시간 출동 현황':
+    metric_counter = 0
+    for dpt in df_dpt['출동소방서'].unique().tolist():
+        temp_df = df_dpt.loc[df_dpt['출동소방서'] == dpt,:].reset_index()
+        with cols[metric_counter%3+i+1]:
+            st.metric(dpt, temp_df['dpt'][0], temp_df['deficiency'][0].astype(str))
+        metric_counter +=1
+        if metric_counter > 17:
+            break;
+else:
+    metric_counter = 0
+    for dpt in df['출동소방서'].unique().tolist():
+        temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
+        with cols[metric_counter%3+i+1]:
+            st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+        metric_counter +=1
+        if metric_counter > 17:
+            break;
 
 with cols[0]:
     mapping_demo()
@@ -228,15 +238,25 @@ if to_show == '실시간 출동 현황':
 else:
     new_cols = st.columns((12,1,1,1))
 #     new_cols[0].altair_chart(bar_chart, use_container_width=True)
-    
-metric_counter = 0
-for dpt in df['출동소방서'].unique().tolist()[17:]:
-    temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
-    with new_cols[metric_counter%3+1]:
-        st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
-    metric_counter +=1
-    if metric_counter > 17:
-        break;
+
+if to_show == '실시간 출동 현황':
+    metric_counter = 0
+    for dpt in df['출동소방서'].unique().tolist()[17:]:
+        temp_df = df_dpt.loc[df_dpt['출동소방서'] == dpt,:].reset_index()
+        with cols[metric_counter%3+i+1]:
+            st.metric(dpt, temp_df['dpt'][0], temp_df['deficiency'][0].astype(str))
+        metric_counter +=1
+        if metric_counter > 17:
+            break;
+else:
+    metric_counter = 0
+    for dpt in df['출동소방서'].unique().tolist()[17:]:
+        temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
+        with new_cols[metric_counter%3+1]:
+            st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+        metric_counter +=1
+        if metric_counter > 17:
+            break;
         
 
 if to_show == '실시간 출동 현황':
