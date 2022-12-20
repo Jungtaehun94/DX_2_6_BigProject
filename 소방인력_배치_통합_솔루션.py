@@ -72,7 +72,7 @@ def mapping_demo():
                 get_position=["lng", "lat"],
                 get_elevation="deficiency",
                 radius=300,
-                elevation_scale=10,
+                elevation_scale=100,
                 pickable=True,
                 elevation_range=[0, 400],
 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
