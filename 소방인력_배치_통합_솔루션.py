@@ -217,7 +217,7 @@ if to_show == '실시간 출동 현황':
                                      ('재난','범죄','민원/상담'))
     if add_selectbox == '재난':
         def 사고유형을선택해주세요():
-            st.title('서울시 재난 종합 지휘 센터')
+#             st.title('서울시 재난 종합 지휘 센터')
         def 화재():
             col1,col2,col3=st.columns(3)
             with col1:
