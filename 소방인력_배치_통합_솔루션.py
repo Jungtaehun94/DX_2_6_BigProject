@@ -179,14 +179,14 @@ def mapping_demo():
 if to_show == '실시간 출동 현황':
     cols_head = st.columns((2,2,2,2,2))
     with cols_head[1]:
-        st.markdown("# 적정 인력")
-        st.markdown("# 0106 명")
+        st.markdown("## 적정 인력")
+        st.markdown("## 0106 명")
     with cols_head[2]:
-        st.markdown("# 출동 인력")
-        st.markdown("# 0094 명")
+        st.markdown("## 출동 인력")
+        st.markdown("## 0094 명")
     with cols_head[3]:
-        st.markdown("# 필요 인력")
-        st.markdown("# + 0015 명")
+        st.markdown("## 필요 인력")
+        st.markdown("## + 0015 명")
 if to_show == '자치구별 인력 배치':
     cols_title = st.columns((12,2,1))
     i = 0
