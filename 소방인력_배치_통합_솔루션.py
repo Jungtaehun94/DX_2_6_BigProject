@@ -155,7 +155,7 @@ def mapping_demo():
                         "latitude": 37.55,
                         "longitude": 126.99,
                         "zoom": 10,
-                        "pitch": 55,
+                        "pitch": 25,
                         "width": '100%',
                         "height": 650,
                     },tooltip={'html': '<b>{출동소방서}</b><br>현원: {22년 실제 소방공무원}<br>예측 적정인력: {val}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
