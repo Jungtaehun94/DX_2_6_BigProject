@@ -2,9 +2,9 @@ import streamlit as st
 import random
 
 elements = [
-    'Seoul fire station responding.mp4',
-    'Campsite Fire.mp4',
-    'candlelight vigil.mp4',
+    'Seoul_fire_station_responding.mp4',
+    'Campsite%20Fire.mp4',
+    'candlelight%20vigil.mp4',
     'Flood.mp4',
     'paramedics.mp4',
     'Thermal.mp4',
