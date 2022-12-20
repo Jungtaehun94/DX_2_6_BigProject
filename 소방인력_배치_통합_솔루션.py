@@ -123,7 +123,7 @@ def mapping_demo():
                 data=df_text,
                 get_position=["lng", "lat-0.01"],
                 get_text="소방공무원_22 + 증원",
-                get_size=20,
+                get_size=30,
                 get_color=[64, 192, 64],
                 get_angle=0,
                 # Note that string constants in pydeck are explicitly passed as strings
@@ -136,7 +136,7 @@ def mapping_demo():
                 data=df_text,
                 get_position=["lng+0.013", "lat+0.01"],
                 get_text="소방공무원_22 + 감원",
-                get_size=20,
+                get_size=30,
                 get_color=[192, 64, 64],
                 get_angle=0,
                 # Note that string constants in pydeck are explicitly passed as strings
