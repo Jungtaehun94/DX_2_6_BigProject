@@ -296,7 +296,16 @@ else:
 
     with cols[0]:
         mapping_demo()
-        st.markdown("""<div style="margin-top:-650px; z-index:999; position:relative;"><ul style="display:flex;flex-direction:row;margin:0;padding:0;width: 150px;"><li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px"><span style="background:rgba(255,99,132,.5);border-color:#ff6384;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span><p style="color:#666;margin:0;padding:0">Dataset: 1</p></li><li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px"><span style="background:rgba(54,162,235,.5);border-color:#36a2eb;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span><p style="color:#666;margin:0;padding:0">Dataset: 1</p></li></ul></div>""", unsafe_allow_html=True)
+        st.markdown("""<div style="margin-top:0px;z-index:999;position:relative;width: 300px;height:50px;background-color: rgba(0,0,0,.2);display: flex;align-items: center;">
+  <ul style="display:flex;flex-direction:row;width: 250px;align-items: center;">
+    <li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px;margin-top: auto;align-content: center;"><span style="background:rgba(192,64,64,.8);border-color:#ff6384;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span>
+      <p style="color:#2f2f2f;margin:0;padding:0">감원 필요</p>
+    </li>
+    <li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px"><span style="background:rgba(64,192,64,.8);border-color:#36a2eb;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span>
+      <p style="color:#2f2f2f;margin:0;padding:0">증원 필요</p>
+    </li>
+  </ul>
+</div>""", unsafe_allow_html=True)
         st.markdown(""" <style>[id="deckgl-wrapper"] {margin-top: 0px;}</style> """,unsafe_allow_html=True)
 if to_show == '실시간 출동 현황':
 #     new_cols = st.columns((12,1,1,1))
