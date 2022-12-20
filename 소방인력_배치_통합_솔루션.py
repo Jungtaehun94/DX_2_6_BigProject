@@ -155,7 +155,7 @@ def mapping_demo():
         eee = pdk.Layer(
                 "TextLayer",
                 data=df_zero,
-                get_position=["lng", "lat-0.01""],
+                get_position=["lng", "lat-0.01"],
                 get_text="소방공무원_22",
                 get_size=30,
                 get_color=[64, 64, 64],
