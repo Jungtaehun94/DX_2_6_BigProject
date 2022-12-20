@@ -67,7 +67,7 @@ def mapping_demo():
             ),
             "실시간 출동 현황": pdk.Layer(
                 "ColumnLayer",
-                data=df,
+                data=df.sample(1),
                 get_position=["lng", "lat"],
                 get_elevation="전체출동건수",
                 radius=300,
