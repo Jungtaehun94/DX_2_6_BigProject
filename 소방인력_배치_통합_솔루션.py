@@ -296,9 +296,9 @@ else:
 
     with cols[0]:
         mapping_demo()
-        st.markdown("""<div style="margin-left:30px;margin-top:-650px;z-index:999;position:relative;width: 330px;height:50px;background-color: rgba(0,0,0,.5);display: flex;align-items: center;@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Roboto&display=swap');">
-  <ul style="display:flex;flex-direction:row;width: 250px;align-items: center;padding-left:16px;">
-    <li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px;margin-top: auto;align-content: center;"><span style="background:rgba(192,64,64,.8);border-color:#ff6384;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span>
+        st.markdown("""<div style="margin-left:30px;margin-top:-650px;z-index:999;position:relative;width: 350px;height:50px;background-color: rgba(0,0,0,.5);display: flex;align-items: center;@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Roboto&display=swap');">
+  <ul style="display:flex;flex-direction:row;width: 280px;align-items: center;padding-left:16px;">
+    <li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:0px;margin-top: auto;align-content: center;"><span style="background:rgba(192,64,64,.8);border-color:#ff6384;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span>
       <p style="color:#dadada;margin:0;padding:0;font-family: 'Noto Sans KR', sans-serif;font-size: 18px;">감원 필요</p>
     </li>
     <li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:20px"><span style="background:rgba(64,192,64,.8);border-color:#36a2eb;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span>
