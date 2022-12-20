@@ -63,7 +63,7 @@ def mapping_demo():
                 radius_scale=6,
                 pickable=True,
                 elevation_range=[0, 400],
-                get_fill_color=["val*0.71", 0, 0, "(val-100)*0.71"],
+                get_fill_color=["val*0.71", "val*0.35", 0, "(val-100)*0.71"],
                 extruded=True)
             ,
             "실시간 출동 현황": pdk.Layer(
@@ -90,7 +90,7 @@ def mapping_demo():
                 pickable=True,
                 elevation_range=[0, 400],
 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
-                get_fill_color=["255", "0","0", "128"],
+                get_fill_color=["255", "32","0", "128"],
                 extruded=True,
             )
         bbb = pdk.Layer(
@@ -103,7 +103,7 @@ def mapping_demo():
                 pickable=True,
                 elevation_range=[0, 400],
 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
-                get_fill_color=["0", "0","255", "128"],
+                get_fill_color=["0", "192","128", "128"],
                 extruded=True,
             )
 #         with st.sidebar:
