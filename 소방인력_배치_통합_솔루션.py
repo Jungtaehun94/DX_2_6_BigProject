@@ -40,7 +40,12 @@ st.write()
 
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
 df_text = df.copy()
+df_text['증원'] = df_text['증원'].where(df_text['증원'] > 0, '')
+df_text['감원'] = df_text['감원'].where(df_text['감원'] < 0, '')
+
 df_text['오차'] = df_text['오차'].astype(str)
+df_text['증원'] = df_text['증원'].astype(str)
+df_text['감원'] = df_text['감원'].astype(str)
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
 with st.sidebar:
@@ -61,7 +66,7 @@ def mapping_demo():
                 stroked=True,
                 get_line_color=[255, 0, 0],
                 radius_min_pixels=15,
-                radius_max_pixels=100,
+                radius_max_pixels=20,
                 line_width_min_pixels=1,
                 radius_scale=6,
                 pickable=True,
@@ -111,11 +116,25 @@ def mapping_demo():
             )
         ccc = pdk.Layer(
                 "TextLayer",
-                data=df,
-                get_position=["lng", "lat"],
-                get_text="오차",
+                data=df_text,
+                get_position=["lng", "lat-0.01"],
+                get_text="증원",
                 get_size=40,
-                get_color=[128, 128, 128],
+                get_color=[64, 192, 64],
+                get_angle=0,
+                # Note that string constants in pydeck are explicitly passed as strings
+                # This distinguishes them from columns in a data set
+                get_text_anchor=String("middle"),
+                get_alignment_baseline=String("center"),
+            )
+        ddd = pdk.Layer(
+                "TextLayer",
+                data=df_text,
+                get_position=["lng+0.013", "lat+0.01"],
+                get_text="감원",
+                get_size=40,
+                get_color=[192, 64, 64],
+                get_angle=0,
                 # Note that string constants in pydeck are explicitly passed as strings
                 # This distinguishes them from columns in a data set
                 get_text_anchor=String("middle"),
@@ -127,7 +146,8 @@ def mapping_demo():
         selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         selected_layer_name = [layer_name for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         if selected_layer_name[0] == '자치구별 인력 배치':
-             selected_layers += [aaa,bbb,ccc]
+            selected_layers += [aaa,bbb,ccc,ddd]
+#             selected_layers = [ccc]
         if selected_layers:
             st.pydeck_chart(
                 pdk.Deck(map_style=None,
@@ -137,8 +157,8 @@ def mapping_demo():
                         "zoom": 10,
                         "pitch": 55,
                         "width": '100%',
-                        "height": 650,                        
-                    },tooltip={'html': '<b>{출동소방서}</b><br>현원: {22년 실제 소방공무원}<br>예측 적정인력: {22년 실제 소방공무원}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
+                        "height": 650,
+                    },tooltip={'html': '<b>{출동소방서}</b><br>현원: {22년 실제 소방공무원}<br>예측 적정인력: {val}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
                     layers=selected_layers,
                 )
             )
