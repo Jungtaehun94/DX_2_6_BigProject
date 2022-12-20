@@ -11,9 +11,9 @@ elements = [
     '바디캠3.mp4',
     ]
 
-def autoplay_muted_video(filename, height=325):
+def autoplay_muted_video(filename, height=325, width=460):
     return st.markdown(f"""
-    <video controls height=100%, width=460, autoplay="true" muted="true" loop="true"><source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/{filename}" type="video/mp4" /></video>
+    <video controls height=100%, width={width}, autoplay="true" muted="true" loop="true"><source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/{filename}" type="video/mp4" /></video>
     """, unsafe_allow_html=True)
 
 def rand_video(n):

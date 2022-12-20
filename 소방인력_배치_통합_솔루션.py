@@ -172,6 +172,13 @@ def mapping_demo():
         """
             % e.reason
         )
+cols_head = st.columns((2,4,2,2))
+with cols_head[1]:
+    st.markdown("# 적정 인력 : 0106 명")
+    st.markdown("# 출동 인력 : 0094명")
+with cols_head[2]:
+    st.markdown("# 필요 인력 ")
+    st.markdown("# : + 0015 명")
 if to_show == '자치구별 인력 배치':
     cols_title = st.columns((12,2,1))
     i = 0
@@ -185,19 +192,15 @@ if to_show == '자치구별 인력 배치':
         st.markdown(down(), unsafe_allow_html=True)
     cols =st.columns((12,1,1,1))
 else:
-    cols_title = st.columns((7,5,2,1))
+    cols_title = st.columns((0.9,1.5,1.5,0.9))
     i = 1
-    with cols_title[0]:
-        st.markdown("## 화재 발생지역")
-    with cols_title[1]:
-        st.markdown("## 현장 카메라")
-    with cols_title[2]:
-        st.markdown("## 인력현황")
-    with cols_title[3]:
-        st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
-        st.markdown(up(), unsafe_allow_html=True)
-        st.markdown(down(), unsafe_allow_html=True)
-    cols =st.columns((7,5,1,1,1))
+#     with cols_title[0]:
+#         st.markdown("## 화재 발생지역")
+#     with cols_title[3]:
+#         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
+#         st.markdown(up(), unsafe_allow_html=True)
+#         st.markdown(down(), unsafe_allow_html=True)
+    cols =st.columns((2,6,2))
 
 
 import altair as alt
@@ -243,14 +246,15 @@ chart_data = df3[["행정동코드", "총생활인구수"]]
 # cols[3].metric('','현황',' ')
 # cols[3].markdown('###')
 if to_show == '실시간 출동 현황':
-    metric_counter = 0
-    for dpt in df_dpt['출동소방서'].unique().tolist():
-        temp_df = df_dpt.loc[df_dpt['출동소방서'] == dpt,:].reset_index()
-        with cols[metric_counter%3+i+1]:
-            st.metric(dpt, temp_df['dpt'][0], temp_df['deficiency'][0].astype(str))
-        metric_counter +=1
-        if metric_counter > 17:
-            break;
+    st.empty()
+#     metric_counter = 0
+#     for dpt in df_dpt['출동소방서'].unique().tolist():
+#         temp_df = df_dpt.loc[df_dpt['출동소방서'] == dpt,:].reset_index()
+#         with cols[metric_counter%3+i+1]:
+#             st.metric(dpt, temp_df['dpt'][0], temp_df['deficiency'][0].astype(str))
+#         metric_counter +=1
+#         if metric_counter > 17:
+#             break;
 else:
     metric_counter = 0
     for dpt in df['출동소방서'].unique().tolist():
@@ -261,29 +265,35 @@ else:
         if metric_counter > 17:
             break;
 
-with cols[0]:
-    mapping_demo()
+    with cols[0]:
+        mapping_demo()
 if to_show == '실시간 출동 현황':
+#     new_cols = st.columns((12,1,1,1))
     with cols[1]:
-        autoplay_muted_video('바디캠1.mp4')
-        autoplay_muted_video('바디캠2.mp4')
-        autoplay_muted_video('바디캠3.mp4')
+        mapping_demo()
+    with cols[0]:
+        st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
+        autoplay_muted_video('바디캠1.mp4', width=260)
+        autoplay_muted_video('바디캠2.mp4', width=260)
+        autoplay_muted_video('바디캠3.mp4', width=260)
+    cols = st.columns((1,4,6,8))    
     new_cols = st.columns((12,1,1,1))
-    new_cols[0].markdown(f'### 자치구별 유동 인구 현황 ({ampm} {latest_time_hr}시 기준)')
-    new_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
+#     new_cols[0].markdown(f'### 자치구별 유동 인구 현황 ({ampm} {latest_time_hr}시 기준)')
+#     new_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
 else:
     new_cols = st.columns((12,1,1,1))
 #     new_cols[0].altair_chart(bar_chart, use_container_width=True)
 
 if to_show == '실시간 출동 현황':
-    metric_counter = 0
-    for dpt in df['출동소방서'].unique().tolist()[17:]:
-        temp_df = df_dpt.loc[df_dpt['출동소방서'] == dpt,:].reset_index()
-        with new_cols[metric_counter%3+1]:
-            st.metric(dpt, temp_df['dpt'][0], temp_df['deficiency'][0].astype(str))
-        metric_counter +=1
-        if metric_counter > 17:
-            break;
+    st.empty()
+#     metric_counter = 0
+#     for dpt in df['출동소방서'].unique().tolist()[17:]:
+#         temp_df = df_dpt.loc[df_dpt['출동소방서'] == dpt,:].reset_index()
+#         with new_cols[metric_counter%3+1]:
+#             st.metric(dpt, temp_df['dpt'][0], temp_df['deficiency'][0].astype(str))
+#         metric_counter +=1
+#         if metric_counter > 17:
+#             break;
 else:
     metric_counter = 0
     for dpt in df['출동소방서'].unique().tolist()[17:]:
