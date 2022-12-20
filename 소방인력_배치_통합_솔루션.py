@@ -124,7 +124,7 @@ else:
     with cols_title[0]:
         st.markdown("## 자치구별 필요 인력")
     with cols_title[1]:
-        st.markdown("## CCTV")
+        st.markdown("## 현장 카메라")
     with cols_title[2]:
         st.markdown("## 인력현황")
     with cols_title[3]:
