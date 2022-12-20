@@ -110,7 +110,7 @@ if to_show == '자치구별 인력 배치':
     cols_title = st.columns((12,2,1))
     i = 0
     with cols_title[0]:
-        st.markdown("## 자치구별 필요 인력")
+        st.markdown("## 서울시 소방서별 필요인력")
     with cols_title[1]:
         st.markdown("## 인력현황")
     with cols_title[2]:
@@ -122,7 +122,7 @@ else:
     cols_title = st.columns((7,5,2,1))
     i = 1
     with cols_title[0]:
-        st.markdown("## 자치구별 필요 인력")
+        st.markdown("## 화재 발생지역")
     with cols_title[1]:
         st.markdown("## 현장 카메라")
     with cols_title[2]:
@@ -209,57 +209,25 @@ for dpt in df['출동소방서'].unique().tolist()[17:]:
         break;
         
 
-# show_code(mapping_demo)
-with st.sidebar:
-    st.title('119 종합 상황 센터')
-add_selectbox = st.sidebar.selectbox('신고 유형을 선택하세요',
-                                 ('재난','범죄','민원/상담'))
-if add_selectbox == '재난':
-    def 사고유형을선택해주세요():
-        st.title('서울시 재난 종합 지휘 센터')
-        st.image('https://gnews.gg.go.kr/OP_UPDATA/UP_DATA/_FILEZ/202010/20201030012201229929411.jpg')
-        st.sidebar.title('-')
-    def 화재():
-        col1,col2,col3=st.columns(3)
-        with col1:
-            st.subheader('화재 상황 발생 지역')
-            df = pd.DataFrame(
-            np.random.randn(1, 2) / [40, 50] + [37.5642, 127.0016],
-            columns=['lat', 'lon'])
+# # show_code(mapping_demo)
+# with st.sidebar:
+#     st.title('119 종합 상황 센터')
+# add_selectbox = st.sidebar.selectbox('신고 유형을 선택하세요',
+#                                  ('재난','범죄','민원/상담'))
+# if add_selectbox == '재난':
+#     def 사고유형을선택해주세요():
+#         st.title('서울시 재난 종합 지휘 센터')
+#         st.image('https://gnews.gg.go.kr/OP_UPDATA/UP_DATA/_FILEZ/202010/20201030012201229929411.jpg')
+#         st.sidebar.title('-')
+#     def 화재():
+#         col1,col2,col3=st.columns(3)
+#         with col1:
+#             st.subheader('화재 상황 발생 지역')
+#             df = pd.DataFrame(
+#             np.random.randn(1, 2) / [40, 50] + [37.5642, 127.0016],
+#             columns=['lat', 'lon'])
 
-            st.map(df)
-#             st.pydeck_chart(pdk.Deck(
-#           map_style=None,
-#            initial_view_state=pdk.ViewState(
-#         latitude=37.5642,
-#         longitude=127.0016,
-#         zoom=10,
-#         pitch=50,)))
-#             chart_data = pd.DataFrame(
-#    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-#    columns=['lat', 'lon'])
-        with col2:
-            st.subheader('실시간 현장CCTV')
-            st.markdown("""
-            <video controls width = 450 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Campsite%20Fire.mp4" type="video/mp4" />
-            </video>
-            """, unsafe_allow_html=True)
-            st.markdown("""
-            <video controls width = 450 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Seoul_Night_View.mp4" type="video/mp4" />
-            </video>
-            """, unsafe_allow_html=True)
-        with col3:
-            st.markdown('###')
-            st.markdown('##')
-            st.markdown("""
-            <video controls width = 450 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
-            </video>
-            """, unsafe_allow_html=True)
-#         with col3:
-#             st.subheader("서울시 내 소방서 표시")
+#             st.map(df)
 # #             st.pydeck_chart(pdk.Deck(
 # #           map_style=None,
 # #            initial_view_state=pdk.ViewState(
@@ -267,109 +235,141 @@ if add_selectbox == '재난':
 # #         longitude=127.0016,
 # #         zoom=10,
 # #         pitch=50,)))
+# #             chart_data = pd.DataFrame(
+# #    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
+# #    columns=['lat', 'lon'])
+#         with col2:
+#             st.subheader('실시간 현장CCTV')
+#             st.markdown("""
+#             <video controls width = 450 autoplay="true" muted="true" loop="true">
+#             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Campsite%20Fire.mp4" type="video/mp4" />
+#             </video>
+#             """, unsafe_allow_html=True)
+#             st.markdown("""
+#             <video controls width = 450 autoplay="true" muted="true" loop="true">
+#             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Seoul_Night_View.mp4" type="video/mp4" />
+#             </video>
+#             """, unsafe_allow_html=True)
+#         with col3:
+#             st.markdown('###')
+#             st.markdown('##')
+#             st.markdown("""
+#             <video controls width = 450 autoplay="true" muted="true" loop="true">
+#             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
+#             </video>
+#             """, unsafe_allow_html=True)
+# #         with col3:
+# #             st.subheader("서울시 내 소방서 표시")
+# # #             st.pydeck_chart(pdk.Deck(
+# # #           map_style=None,
+# # #            initial_view_state=pdk.ViewState(
+# # #         latitude=37.5642,
+# # #         longitude=127.0016,
+# # #         zoom=10,
+# # #         pitch=50,)))
         
             
-#             df = pd.DataFrame(
-#     np.random.randn(25, 2) / [40, 50] + [37.56, 127.00],
-#     columns=['lat', 'lon'])
+# #             df = pd.DataFrame(
+# #     np.random.randn(25, 2) / [40, 50] + [37.56, 127.00],
+# #     columns=['lat', 'lon'])
 
-#             st.map(df)
+# #             st.map(df)
             
-    def 구급():
-        col1,col2,col3=st.columns(3)
-        with col1:
-            st.subheader('구급 상황 발생 지역')
-            df = pd.DataFrame(
-            np.random.randn(1, 2) / [40, 50] + [37.5642, 127.0016],
-            columns=['lat', 'lon'])
-
-            st.map(df)
-        with col2:
-            st.subheader('실시간 현장 CCTV')
-#             st.image('https://cdn.kado.net/news/photo/202205/1126349_551566_0650.jpg')
-            st.markdown("""
-            <video controls width = 450 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/paramedics.mp4" type="video/mp4" />
-            </video>
-            """, unsafe_allow_html=True)
-            st.markdown("""
-            <video controls width = 450 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Namsan.mp4" type="video/mp4" />
-            </video>
-            """, unsafe_allow_html=True)
-#         with col3:
-#             st.subheader("서울시 내 소방서 표시")
+#     def 구급():
+#         col1,col2,col3=st.columns(3)
+#         with col1:
+#             st.subheader('구급 상황 발생 지역')
 #             df = pd.DataFrame(
-#     np.random.randn(25, 2) / [40, 50] + [37.56, 127.00],
-#     columns=['lat', 'lon'])
+#             np.random.randn(1, 2) / [40, 50] + [37.5642, 127.0016],
+#             columns=['lat', 'lon'])
 
 #             st.map(df)
-    def 구조():
-        col1,col2,col3=st.columns(3)
-        with col1:
-            st.subheader('구조 상황 발생 지역')
-            df = pd.DataFrame(
-            np.random.randn(1, 2) / [40, 50] + [37.5642, 127.0016],
-            columns=['lat', 'lon'])
+#         with col2:
+#             st.subheader('실시간 현장 CCTV')
+# #             st.image('https://cdn.kado.net/news/photo/202205/1126349_551566_0650.jpg')
+#             st.markdown("""
+#             <video controls width = 450 autoplay="true" muted="true" loop="true">
+#             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/paramedics.mp4" type="video/mp4" />
+#             </video>
+#             """, unsafe_allow_html=True)
+#             st.markdown("""
+#             <video controls width = 450 autoplay="true" muted="true" loop="true">
+#             <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Namsan.mp4" type="video/mp4" />
+#             </video>
+#             """, unsafe_allow_html=True)
+# #         with col3:
+# #             st.subheader("서울시 내 소방서 표시")
+# #             df = pd.DataFrame(
+# #     np.random.randn(25, 2) / [40, 50] + [37.56, 127.00],
+# #     columns=['lat', 'lon'])
 
-            st.map(df)
-        with col2:
-            st.subheader('실시간 현장 CCTV')
-#             st.image('https://pip-thumb.zumst.com/api/v1/swyze_VC002_77445815_content.jpeg?w=880&h=495')
-            st.markdown("""
-                <video controls width = 450 autoplay="true" muted="true" loop="true">
-                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Flood.mp4" type="video/mp4" />
-                </video>
-                """, unsafe_allow_html=True)
-#         with col3:
-#             st.subheader("서울시 내 소방서 표시")
+# #             st.map(df)
+#     def 구조():
+#         col1,col2,col3=st.columns(3)
+#         with col1:
+#             st.subheader('구조 상황 발생 지역')
 #             df = pd.DataFrame(
-#     np.random.randn(25, 2) / [40, 50] + [37.56, 127.00],
-#     columns=['lat', 'lon'])
+#             np.random.randn(1, 2) / [40, 50] + [37.5642, 127.0016],
+#             columns=['lat', 'lon'])
 
 #             st.map(df)
-    def 시위():
-        col1,col2,col3=st.columns(3)
-        with col1:
-            st.subheader('시위 상황 발생 지역')
-            df = pd.DataFrame(
-            np.random.randn(1, 2) / [40, 50] + [37.5642, 127.0016],
-            columns=['lat', 'lon'])
+#         with col2:
+#             st.subheader('실시간 현장 CCTV')
+# #             st.image('https://pip-thumb.zumst.com/api/v1/swyze_VC002_77445815_content.jpeg?w=880&h=495')
+#             st.markdown("""
+#                 <video controls width = 450 autoplay="true" muted="true" loop="true">
+#                 <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Flood.mp4" type="video/mp4" />
+#                 </video>
+#                 """, unsafe_allow_html=True)
+# #         with col3:
+# #             st.subheader("서울시 내 소방서 표시")
+# #             df = pd.DataFrame(
+# #     np.random.randn(25, 2) / [40, 50] + [37.56, 127.00],
+# #     columns=['lat', 'lon'])
 
-            st.map(df)
-            with col2:
-                st.subheader('🚨🚨실시간 현장 CCTV🚨🚨')
-                st.markdown("""
-                <video controls width = 450 autoplay="true" muted="true" loop="true">
-                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.mp4" type="video/mp4"/>
-                </video>
-                """, unsafe_allow_html=True)
-                st.markdown("""
-                <video controls width = 450 autoplay="true" muted="true" loop="true">
-                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/candlelight vigil.mp4" type="video/mp4" />
-                </video>
-                """, unsafe_allow_html=True)
-                st.markdown("""
-                <video controls width = 450 autoplay="true" muted="true" loop="true">
-                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/X-mas.mp4" type="video/mp4" />
-                </video>
-                """, unsafe_allow_html=True)
-#         with col3:
-#             st.subheader("서울시 내 소방서 표시")
+# #             st.map(df)
+#     def 시위():
+#         col1,col2,col3=st.columns(3)
+#         with col1:
+#             st.subheader('시위 상황 발생 지역')
 #             df = pd.DataFrame(
-#     np.random.randn(25, 2) / [40, 50] + [37.56, 127.00],
-#     columns=['lat', 'lon'])
+#             np.random.randn(1, 2) / [40, 50] + [37.5642, 127.0016],
+#             columns=['lat', 'lon'])
 
 #             st.map(df)
-    page_names_to_funcs = { '사고유형을선택해주세요':사고유형을선택해주세요,'화재': 화재,'구급':구급,'구조':구조,'시위':시위 }
-    selected_page =st.sidebar.selectbox('아래 재난 유형을 선택하세요',page_names_to_funcs.keys())
-    page_names_to_funcs[selected_page]()
+#             with col2:
+#                 st.subheader('🚨🚨실시간 현장 CCTV🚨🚨')
+#                 st.markdown("""
+#                 <video controls width = 450 autoplay="true" muted="true" loop="true">
+#                 <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.mp4" type="video/mp4"/>
+#                 </video>
+#                 """, unsafe_allow_html=True)
+#                 st.markdown("""
+#                 <video controls width = 450 autoplay="true" muted="true" loop="true">
+#                 <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/candlelight vigil.mp4" type="video/mp4" />
+#                 </video>
+#                 """, unsafe_allow_html=True)
+#                 st.markdown("""
+#                 <video controls width = 450 autoplay="true" muted="true" loop="true">
+#                 <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/X-mas.mp4" type="video/mp4" />
+#                 </video>
+#                 """, unsafe_allow_html=True)
+# #         with col3:
+# #             st.subheader("서울시 내 소방서 표시")
+# #             df = pd.DataFrame(
+# #     np.random.randn(25, 2) / [40, 50] + [37.56, 127.00],
+# #     columns=['lat', 'lon'])
 
-elif add_selectbox =='범죄':
-    st.sidebar.title('-----112로 이관하겠습니다-----서울 경찰청 종합상황실 : 02-6150-1155')
-    st.title('112 종합상황실')
-    st.image('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F277323345630656E1A')
-else:
-    st.title('정부 민원 안내 콜센터')
-    st.image('http://www.outsourcing.co.kr/news/photo/202211/95401_34878_5915.jpg')
-    st.sidebar.title('----100으로 이관하겠습니다----정부합동민원센터 : 110')
+# #             st.map(df)
+#     page_names_to_funcs = { '사고유형을선택해주세요':사고유형을선택해주세요,'화재': 화재,'구급':구급,'구조':구조,'시위':시위 }
+#     selected_page =st.sidebar.selectbox('아래 재난 유형을 선택하세요',page_names_to_funcs.keys())
+#     page_names_to_funcs[selected_page]()
+
+# elif add_selectbox =='범죄':
+#     st.sidebar.title('-----112로 이관하겠습니다-----서울 경찰청 종합상황실 : 02-6150-1155')
+#     st.title('112 종합상황실')
+#     st.image('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F277323345630656E1A')
+# else:
+#     st.title('정부 민원 안내 콜센터')
+#     st.image('http://www.outsourcing.co.kr/news/photo/202211/95401_34878_5915.jpg')
+#     st.sidebar.title('----100으로 이관하겠습니다----정부합동민원센터 : 110')
