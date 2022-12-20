@@ -52,6 +52,10 @@ df_text['감원'] = df_text['감원'].astype(str)
 df_text['감원'] = df_text['감원'].str[1:]
 df_text['증원'] = ('(' + df_text['증원'] + ')').where(df_text['증원'] != '', '')
 df_text['감원'] = ('(' + df_text['감원'] + ')').where(df_text['감원'] != '', '')
+df_inc = df_text.copy()
+df_inc['소방공무원_22'] = df_inc['소방공무원_22'].where(df_text['증원'] != '', '')
+df_dec = df_text.copy()
+df_dec['소방공무원_22'] = df_dec['소방공무원_22'].where(df_text['감원'] != '', '')
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
 with st.sidebar:
@@ -122,7 +126,7 @@ def mapping_demo():
             )
         ccc = pdk.Layer(
                 "TextLayer",
-                data=df_text,
+                data=df_inc,
                 get_position=["lng", "lat-0.01"],
                 get_text="소방공무원_22 + 증원",
                 get_size=30,
@@ -135,7 +139,7 @@ def mapping_demo():
             )
         ddd = pdk.Layer(
                 "TextLayer",
-                data=df_text,
+                data=df_dec,
                 get_position=["lng+0.013", "lat+0.01"],
                 get_text="소방공무원_22 + 감원",
                 get_size=30,
