@@ -38,11 +38,7 @@ add_logo()
 st.write()
 
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
-import geopandas as gpd
-import matplotlib.pyplot as plt
-plt.rcParams["font.family"] = 'NanumGothic' # 한글폰트
-plt.rcParams["figure.figsize"] = (10,10)
-# df = r"C:\Users\User\Downloads\csvjson (1).json"
+
 with st.sidebar:
             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
 def mapping_demo():
