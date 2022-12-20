@@ -108,8 +108,10 @@ def mapping_demo():
             )
 #         with st.sidebar:
 #             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
-        selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name] + [aaa,bbb]
-    
+        selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
+        selected_layer_name = [layer_name for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
+        if selected_layer_name[0] == '자치구별 인력 배치':
+             selected_layers += [aaa,bbb]
         if selected_layers:
             st.pydeck_chart(
                 pdk.Deck(map_style=None,
