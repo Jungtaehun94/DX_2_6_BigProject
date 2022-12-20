@@ -3,12 +3,9 @@ import random
 
 elements = [
     'Seoul_fire_station_responding.mp4',
-    'Campsite%20Fire.mp4',
-    'candlelight%20vigil.mp4',
     'Flood.mp4',
     'paramedics.mp4',
     'Thermal.mp4',
-    'X-mas.mp4',
     '바디캠1.mp4',
     '바디캠2.mp4',
     '바디캠3.mp4',
