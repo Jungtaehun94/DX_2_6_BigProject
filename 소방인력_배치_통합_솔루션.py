@@ -12,6 +12,7 @@ from urllib import request
 from PIL import Image
 from add_logo import add_logo
 from up_down import up,down
+from video import autoplay_muted_video
 
 url = "https://nfds.go.kr/images/common/logo_emb.png"
 res = request.urlopen(url).read()
@@ -37,6 +38,10 @@ add_logo()
 st.write()
 
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
+import geopandas as gpd
+import matplotlib.pyplot as plt
+plt.rcParams["font.family"] = 'NanumGothic' # 한글폰트
+plt.rcParams["figure.figsize"] = (10,10)
 # df = r"C:\Users\User\Downloads\csvjson (1).json"
 with st.sidebar:
             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
@@ -188,16 +193,9 @@ with cols[0]:
     mapping_demo()
 if to_show == '실시간 출동 현황':
     with cols[1]:
-        st.markdown("""
-            <video controls height=325 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
-            </video>
-            """, unsafe_allow_html=True)
-        st.markdown("""
-            <video controls height=325 autoplay="true" muted="true" loop="true">
-            <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/Thermal.mp4" type="video/mp4" />
-            </video>
-            """, unsafe_allow_html=True)
+        autoplay_muted_video('바디캠1.mp4')
+        autoplay_muted_video('바디캠2.mp4')
+        autoplay_muted_video('바디캠3.mp4')
     new_cols = st.columns((12,1,1,1))
     new_cols[0].markdown(f'### 자치구별 생활인구 현황 ({ampm} {latest_time_hr}시 기준)')
     new_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
