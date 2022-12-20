@@ -85,6 +85,7 @@ def mapping_demo():
                 data=df,
                 get_position=["lng", "lat"],
                 get_elevation="-오차*100",
+                get_text = "오차",
                 radius=300,
                 elevation_scale=1,
                 pickable=True,
@@ -98,6 +99,7 @@ def mapping_demo():
                 data=df,
                 get_position=["lng", "lat"],
                 get_elevation="오차*100",
+                get_text = "오차",
                 radius=300,
                 elevation_scale=1,
                 pickable=True,
@@ -122,7 +124,7 @@ def mapping_demo():
                         "pitch": 55,
                         "width": '100%',
                         "height": 650,                        
-                    },tooltip={'html': '<b>{출동소방서}</b><br>적정인력과의 차이: {오차}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
+                    },tooltip={'html': '<b>{출동소방서}</b><br>현원: {22년 실제 소방공무원}<br>예측 적정인력: {22년 실제 소방공무원}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
                     layers=selected_layers,
                 )
             )
