@@ -9,6 +9,7 @@ import base64
 import altair as alt
 from add_logo import add_logo
 from video import autoplay_muted_video, rand_video
+import random
 
 st.set_page_config(layout="wide")
 
@@ -17,8 +18,6 @@ gu_list = ['마포소방서','관악소방서','동작소방서','양천소방�
            ,'강남소방서','중부소방서','동대문소방서','도봉소방서','용산소방서','광진소방서','서대문소방서','은평소방서','중랑소방서','강북소방서']
 
 add_selectbox = st.sidebar.selectbox('소방서를 선택하세요',gu_list)
-if 'count' not in st.session_state:
-	st.session_state.count = 0
 
 if add_selectbox:
     col1,col5=st.columns([3,2])
@@ -28,13 +27,13 @@ if add_selectbox:
         rand_video(2)
     with col5:
         st.subheader('인력현황')
-        source = pd.DataFrame({"category": ["장비조작", "구조", "화재", "예방", "조사"], "value": [3,8, 9, 2, 2]})
+        source = pd.DataFrame({"category": ["장비조작", "구조", "화재", "예방", "조사"], "value": [random.randint(5, 20) for _ in range(5)]})
         base = alt.Chart(source).encode(theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None))
         pie = base.mark_arc(outerRadius=120)
         text = base.mark_text(radius=140, size=20).encode(text="category:N")
         pie + text
         st.subheader('월별 출동현황')
-        np.random.seed(1)
+#         np.random.seed(1)
         source = pd.DataFrame({'월': np.arange(13),'화재': np.random.randn(13).cumsum(),'구급': np.random.randn(13).cumsum(),'구조': np.random.randn(13).cumsum(),})
         base = alt.Chart(source).mark_circle(opacity=1).transform_fold(fold=['화재', '구급', '구조'],as_=['category', '출동횟수']).encode(alt.X('월:Q'),alt.Y('출동횟수:Q'),alt.Color('category:N'))
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
