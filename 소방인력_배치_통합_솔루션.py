@@ -57,7 +57,7 @@ df_inc['소방공무원_22'] = df_inc['소방공무원_22'].where(df_text['증�
 df_dec = df_text.copy()
 df_dec['소방공무원_22'] = df_dec['소방공무원_22'].where(df_text['감원'] != '', '')
 df_zero = df_text.copy()
-df_zero['소방공무원_22'] = df_zero['소방공무원_22'].where(df_zero['오차'] = '0', '')
+df_zero['소방공무원_22'] = df_zero['소방공무원_22'].where(df_zero['오차'] == '0', '')
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
 with st.sidebar:
