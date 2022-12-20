@@ -296,7 +296,7 @@ else:
 
     with cols[0]:
         mapping_demo()
-        st.markdown("""<div style="margin-left:30px;margin-top:-650px;z-index:999;position:relative;width: 300px;height:50px;background-color: rgba(0,0,0,.2);display: flex;align-items: center;">
+        st.markdown("""<div style="margin-left:30px;margin-top:-650px;z-index:999;position:relative;width: 300px;height:50px;background-color: rgba(255,255,255,.2);display: flex;align-items: center;">
   <ul style="display:flex;flex-direction:row;width: 250px;align-items: center;">
     <li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px;margin-top: auto;align-content: center;"><span style="background:rgba(192,64,64,.8);border-color:#ff6384;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span>
       <p style="color:#2f2f2f;margin:0;padding:0">감원 필요</p>
