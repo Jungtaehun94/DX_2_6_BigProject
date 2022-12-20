@@ -27,7 +27,7 @@ if add_selectbox:
         st.subheader('센터 CCTV')
         rand_video(1)
     with col2:
-        st.markdown('#  ')
+        st.markdown('##  ')
         st.markdown('#  ')
         rand_video(1)
     with col3:
