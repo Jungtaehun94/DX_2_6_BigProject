@@ -218,8 +218,6 @@ if to_show == '실시간 출동 현황':
     if add_selectbox == '재난':
         def 사고유형을선택해주세요():
             st.title('서울시 재난 종합 지휘 센터')
-            st.image('https://gnews.gg.go.kr/OP_UPDATA/UP_DATA/_FILEZ/202010/20201030012201229929411.jpg')
-            st.sidebar.title('-')
         def 화재():
             col1,col2,col3=st.columns(3)
             with col1:
