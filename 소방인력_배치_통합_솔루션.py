@@ -125,7 +125,7 @@ def mapping_demo():
         selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         selected_layer_name = [layer_name for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         if selected_layer_name[0] == '자치구별 인력 배치':
-             selected_layers += [aaa,bbb]
+             selected_layers += [aaa,bbb,ccc]
         if selected_layers:
             st.pydeck_chart(
                 pdk.Deck(map_style=None,
