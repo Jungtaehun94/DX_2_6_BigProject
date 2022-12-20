@@ -9,6 +9,26 @@ import base64
 import altair as alt
 from add_logo import add_logo
 
+import random
+from video import autoplay_muted_video
+st.set_page_config(layout="wide")
+elements = [
+    '_Seoul fire station responding.mp4',
+    'Campsite Fire.mp4',
+    'candlelight vigil.mp4',
+    'Flood.mp4',
+    'Namsan.mp4',
+    'OpenCV People Counting Demo #2-3iiodzoG80A.mp4',
+    'paramedics.mp4',
+    'Seoul_Night_View.mp4',
+    'SeoulNightView.mp4',
+    'Thermal.mp4',
+    'X-mas.mp4',
+    '바디캠1.mp4',
+    '바디캠2.mp4',
+    '바디캠3.mp4',
+    ]
+
 add_logo()
 add_selectbox = st.sidebar.selectbox('소방서를 선택하세요',
                                  ('마포소방서','관악소방서',
@@ -72,8 +92,8 @@ if add_selectbox == '마포소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
         
@@ -123,8 +143,8 @@ if add_selectbox == '관악소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
     
@@ -172,8 +192,8 @@ if add_selectbox == '동작소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -221,8 +241,8 @@ if add_selectbox == '양천소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -271,8 +291,8 @@ if add_selectbox == '강서소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -320,8 +340,8 @@ if add_selectbox == '노원소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -369,8 +389,8 @@ if add_selectbox == '강동소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -418,8 +438,8 @@ if add_selectbox == '영등포소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -467,8 +487,8 @@ if add_selectbox == '송파소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -516,8 +536,8 @@ if add_selectbox == '성북소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -564,8 +584,8 @@ if add_selectbox == '종로소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -613,8 +633,8 @@ if add_selectbox == '서초소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
  
@@ -662,8 +682,8 @@ if add_selectbox == '강남소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -711,8 +731,8 @@ if add_selectbox == '중부소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -760,8 +780,8 @@ if add_selectbox == '동대문소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -808,8 +828,8 @@ if add_selectbox == '도봉소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -857,8 +877,8 @@ if add_selectbox == '용산소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
         
@@ -905,8 +925,8 @@ if add_selectbox == '광진소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -953,8 +973,8 @@ if add_selectbox == '서대문소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -1001,8 +1021,8 @@ if add_selectbox == '은평소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
  
@@ -1050,8 +1070,8 @@ if add_selectbox == '중랑소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -1099,8 +1119,8 @@ if add_selectbox == '중랑소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
@@ -1148,8 +1168,8 @@ if add_selectbox == '강북소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-		for video in random.sample(elements, 2):
-			autoplay_muted_video(video)
+        for video in random.sample(elements, 2):
+            autoplay_muted_video(video)
         
     with col3:
 
