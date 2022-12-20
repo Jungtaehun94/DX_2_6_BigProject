@@ -243,7 +243,7 @@ if to_show == '실시간 출동 현황':
     metric_counter = 0
     for dpt in df['출동소방서'].unique().tolist()[17:]:
         temp_df = df_dpt.loc[df_dpt['출동소방서'] == dpt,:].reset_index()
-        with cols[metric_counter%3+i+1]:
+        with new_cols[metric_counter%3+1]:
             st.metric(dpt, temp_df['dpt'][0], temp_df['deficiency'][0].astype(str))
         metric_counter +=1
         if metric_counter > 17:
