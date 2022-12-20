@@ -2,7 +2,7 @@ import streamlit as st
 import random
 
 elements = [
-    '_Seoul fire station responding.mp4',
+    'Seoul fire station responding.mp4',
     'Campsite Fire.mp4',
     'candlelight vigil.mp4',
     'Flood.mp4',
@@ -16,11 +16,17 @@ elements = [
 
 def autoplay_muted_video(filename, height=325):
     return st.markdown(f"""
-    <video controls height=100%, width=460, autoplay="true" muted="true" loop="true">
-    <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/{filename}" type="video/mp4" />
-    </video>
+    <video controls height=100%, width=460, autoplay="true" muted="true" loop="true"><source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/{filename}" type="video/mp4" /></video>
     """, unsafe_allow_html=True)
 
 def rand_video(n):
-    for video in random.sample(elements, n):
-        autoplay_muted_video(video)
+    vid_list = random.sample(elements, n)
+    for video in vid_list:
+        st.video("https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/"+video)
+        print(video)
+        
+def pick_video():
+    vid_list = random.sample(elements, 2)
+    txt = 'st.write(\"\"\"<video controls height=100%, width=460, autoplay="true" muted="true" loop="true"><source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/'+f'{vid_list[0]}'+'" type="video/mp4" /></video>\"\"\", unsafe_allow_html=True)'
+    txt = 'st.video("https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/'+f'{vid_list[0]}'+'")'
+    return txt
