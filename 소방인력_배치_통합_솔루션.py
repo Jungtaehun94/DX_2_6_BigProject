@@ -38,6 +38,7 @@ add_logo()
 st.write()
 
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
+df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
 with st.sidebar:
             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
@@ -67,15 +68,15 @@ def mapping_demo():
             ),
             "실시간 출동 현황": pdk.Layer(
                 "ColumnLayer",
-                data=df.sample(1),
+                data=df_dpt.sample(1),
                 get_position=["lng", "lat"],
-                get_elevation="전체출동건수",
+                get_elevation="deficiency",
                 radius=300,
-                elevation_scale=0.1,
+                elevation_scale=5,
                 pickable=True,
                 elevation_range=[0, 400],
-#                 get_fill_color=["전체출동건수*0.007", 1,"전체출동건수*0.7", 128],
-                get_fill_color=["0", "0","전체출동건수*0.007", "128"],
+#                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
+                get_fill_color=["0", "0","deficiency*0.07", "128"],
                 extruded=True,
             )
         }
