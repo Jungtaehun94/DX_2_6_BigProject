@@ -295,9 +295,9 @@ else:
             break;
 
     with cols[0]:
-        st.markdown("""<div style="margin-top:100px; z-index:999; position:relative:"><ul style="display:flex;flex-direction:row;margin:0;padding:0"><li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px"><span style="background:rgba(255,99,132,.5);border-color:#ff6384;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span><p style="color:#666;margin:0;padding:0">Dataset: 1</p></li><li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px"><span style="background:rgba(54,162,235,.5);border-color:#36a2eb;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span><p style="color:#666;margin:0;padding:0">Dataset: 1</p></li></ul></div>""", unsafe_allow_html=True)
         mapping_demo()
-        st.markdown(""" <style>[id="deckgl-wrapper"] {margin-top: -100px;}</style> """,unsafe_allow_html=True)
+        st.markdown("""<div style="margin-top:-100px; z-index:999; position:relative:"><ul style="display:flex;flex-direction:row;margin:0;padding:0"><li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px"><span style="background:rgba(255,99,132,.5);border-color:#ff6384;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span><p style="color:#666;margin:0;padding:0">Dataset: 1</p></li><li style="align-items:center;cursor:pointer;display:flex;flex-direction:row;margin-left:10px"><span style="background:rgba(54,162,235,.5);border-color:#36a2eb;border-width:3px;display:inline-block;height:20px;margin-right:10px;width:20px"></span><p style="color:#666;margin:0;padding:0">Dataset: 1</p></li></ul></div>""", unsafe_allow_html=True)
+        st.markdown(""" <style>[id="deckgl-wrapper"] {margin-top: 100px;}</style> """,unsafe_allow_html=True)
 if to_show == '실시간 출동 현황':
 #     new_cols = st.columns((12,1,1,1))
     with cols[1]:
