@@ -37,11 +37,11 @@ if ques == '한 눈에 보는 화재현황':
 """, unsafe_allow_html = True)
 
 elif ques =='전국출동현황':
-    st.markdown("### 서울 출동 건수")
+#     st.markdown("### 서울 출동 건수")
     st.sidebar.header("서울 출동 건수")
     st.write(
-    """### 구조+화재+구급+재난""")
-    st.markdown("### 화재 발생 현황")
+    """### 일별 출동 현황""")
+    st.markdown("### 구조+화재+구급+재난")
 
  
     progress_bar = st.sidebar.progress(0)
