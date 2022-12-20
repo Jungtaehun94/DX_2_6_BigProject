@@ -39,6 +39,8 @@ add_logo()
 st.write()
 
 df = pd.read_csv(r"./data.csv", encoding = 'cp949')
+df_text = df.copy()
+df_text['오차'] = df_text['오차'].astype(str)
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
 with st.sidebar:
@@ -83,7 +85,7 @@ def mapping_demo():
         }
         aaa = pdk.Layer(
                 "ColumnLayer",
-                data=df,
+                data=df_text,
                 get_position=["lng", "lat"],
                 get_elevation="-오차*100",
                 radius=300,
@@ -109,7 +111,7 @@ def mapping_demo():
             )
         ccc = pdk.Layer(
                 "TextLayer",
-                df,
+                data=df,
                 get_position=["lng", "lat"],
                 get_text="오차",
                 get_size=16,
