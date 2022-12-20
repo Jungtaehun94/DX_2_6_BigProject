@@ -72,10 +72,8 @@ if add_selectbox == '마포소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.markdown("""<video controls width = 450 autoplay="true" muted="true" loop="true"><source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.mp4" type="video/mp4"/></video>""", unsafe_allow_html=True)
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
         
@@ -125,14 +123,8 @@ if add_selectbox == '관악소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.markdown("""
-                <video controls width = 450 autoplay="true" muted="true" loop="true">
-                <source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.mp4" type="video/mp4"/>
-                </video>
-                """, unsafe_allow_html=True)
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
     
@@ -180,9 +172,8 @@ if add_selectbox == '동작소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -230,9 +221,8 @@ if add_selectbox == '양천소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -281,9 +271,8 @@ if add_selectbox == '강서소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -331,10 +320,8 @@ if add_selectbox == '노원소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-        st.subheader('센터 CCTV')
-        st.markdown("""<video controls width = 450 autoplay="true" muted="true" loop="true"><source src="https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/OpenCV%20People%20Counting%20Demo%20%232-3iiodzoG80A.mp4" type="video/mp4"/></video>""", unsafe_allow_html=True)
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -382,9 +369,8 @@ if add_selectbox == '강동소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -432,9 +418,8 @@ if add_selectbox == '영등포소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -482,9 +467,8 @@ if add_selectbox == '송파소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -532,9 +516,8 @@ if add_selectbox == '성북소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -581,9 +564,8 @@ if add_selectbox == '종로소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -631,9 +613,8 @@ if add_selectbox == '서초소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
  
@@ -681,9 +662,8 @@ if add_selectbox == '강남소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -731,9 +711,8 @@ if add_selectbox == '중부소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -781,9 +760,8 @@ if add_selectbox == '동대문소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -830,9 +808,8 @@ if add_selectbox == '도봉소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -880,9 +857,8 @@ if add_selectbox == '용산소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
         
@@ -929,9 +905,8 @@ if add_selectbox == '광진소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -978,9 +953,8 @@ if add_selectbox == '서대문소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -1027,9 +1001,8 @@ if add_selectbox == '은평소방서':
 
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
  
@@ -1077,9 +1050,8 @@ if add_selectbox == '중랑소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -1127,9 +1099,8 @@ if add_selectbox == '중랑소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
@@ -1177,9 +1148,8 @@ if add_selectbox == '강북소방서':
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
 
     with col2:
-        st.subheader('센터 CCTV')
-        st.video('paramedics.mp4')
-        st.video('candlelight vigil.mp4')
+		for video in random.sample(elements, 2):
+			autoplay_muted_video(video)
         
     with col3:
 
