@@ -22,15 +22,11 @@ add_selectbox = st.sidebar.selectbox('소방서를 선택하세요',gu_list)
 if add_selectbox:
     st.title(add_selectbox)
     
-    col1,col2,col3=st.columns([2,2,2])
+    col1,col2=st.columns([2,2])
     with col1:
         st.subheader('센터 CCTV')
-        rand_video(1)
+        rand_video(2)
     with col2:
-        st.markdown('##  ')
-        st.markdown('###  ')
-        rand_video(1)
-    with col3:
         st.subheader('인력현황')
         source = pd.DataFrame({"category": ["장비조작", "구조", "화재", "예방", "조사"], "value": [random.randint(5, 20) for _ in range(5)]})
         base = alt.Chart(source).encode(theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None))
