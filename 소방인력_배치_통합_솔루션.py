@@ -90,7 +90,7 @@ def mapping_demo():
                 pickable=True,
                 elevation_range=[0, 400],
 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
-                get_fill_color=["오차*10", "0","0", "128"],
+                get_fill_color=["255", "0","0", "128"],
                 extruded=True,
             )
         bbb = pdk.Layer(
