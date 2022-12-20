@@ -46,7 +46,9 @@ df_text['감원'] = df_text['감원'].where(df_text['감원'] < 0, '')
 df_text['소방공무원_22'] = df_text['소방공무원_22'].astype(str)
 
 df_text['오차'] = df_text['오차'].astype(str)
+
 df_text['증원'] = df_text['증원'].astype(str)
+df_text['증원'] = '+' + df_text['증원']
 df_text['감원'] = df_text['감원'].astype(str)
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
@@ -120,7 +122,7 @@ def mapping_demo():
                 "TextLayer",
                 data=df_text,
                 get_position=["lng", "lat-0.01"],
-                get_text="소방공무원_22"+'"+"'+"증원",
+                get_text="소방공무원_22 + 증원",
                 get_size=40,
                 get_color=[64, 192, 64],
                 get_angle=0,
