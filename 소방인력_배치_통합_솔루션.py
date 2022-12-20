@@ -120,7 +120,7 @@ def mapping_demo():
                 "TextLayer",
                 data=df_text,
                 get_position=["lng", "lat-0.01"],
-                get_text="소방공무원_22"+'+'+"증원",
+                get_text="소방공무원_22"+'"+"'+"증원",
                 get_size=40,
                 get_color=[64, 192, 64],
                 get_angle=0,
