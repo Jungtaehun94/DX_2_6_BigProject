@@ -345,9 +345,9 @@ def mapping_demo():
             selected_layers += [hhh,iii,jjj,kkk]
             st.pydeck_chart(
                 pdk.Deck(map_style=None,
-                         initial_view_state={"latitude": df_dpt.loc[0, ['lat']][0],
-                                             "longitude": df_dpt.loc[0, ['lng']][0],
-                                             "zoom": 11.4,
+                         initial_view_state={"latitude": df_dpt['lat'].mean(),
+                                             "longitude": df_dpt['lng'].mean(),
+                                             "zoom": 11,
                                              "pitch": 40,
                                              "width": '100%',
                                              "height": 650
