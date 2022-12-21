@@ -59,6 +59,28 @@ df_dec['소방공무원_22'] = df_dec['소방공무원_22'].where(df_text['감�
 df_zero = df_text.copy()
 df_zero['소방공무원_22'] = df_zero['소방공무원_22'].where(df_zero['오차'] == '0', '')
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
+# import pandas as pd
+
+# # Create a list of longitude values from 37 to 38 in steps of 0.01
+# lng_values = list(range(370, 375))
+# lng_values = [x / 10 for x in lng_values]
+
+# # Create a list of latitude values from 126 to 128 in steps of 0.01
+# lat_values = list(range(1270, 1275))
+# lat_values = [x / 10 for x in lat_values]
+
+# # Create an empty list to store the rows of the dataframe
+# rows = []
+
+# # Iterate over the longitude values
+# for lng in lng_values:
+#   # For each longitude value, add a row for each latitude value
+#   for lat in lat_values:
+#     rows.append({'lng': lng, 'lat': lat, 'val': 10})
+
+# # Create a dataframe from the rows
+# df_grid = pd.DataFrame(rows)
+# df_grid
 
 def assign_icons(df, icon_url):
     import base64
@@ -76,12 +98,28 @@ def assign_icons(df, icon_url):
     for i in df.index:
          df['icon_data'][i] = icon_data
 
-
+def find_close_points(df_input,gu,n):
+    df = df_input.copy()
+    row = df.loc[df['출동소방서'] == gu].reset_index()
+    df['distance'] = np.sqrt((df['lng'] - row['lng'][0])**2 + (df['lat'] - row['lat'][0])**2)
+    df['lng_dest'] = row['lng'][0]
+    df['lat_dest'] = row['lat'][0]
+    # Sort the rows by distance
+    df.sort_values(by='distance', inplace=True, ignore_index=True)
+    df['distance'] = df['distance'].astype(np.int)
+    df[['r', 'g', 'b']] = [0,0,255]
+    df.loc[0, ['r', 'g', 'b']] = [255, 0, 0]
+    # Select the 3 closest points
+    closest_points = df.head(n+1).copy()
+    return closest_points
+df_dpt = find_close_points(df_dpt,df_dpt.sample(1).reset_index()['출동소방서'][0],3)
 with st.sidebar:
             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
+
+# find_close_points(df_dpt,df_dpt.sample(1).reset_index()['출동소방서'][0],3)
+
 def mapping_demo():
     try:
-        
         df_dec_icons = df_dec.loc[df_dec['감원']!='',:].copy()
         assign_icons(df_dec_icons, "https://img.icons8.com/plasticine/100/000000/marker.png")
         df_inc_icons = df_inc.loc[df_dec['증원']!='',:].copy()
@@ -89,38 +127,32 @@ def mapping_demo():
         ALL_LAYERS = {
             "자치구별 인력 배치": pdk.Layer(
                 "ScatterplotLayer",
-#                 "ColumnLayer",
                 data=df,
                 get_position=["lng", "lat"],
-#                 get_radius="(val-150)*1.5",
-                get_radius=50,
+                # radius 0 줘서 숨겨놨음
+                get_radius='0',
                 get_elevation = 10,
-#                 get_elevation="val",
-#                 radius=300,
-#                 elevation_scale=10,
                 stroked=True,
                 get_line_color=[255, 0, 0],
-#                 radius_min_pixels=15,
-                radius_max_pixels=20,
                 line_width_min_pixels=1,
                 radius_scale=6,
                 pickable=True,
                 elevation_range=[0, 400],
-#                 get_fill_color=["val*0.71", "val*0.35", 0, "(val-100)*0.71"],
-                get_fill_color=["255", "128", 0, "192"],
+                get_fill_color=["255", "128", 0, "192"],                
                 extruded=True)
             ,
             "실시간 출동 현황": pdk.Layer(
                 "ColumnLayer",
-                data=df_dpt.sample(1),
+                data=df_dpt,
                 get_position=["lng", "lat"],
-                get_elevation="deficiency*100",
-                radius=300,
+                get_elevation="deficiency*50",
+                radius=150,
                 elevation_scale=1,
                 pickable=True,
                 elevation_range=[0, 400],
 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
-                get_fill_color=["deficiency*10", "0","0", "128"],
+#                 get_fill_color=["deficiency*10", "0","0", "128"],
+                get_fill_color=['r','g','b'],
                 extruded=True,
             )
         }
@@ -134,7 +166,7 @@ def mapping_demo():
                 pickable=True,
                 elevation_range=[0, 400],
 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
-                get_fill_color=["255", "32","0", "128"],
+                get_fill_color='["255", "32","0", "128"]',
                 extruded=True,
             )
         bbb = pdk.Layer(
@@ -207,6 +239,33 @@ def mapping_demo():
                 get_position=["lng", "lat"],
                 pickable=True,
         )
+        hhh = pdk.Layer(
+                "TextLayer",
+                data=df_dpt,
+                get_position=["lng", "lat-0.01"],
+                get_text="소방공무원_22",
+                get_size=30,
+                get_color=[64, 64, 64],
+                get_angle=0,
+                # Note that string constants in pydeck are explicitly passed as strings
+                # This distinguishes them from columns in a data set
+                get_text_anchor=String("middle"),
+                get_alignment_baseline=String("center"),
+        ),
+        iii = pdk.Layer("ArcLayer",
+                        data=df_dpt,
+                        get_width="dpt*0.2",
+                        get_source_position=["lng", "lat"],
+                        get_target_position=["lng_dest", "lat_dest"],
+                        get_tilt=30,
+                        pickable=True,
+        #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
+        #                 get_fill_color=["deficiency*10", "0","0", "128"],
+                        get_source_color=['0','73','140'],
+                        get_target_color=['255','127','0'],
+                        extruded=True,
+                        auto_highlight=True
+                       )
         
 
 #         with st.sidebar:
@@ -216,19 +275,33 @@ def mapping_demo():
         if selected_layer_name[0] == '자치구별 인력 배치':
             selected_layers += [ccc,ddd,eee,fff,ggg]
 #             selected_layers = [ccc]
-        if selected_layers:
             st.pydeck_chart(
                 pdk.Deck(map_style=None,
-                    initial_view_state={
-                        "latitude": 37.55,
-                        "longitude": 126.99,
-                        "zoom": 10,
-                        "pitch": 40,
-                        "width": '100%',
-                        "height": 650,
-                    },tooltip={'html': '<b>{출동소방서}</b><br>현원: {소방공무원_22}<br>예측 적정인력: {소방공무원_22} + {오차}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
-                    layers=selected_layers,
-                )
+                         initial_view_state={
+                             "latitude": 37.55,
+                             "longitude": 126.99,
+                             "zoom": 10,
+                             "pitch": 40,
+                             "width": '100%',
+                             "height": 650,
+                        },tooltip={'html': '<b>{출동소방서}</b><br>현원: {소방공무원_22}<br>예측 적정인력: {소방공무원_22} + {오차}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}','style': {'color': 'white'}},
+                        layers=selected_layers,
+                    )
+            )
+        elif selected_layer_name[0] == '실시간 출동 현황':
+            selected_layers += [hhh,iii]
+            st.pydeck_chart(
+                pdk.Deck(map_style=None,
+                         initial_view_state={"latitude": df_dpt.loc[0, ['lat']][0],
+                                             "longitude": df_dpt.loc[0, ['lng']][0],
+                                             "zoom": 10,
+                                             "pitch": 40,
+                                             "width": '100%',
+                                             "height": 650
+                                            },
+                         tooltip={'html': '<b>{출동소방서}</b><br>출동중: {dpt}<br>예측 필요인력: {EstReq}<br><br>필요 증원: {deficiency}={EstReq}-{dpt}','style': {'color': 'white'}},
+                        layers=selected_layers,
+                    )
             )
         else:
             st.error("Please choose at least one layer above.")
@@ -291,7 +364,6 @@ bar_chart = alt.Chart(df, height = 500).transform_fold(
 #     color=alt.Color('column:N',scale=alt.Scale(domain=['소방공무원_22', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),%%!
     order="order:O"
 )
-import pandas as pd
 df3 = pd.read_csv("LOCAL_PEOPLE_20221211.csv", encoding = 'cp949', low_memory=False, index_col=False)
 
 #     df3['TOT_LVPOP_CO'].astype(float)
