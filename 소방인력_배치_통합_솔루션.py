@@ -274,7 +274,7 @@ def mapping_demo():
                 get_alignment_baseline=String("center"),
         ),
         iii = pdk.Layer("ArcLayer",
-                        data=df_dpt.drop(columns=['gu', '오차', 'deficiency', 'dpt', 'EstReq','소방공무원_22', 'distance', 'r', 'g', 'b']),
+                        data=df_dpt.drop(columns=['gu', '오차', 'deficiency', 'EstReq','소방공무원_22', 'distance', 'r', 'g', 'b']),
                         get_width="20",
                         get_source_position=["lng", "lat"],
                         get_target_position=["lng_dest", "lat_dest"],
@@ -288,7 +288,7 @@ def mapping_demo():
                         auto_highlight=True
                        ),
         jjj = pdk.Layer("ScatterplotLayer",
-                        data=df_dpt.loc[0:0,].drop(columns=['gu', '출동소방서', '오차', 'deficiency', 'dpt', 'EstReq','소방공무원_22',
+                        data=df_dpt.loc[0:0,].drop(columns=['gu', '출동소방서', '오차', 'deficiency', 'EstReq','소방공무원_22',
                                                             'distance', 'lng_dest', 'lat_dest', 'r', 'g', 'b', '차출']),
                         get_position=["lng", "lat"],
                         # radius 0 줘서 숨겨놨음
@@ -352,7 +352,7 @@ def mapping_demo():
                                              "width": '100%',
                                              "height": 650
                                             },
-                         tooltip={'html': '<b>{출동소방서}</b><br>차출: {차출}','style': {'color': 'white'}},
+                         tooltip={'html': '<b>{출동소방서}</b><br>가용인원: {dpt}<br>차출: {차출}','style': {'color': 'white'}},
                         layers=selected_layers,
                     )
             )
