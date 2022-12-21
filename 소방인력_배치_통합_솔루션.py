@@ -364,7 +364,7 @@ if to_show == '실시간 출동 현황':
     cols_head = st.columns((5,6.5,4,3.5))
     with cols_head[0]:
         
-        imagee = Image.open('캡쳐5.PNG')
+        imagee = Image.open('캡쳐5.png')
 
         st.image(imagee,width=250)
     with cols_head[1]:
