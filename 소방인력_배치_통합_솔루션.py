@@ -60,7 +60,7 @@ df_dec['소방공무원_22'] = df_dec['소방공무원_22'].where(df_text['감�
 df_zero = df_text.copy()
 df_zero['소방공무원_22'] = df_zero['소방공무원_22'].where(df_zero['오차'] == '0', '')
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
-df_dpt['소방공무원_22'] = df_dpt['소방공무원_22'].astype(str)
+
 # import pandas as pd
 
 # # Create a list of longitude values from 37 to 38 in steps of 0.01
@@ -108,7 +108,7 @@ def assign_icons(df, icon_url):
     for i in df.index:
          df['icon_data'][i] = icon_data
 
-def find_close_points(df_input,gu,n):
+def find_close_points(df_input,gu,n=3):
     df = df_input.copy()
     row = df.loc[df['출동소방서'] == gu].reset_index()
     df['distance'] = np.sqrt((df['lng'] - row['lng'][0])**2 + (df['lat'] - row['lat'][0])**2)
@@ -121,8 +121,13 @@ def find_close_points(df_input,gu,n):
     df.loc[0, ['r', 'g', 'b']] = [0, 16*8, 0]
     supp = df.loc[0, ['deficiency']][0]
     supp = int(supp)
+    from calculate_abc import calculate_abc
+    df.loc[1:3, ['차출']] = list(calculate_abc(df.loc[1:3, ['dpt']],supp))   
+    df['소방공무원_22'] = df['소방공무원_22'].astype(str)
     df.loc[0:0, ['소방공무원_22']] = df['소방공무원_22'] + f"({int(supp)})"
-    df.loc[1:, ['소방공무원_22']] = df['소방공무원_22'] + f"({int(supp/3)})"
+    df['차출'] = df['차출'].apply(lambda x: str(int(x)) if np.isfinite(x) else '')
+    df.loc[1:, ['소방공무원_22']] = df['소방공무원_22'] + '(' + df['차출'] + ')'
+    
     assign_icons(df,'https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/100_green_marker.png')
     df.loc[0, ['icon_data']] = [URL_to_Icon_Data("https://img.icons8.com/plasticine/100/000000/marker.png")]
     # Select the 3 closest points
