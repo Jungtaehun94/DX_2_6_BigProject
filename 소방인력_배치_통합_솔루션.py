@@ -26,6 +26,7 @@ st.set_page_config(layout="wide",
 
 #     st.markdown('### 소방인력 배치 통합 솔루션')
 add_logo()
+st.markdown("""<style>@font-face {font-family:"KTB";font-weight:bold;src:local("KTB") format('woff2');} html, body, [class*="css"] {font-family: 'KTB';}</style>""",unsafe_allow_html=True)
 # pages = st.source_util.get_pages('소방인력_배치_통합_솔루션.py')
 # pages
 # new_page_names = {
@@ -492,7 +493,7 @@ else:
 
     with cols[0]:
         mapping_demo()
-        st.markdown("""<div style="margin-left: 28px;margin-top: -650px;z-index: 999;position: relative;width: 276px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
+        st.markdown("""<style> @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@500&display=swap'); </style><div style="margin-left: 28px;margin-top: -650px;z-index: 999;position: relative;width: 276px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
   <ul style="display: flex; flex-direction: row; width: 280px; align-items: center; padding-left: 0px; padding-top: 7px; padding-bottom: 7px;">
     <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 10px; margin-top: auto; align-content: center;"><span style="background: rgba(192, 64, 64, 0.8); border-color: rgb(255, 99, 132); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
       <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">감원 필요</p>
@@ -503,12 +504,13 @@ else:
   </ul>
 </div>""", unsafe_allow_html=True)
         st.markdown(""" <style>[id="deckgl-wrapper"] {margin-top: 0px;}</style> """,unsafe_allow_html=True)
+        st.markdown(""" <style>[class~="css-1sdqqxz e1tzin5v2"] {font-family: &quot;Noto Sans KR&quot;}</style> """,unsafe_allow_html=True)
 if to_show == '실시간 출동 현황':
     
     ne_cols = st.columns((2,5.5,1,1))
     n_cols = st.columns((9))
     with ne_cols[1]:
-
+        st.markdown(""" <style>[class~="css-1sdqqxz e1tzin5v2"] {font-family: &quot;Noto Sans KR&quot;}</style> """,unsafe_allow_html=True)
         mapping_demo()
         st.markdown("""<div style="margin-left: 28px;margin-top: -650px;z-index: 999;position: relative;width: 276px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
         <ul style="display: flex; flex-direction: row; width: 280px; align-items: center; padding-left: 0px; padding-top: 7px; padding-bottom: 7px;">
@@ -539,7 +541,7 @@ if to_show == '실시간 출동 현황':
         st.markdown(" 출동 대응 1단계　 필요 인력")
         st.markdown(" 출동 대응 2단계　 필요 인력")
         st.markdown(" 출동 대응 3단계　 필요 인력")
-        
+        st.markdown("""<style>[data-testid="stVerticalBlock"] {font-family: &quot;Noto Sans KR&quot;}</style>""",unsafe_allow_html=True)
         autoplay_muted_video('화재1.mp4', width=260)
         autoplay_muted_video('화재2.mp4', width=260)
         
@@ -760,3 +762,6 @@ if to_show == '실시간 출동 현황':
         st.title('정부 민원 안내 콜센터')
         st.image('http://www.outsourcing.co.kr/news/photo/202211/95401_34878_5915.jpg')
         st.sidebar.title('----100으로 이관하겠습니다----정부합동민원센터 : 110')
+    with st.sidebar:
+         st.markdown("""<style>@import url(https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR:wght@500&display=swap);@font-face{font-family:&quot}[class*=css],body{font-family:'Noto Sans KR'}</style>""",unsafe_allow_html=True)
+
