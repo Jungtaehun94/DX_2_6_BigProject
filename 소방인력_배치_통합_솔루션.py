@@ -351,7 +351,7 @@ def mapping_demo():
                                              "width": '100%',
                                              "height": 650
                                             },
-                         tooltip={'html': '<b>{출동소방서}</b><br>출동중: {dpt}<br>예측 필요인력: {EstReq}<br><br>필요 증원: {deficiency}={EstReq}-{dpt}','style': {'color': 'white'}},
+                         tooltip={'html': '<b>{출동소방서}</b><br>가용인원: {dpt}<br>예측 필요인력: {EstReq}<br><br>필요 증원: {deficiency}={EstReq}-{dpt}','style': {'color': 'white'}},
                         layers=selected_layers,
                     )
             )
