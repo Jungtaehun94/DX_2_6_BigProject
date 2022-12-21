@@ -60,30 +60,54 @@ df_zero = df_text.copy()
 df_zero['소방공무원_22'] = df_zero['소방공무원_22'].where(df_zero['오차'] == '0', '')
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
 
+def assign_icons(df, icon_url):
+    import base64
+    import requests
+
+    image_url = icon_url
+    response = requests.get(image_url)
+    if response.status_code == 200:
+        image_content = response.content
+        encoded_image = base64.b64encode(image_content).decode("ascii")
+    else:
+        print("Failed to download image")
+    icon_data = {"url": r"data:image/png;base64,"+str(encoded_image),"width": 128,"height":128,"anchorY": 128}
+    df['icon_data']= None
+    for i in df.index:
+         df['icon_data'][i] = icon_data
+
+
 with st.sidebar:
             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
 def mapping_demo():
     try:
+        
+        df_dec_icons = df_dec.loc[df_dec['감원']!='',:].copy()
+        assign_icons(df_dec_icons, "https://img.icons8.com/plasticine/100/000000/marker.png")
+        df_inc_icons = df_inc.loc[df_dec['증원']!='',:].copy()
+        assign_icons(df_inc_icons, "https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/100_green_marker.png")
         ALL_LAYERS = {
             "자치구별 인력 배치": pdk.Layer(
                 "ScatterplotLayer",
 #                 "ColumnLayer",
                 data=df,
                 get_position=["lng", "lat"],
-                get_radius="(val-150)*1.5",
+#                 get_radius="(val-150)*1.5",
+                get_radius=50,
                 get_elevation = 10,
 #                 get_elevation="val",
 #                 radius=300,
 #                 elevation_scale=10,
                 stroked=True,
                 get_line_color=[255, 0, 0],
-                radius_min_pixels=15,
+#                 radius_min_pixels=15,
                 radius_max_pixels=20,
                 line_width_min_pixels=1,
                 radius_scale=6,
                 pickable=True,
                 elevation_range=[0, 400],
-                get_fill_color=["val*0.71", "val*0.35", 0, "(val-100)*0.71"],
+#                 get_fill_color=["val*0.71", "val*0.35", 0, "(val-100)*0.71"],
+                get_fill_color=["255", "128", 0, "192"],
                 extruded=True)
             ,
             "실시간 출동 현황": pdk.Layer(
@@ -164,14 +188,33 @@ def mapping_demo():
                 # This distinguishes them from columns in a data set
                 get_text_anchor=String("middle"),
                 get_alignment_baseline=String("center"),
-            )
+        )
+        fff = pdk.Layer(
+                type="IconLayer",
+                data=df_dec_icons,
+                get_icon="icon_data",
+                get_size=4,
+                size_scale=15,
+                get_position=["lng", "lat"],
+                pickable=True,
+        )
+        ggg = pdk.Layer(
+                type="IconLayer",
+                data=df_inc_icons,
+                get_icon="icon_data",
+                get_size=4,
+                size_scale=15,
+                get_position=["lng", "lat"],
+                pickable=True,
+        )
+        
 
 #         with st.sidebar:
 #             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
         selected_layers = [layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         selected_layer_name = [layer_name for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name]
         if selected_layer_name[0] == '자치구별 인력 배치':
-            selected_layers += [aaa,bbb,ccc,ddd,eee]
+            selected_layers += [ccc,ddd,eee,fff,ggg]
 #             selected_layers = [ccc]
         if selected_layers:
             st.pydeck_chart(
