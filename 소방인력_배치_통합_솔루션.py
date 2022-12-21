@@ -294,7 +294,7 @@ def mapping_demo():
                 pdk.Deck(map_style=None,
                          initial_view_state={"latitude": df_dpt.loc[0, ['lat']][0],
                                              "longitude": df_dpt.loc[0, ['lng']][0],
-                                             "zoom": 10,
+                                             "zoom": 12,
                                              "pitch": 40,
                                              "width": '100%',
                                              "height": 650
