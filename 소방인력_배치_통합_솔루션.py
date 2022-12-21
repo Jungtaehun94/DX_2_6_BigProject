@@ -5,7 +5,7 @@ import pandas as pd
 import pydeck as pdk
 from pydeck.types import String
 import numpy as np
-
+import altair as alt
 import streamlit as st
 from streamlit.hello.utils import show_code
 from io import BytesIO
@@ -14,7 +14,8 @@ from PIL import Image
 from add_logo import add_logo
 from up_down import up,down
 from video import autoplay_muted_video
-
+from vega_datasets import data
+from PIL import Image
 url = "https://nfds.go.kr/images/common/logo_emb.png"
 res = request.urlopen(url).read()
 logo_im = Image.open(BytesIO(res))
@@ -82,6 +83,14 @@ df_dpt['소방공무원_22'] = df_dpt['소방공무원_22'].astype(str)
 # # Create a dataframe from the rows
 # df_grid = pd.DataFrame(rows)
 # df_grid
+def URL_to_Icon_Data(image_url):
+    import base64
+    import requests
+    response = requests.get(image_url)
+    image_content = response.content
+    encoded_image = base64.b64encode(image_content).decode("ascii")
+    icon_data = {"url": r"data:image/png;base64,"+str(encoded_image),"width": 128,"height":128,"anchorY": 128}
+    return icon_data
 
 def assign_icons(df, icon_url):
     import base64
@@ -108,10 +117,14 @@ def find_close_points(df_input,gu,n):
     # Sort the rows by distance
     df.sort_values(by='distance', inplace=True, ignore_index=True)
     df['distance'] = df['distance'].astype(np.int)
-    df[['r', 'g', 'b']] = [0,0,255]
-    df.loc[0, ['r', 'g', 'b']] = [255, 0, 0]
-    supp = df.loc[0, ['deficiency']][0]/3
-    df.loc[1:, ['소방공무원_22']] = df['소방공무원_22'] + f"-{int(supp)}"
+    df[['r', 'g', 'b']] = [192, 64, 64]
+    df.loc[0, ['r', 'g', 'b']] = [0, 16*8, 0]
+    supp = df.loc[0, ['deficiency']][0]
+    supp = int(supp)
+    df.loc[0:0, ['소방공무원_22']] = df['소방공무원_22'] + f"({int(supp)})"
+    df.loc[1:, ['소방공무원_22']] = df['소방공무원_22'] + f"({int(supp/3)})"
+    assign_icons(df,'https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/100_green_marker.png')
+    df.loc[0, ['icon_data']] = [URL_to_Icon_Data("https://img.icons8.com/plasticine/100/000000/marker.png")]
     # Select the 3 closest points
     closest_points = df.head(n+1).copy()
     return closest_points
@@ -148,8 +161,8 @@ def mapping_demo():
                 "ColumnLayer",
                 data=df_dpt,
                 get_position=["lng", "lat"],
-                get_elevation="deficiency*50",
-                radius=150,
+                get_elevation="deficiency*0",
+                radius=150*0,
                 elevation_scale=1,
                 pickable=True,
                 elevation_range=[0, 400],
@@ -169,7 +182,7 @@ def mapping_demo():
                 pickable=True,
                 elevation_range=[0, 400],
 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
-                get_fill_color='["255", "32","0", "128"]',
+                get_fill_color=["255", "32","0", "128"],
                 extruded=True,
             )
         bbb = pdk.Layer(
@@ -224,31 +237,31 @@ def mapping_demo():
                 get_text_anchor=String("middle"),
                 get_alignment_baseline=String("center"),
         )
-        fff = pdk.Layer(
-                type="IconLayer",
-                data=df_dec_icons,
-                get_icon="icon_data",
-                get_size=4,
-                size_scale=15,
-                get_position=["lng", "lat"],
-                pickable=True,
-        )
-        ggg = pdk.Layer(
-                type="IconLayer",
-                data=df_inc_icons,
-                get_icon="icon_data",
-                get_size=4,
-                size_scale=15,
-                get_position=["lng", "lat"],
-                pickable=True,
-        )
+        fff = pdk.Layer(type="IconLayer",
+                        data=df_dec_icons,
+                        get_icon="icon_data",
+                        get_size=4,
+                        size_scale=15,
+                        get_position=["lng", "lat"],
+                        pickable=True,
+                        extruded=False
+                       )
+        ggg = pdk.Layer(type="IconLayer",
+                        data=df_inc_icons,
+                        get_icon="icon_data",
+                        get_size=4,
+                        size_scale=15,
+                        get_position=["lng", "lat"],
+                        pickable=True,
+                        extruded=False
+                       )
         hhh = pdk.Layer(
                 "TextLayer",
                 data=df_dpt,
-                get_position=["lng", "lat-0.01"],
+                get_position=["lng", "lat-0.003"],
                 get_text="소방공무원_22",
                 get_size=30,
-                get_color=[64, 64, 64],
+                get_color=['r', 'g', 'b'],
                 get_angle=0,
                 # Note that string constants in pydeck are explicitly passed as strings
                 # This distinguishes them from columns in a data set
@@ -260,14 +273,45 @@ def mapping_demo():
                         get_width="dpt*0.2",
                         get_source_position=["lng", "lat"],
                         get_target_position=["lng_dest", "lat_dest"],
-                        get_tilt=30,
+#                         get_tilt=30,
                         pickable=True,
         #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
         #                 get_fill_color=["deficiency*10", "0","0", "128"],
-                        get_source_color=['0','73','140'],
+                        get_source_color=['255','127','0','0'],
                         get_target_color=['255','127','0'],
-                        extruded=True,
+                        extruded=False,
                         auto_highlight=True
+                       ),
+        jjj = pdk.Layer("ScatterplotLayer",
+                        data=df_dpt.loc[0:0,],
+                        get_position=["lng", "lat"],
+                        # radius 0 줘서 숨겨놨음
+                        get_radius='100',
+#                         stroked=True,
+#                         get_line_color=[128, 128, 0],
+                        line_width_min_pixels=1,
+                        radius_scale=6,
+                        pickable=True,
+                        elevation_range=[0, 400],
+                        get_fill_color=["192", "192", 0, "64"],                
+                        extruded=True)
+        kkk = pdk.Layer(type="IconLayer",
+                        data=df_dpt,
+                        get_icon="icon_data",
+                        get_size=4,
+                        size_scale=15,
+                        get_position=["lng", "lat-0.003"],
+                        pickable=True,
+                        extruded=False
+                       )
+        lll = pdk.Layer(type="IconLayer",
+                        data=df_inc_icons,
+                        get_icon="icon_data",
+                        get_size=4,
+                        size_scale=15,
+                        get_position=["lng", "lat-0.002"],
+                        pickable=True,
+                        extruded=False
                        )
         
 
@@ -292,12 +336,12 @@ def mapping_demo():
                     )
             )
         elif selected_layer_name[0] == '실시간 출동 현황':
-            selected_layers += [hhh,iii]
+            selected_layers += [hhh,iii,jjj,kkk]
             st.pydeck_chart(
                 pdk.Deck(map_style=None,
                          initial_view_state={"latitude": df_dpt.loc[0, ['lat']][0],
                                              "longitude": df_dpt.loc[0, ['lng']][0],
-                                             "zoom": 12,
+                                             "zoom": 11.4,
                                              "pitch": 40,
                                              "width": '100%',
                                              "height": 650
@@ -317,16 +361,50 @@ def mapping_demo():
             % e.reason
         )
 if to_show == '실시간 출동 현황':
-    cols_head = st.columns((2,2,2,2,2))
+    cols_head = st.columns((5,6.5,4,3.5))
+    with cols_head[0]:
+        
+        imagee = Image.open('캡쳐5.PNG')
+
+        st.image(imagee,width=250)
     with cols_head[1]:
-        st.markdown("## 적정 인력")
-        st.markdown("## 0106 명")
+        st.markdown("#             ")
+#         st.markdown("#             ")
+        st.markdown("# 🚨　출 동 대 응 단 계 :  ")
+        st.markdown("# 적정 인력 : 0 3 0 0 명　　 출동 인력 : 0 2 5 5 명")
     with cols_head[2]:
-        st.markdown("## 출동 인력")
-        st.markdown("## 0094 명")
+        st.markdown("#             ")
+        st.markdown("# 2　단계 🚨　  ")
+        st.markdown("# 필요 인력　　 + 0 0 4 5 명")
     with cols_head[3]:
-        st.markdown("## 필요 인력")
-        st.markdown("## + 0015 명")
+        image = Image.open('캡처.PNG')
+
+        st.image(image)
+        st.markdown('##### 　실시간 출동인력 ')
+
+
+#         chart_data = pd.DataFrame(
+#         np.random.randn(13, 3),
+#         columns=["a", "b", "c"])
+        
+#         st.bar_chart(chart_data)
+
+#     with cols_head[3]:
+        
+#         source = pd.DataFrame({"values": [12, 23, 47, 6, 52, 19]})
+
+#         base = alt.Chart(source).encode(
+#         theta=alt.Theta("values:Q", stack=True),
+#         radius=alt.Radius("values", scale=alt.Scale(type="sqrt", zero=True, rangeMin=20)),
+#         color="values:N",
+# )
+
+#         c1 = base.mark_arc(innerRadius=20, stroke="#fff")
+
+#         c2 = base.mark_text(radiusOffset=10).encode(text="values:Q")
+
+#         c1 + c2
+        
 if to_show == '자치구별 인력 배치':
     cols_title = st.columns((12,2,1))
     i = 0
@@ -364,7 +442,7 @@ bar_chart = alt.Chart(df, height = 500).transform_fold(
     y='gu:N',
     x='value:Q',
     color=alt.Color('column:N',scale=alt.Scale(domain=['소방공무원_22', '증원', '감원'],range=['#264b96', 'green', 'red'])),
-#     color=alt.Color('column:N',scale=alt.Scale(domain=['소방공무원_22', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),%%!
+#     color=alt.Color('column:N',scale=alt.Scale(domain=['소방공무원_22', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),
     order="order:O"
 )
 df3 = pd.read_csv("LOCAL_PEOPLE_20221211.csv", encoding = 'cp949', low_memory=False, index_col=False)
@@ -426,24 +504,71 @@ else:
 </div>""", unsafe_allow_html=True)
         st.markdown(""" <style>[id="deckgl-wrapper"] {margin-top: 0px;}</style> """,unsafe_allow_html=True)
 if to_show == '실시간 출동 현황':
-#     new_cols = st.columns((12,1,1,1))
-    with cols[1]:
+    
+    ne_cols = st.columns((2,5.5,1,1))
+    n_cols = st.columns((9))
+    with ne_cols[1]:
+
         mapping_demo()
-    with cols[0]:
-        st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
-        autoplay_muted_video('바디캠1.mp4', width=260)
+        
+    with ne_cols[0]:
+        
+        
+        st.bar_chart(chart_data, x="행정동코드", y="총생활인구수")
+        chart_data = pd.DataFrame(
+        np.random.randn(20, 3),
+        columns=['a', 'b', 'c'])
+      
+        st.line_chart(chart_data)
+
+        
+#         autoplay_muted_video('바디캠3.mp4', width=260)
+    with ne_cols[2]:
+        st.metric('충원 필요 소방서','압구정','35명') 
+        st.metric('압구정소방서','290','35명 필요') 
+        st.markdown(" 출동 대응 1단계　 필요 인력")
+        st.markdown(" 출동 대응 2단계　 필요 인력")
+        st.markdown(" 출동 대응 3단계　 필요 인력")
+        
         autoplay_muted_video('바디캠2.mp4', width=260)
-        autoplay_muted_video('바디캠3.mp4', width=260)
-    cols = st.columns((1,4,6,8))    
-    new_cols = st.columns((12,1,1,1))
-#     new_cols[0].markdown(f'### 자치구별 유동 인구 현황 ({ampm} {latest_time_hr}시 기준)')
-#     new_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
+        autoplay_muted_video('바디캠1.mp4', width=260)
+        
+#         imagee = Image.open('캡처3.PNG')
+
+#         st.image(imagee,width=260)
+    with ne_cols[3]:
+        st.metric('충원 필요 소방서','강남','15명') 
+        st.metric('용산소방서','320','15명 필요')
+        st.markdown("1 개 소방서　　　100명")
+        st.markdown("2~5 개 소방서　　300명")
+        st.markdown("6 개 이상 소방서　500명")
+        st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
+        
+        
+        
+        
+   
+        
+        
+    
+
+
 else:
     new_cols = st.columns((12,1,1,1))
-#     new_cols[0].altair_chart(bar_chart, use_container_width=True)
+    new_cols[0].altair_chart(bar_chart, use_container_width=True)
 
-if to_show == '실시간 출동 현황':
-    st.empty()
+# if to_show == '실시간 출동 현황':
+# #     st.empty()
+#     chart_data = pd.DataFrame(
+#     np.random.randn(20, 3),
+#     nee_columns=['a', 'b', 'c'])
+      
+#     st.line_chart(chart_data)
+#     nee_cols = st.nee_columns((1,4,6,8))    
+#     nee_cols = st.nee_columns((12,1,1,1))
+#     nee_cols[0].markdown(f'### 자치구별 유동 인구 현황 ({ampm} {latest_time_hr}시 기준)')
+#     nee_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
+    
 #     metric_counter = 0
 #     for dpt in df['출동소방서'].unique().tolist()[17:]:
 #         temp_df = df_dpt.loc[df_dpt['출동소방서'] == dpt,:].reset_index()
@@ -452,15 +577,15 @@ if to_show == '실시간 출동 현황':
 #         metric_counter +=1
 #         if metric_counter > 17:
 #             break;
-else:
-    metric_counter = 0
-    for dpt in df['출동소방서'].unique().tolist()[17:]:
-        temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
-        with new_cols[metric_counter%3+1]:
-            st.metric(dpt, temp_df['소방공무원_22'][0], temp_df['오차'][0].astype(str))
-        metric_counter +=1
-        if metric_counter > 17:
-            break;
+# else:
+#     metric_counter = 0
+#     for dpt in df['출동소방서'].unique().tolist()[17:]:
+#         temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
+#         with nee_cols[metric_counter%3+1]:
+#             st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+#         metric_counter +=1
+#         if metric_counter > 17:
+#             break;
         
 
 if to_show == '실시간 출동 현황':
