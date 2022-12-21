@@ -26,7 +26,7 @@ st.set_page_config(layout="wide",
 
 #     st.markdown('### 소방인력 배치 통합 솔루션')
 add_logo()
-st.markdown("""<style>@font-face {font-family:"KTB";font-weight:bold;src:url(https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/KTB.woff2) format('woff2');} html, body, [class*="css"] {font-family: 'KTB';}</style>""",unsafe_allow_html=True)
+st.markdown("""<style>@font-face {font-family:"KTB";font-weight:bold;src:url(http://github.com/Jungtaehun94/streramlit_temp_app/raw/main/KTB.woff2) format('woff2');} html, body, [class*="css"] {font-family: 'KTB';}</style>""",unsafe_allow_html=True)
 # pages = st.source_util.get_pages('소방인력_배치_통합_솔루션.py')
 # pages
 # new_page_names = {
