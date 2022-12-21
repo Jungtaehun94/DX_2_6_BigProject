@@ -274,21 +274,22 @@ def mapping_demo():
                 get_alignment_baseline=String("center"),
         ),
         iii = pdk.Layer("ArcLayer",
-                        data=df_dpt,
-                        get_width="dpt*0.2",
+                        data=df_dpt.drop(columns=['gu', '오차', 'deficiency', 'dpt', 'EstReq','소방공무원_22', 'distance', 'r', 'g', 'b']),
+                        get_width="20",
                         get_source_position=["lng", "lat"],
                         get_target_position=["lng_dest", "lat_dest"],
 #                         get_tilt=30,
                         pickable=True,
         #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
         #                 get_fill_color=["deficiency*10", "0","0", "128"],
-                        get_source_color=['255','127','0','0'],
+                        get_source_color=['255','127','0','32'],
                         get_target_color=['255','127','0'],
-                        extruded=False,
+                        extruded=True,
                         auto_highlight=True
                        ),
         jjj = pdk.Layer("ScatterplotLayer",
-                        data=df_dpt.loc[0:0,],
+                        data=df_dpt.loc[0:0,].drop(columns=['gu', '출동소방서', '오차', 'deficiency', 'dpt', 'EstReq','소방공무원_22',
+                                                            'distance', 'lng_dest', 'lat_dest', 'r', 'g', 'b', '차출']),
                         get_position=["lng", "lat"],
                         # radius 0 줘서 숨겨놨음
                         get_radius='100',
@@ -351,7 +352,7 @@ def mapping_demo():
                                              "width": '100%',
                                              "height": 650
                                             },
-                         tooltip={'html': '<b>{출동소방서}</b><br>가용인원: {dpt}<br>예측 필요인력: {EstReq}<br><br>필요 증원: {deficiency}={EstReq}-{dpt}','style': {'color': 'white'}},
+                         tooltip={'html': '<b>{출동소방서}</b><br>차출: {차출}','style': {'color': 'white'}},
                         layers=selected_layers,
                     )
             )
