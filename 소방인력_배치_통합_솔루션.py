@@ -540,8 +540,8 @@ if to_show == '실시간 출동 현황':
         st.markdown(" 출동 대응 2단계　 필요 인력")
         st.markdown(" 출동 대응 3단계　 필요 인력")
         
-        autoplay_muted_video('바디캠2.mp4', width=260)
-        autoplay_muted_video('바디캠1.mp4', width=260)
+        autoplay_muted_video('화재1.mp4', width=260)
+        autoplay_muted_video('화재2.mp4', width=260)
         
 #         imagee = Image.open('캡처3.PNG')
 
