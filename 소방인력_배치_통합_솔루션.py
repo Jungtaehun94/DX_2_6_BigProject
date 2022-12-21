@@ -59,6 +59,7 @@ df_dec['소방공무원_22'] = df_dec['소방공무원_22'].where(df_text['감�
 df_zero = df_text.copy()
 df_zero['소방공무원_22'] = df_zero['소방공무원_22'].where(df_zero['오차'] == '0', '')
 df_dpt = pd.read_csv(r"./data2.csv", encoding = 'cp949')
+df_dpt['소방공무원_22'] = df_dpt['소방공무원_22'].astype(str)
 # import pandas as pd
 
 # # Create a list of longitude values from 37 to 38 in steps of 0.01
@@ -109,6 +110,8 @@ def find_close_points(df_input,gu,n):
     df['distance'] = df['distance'].astype(np.int)
     df[['r', 'g', 'b']] = [0,0,255]
     df.loc[0, ['r', 'g', 'b']] = [255, 0, 0]
+    supp = df.loc[0, ['deficiency']][0]/3
+    df.loc[1:, ['소방공무원_22']] = df['소방공무원_22'] + f"-{int(supp)}"
     # Select the 3 closest points
     closest_points = df.head(n+1).copy()
     return closest_points
