@@ -1,4 +1,4 @@
-from vega_datasets import data
+# from vega_datasets import data
 import inspect
 import textwrap
 from urllib.error import URLError
