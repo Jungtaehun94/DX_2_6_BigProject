@@ -116,7 +116,7 @@ def find_close_points(df_input,gu,n):
     df['lat_dest'] = row['lat'][0]
     # Sort the rows by distance
     df.sort_values(by='distance', inplace=True, ignore_index=True)
-    df['distance'] = df['distance'].astype(np.int)
+    df['distance'] = df['distance'].astype(int)
     df[['r', 'g', 'b']] = [192, 64, 64]
     df.loc[0, ['r', 'g', 'b']] = [0, 16*8, 0]
     supp = df.loc[0, ['deficiency']][0]
