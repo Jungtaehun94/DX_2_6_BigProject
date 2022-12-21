@@ -1,3 +1,4 @@
+from vega_datasets import data
 import inspect
 import textwrap
 from urllib.error import URLError
@@ -14,7 +15,6 @@ from PIL import Image
 from add_logo import add_logo
 from up_down import up,down
 from video import autoplay_muted_video
-from vega-datasets import data
 from PIL import Image
 url = "https://nfds.go.kr/images/common/logo_emb.png"
 res = request.urlopen(url).read()
