@@ -364,7 +364,7 @@ if to_show == '실시간 출동 현황':
     cols_head = st.columns((5,6.5,4,3.5))
     with cols_head[0]:
         
-        imagee = Image.open('캡쳐5.png')
+        imagee = Image.open('캡쳐5.PNG')
 
         st.image(imagee,width=250)
     with cols_head[1]:
@@ -510,6 +510,16 @@ if to_show == '실시간 출동 현황':
     with ne_cols[1]:
 
         mapping_demo()
+        st.markdown("""<div style="margin-left: 28px;margin-top: -650px;z-index: 999;position: relative;width: 276px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
+        <ul style="display: flex; flex-direction: row; width: 280px; align-items: center; padding-left: 0px; padding-top: 7px; padding-bottom: 7px;">
+        <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 10px; margin-top: auto; align-content: center;"><span style="background: rgba(192, 64, 64, 0.8); border-color: rgb(255, 99, 132); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
+        <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">감원 필요</p>
+        </li>
+        <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 20px;"><span style="background: rgba(64, 192, 64, 0.8); border-color: rgb(54, 162, 235); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
+        <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">증원 필요</p>
+        </li>
+        </ul>
+        </div>""", unsafe_allow_html=True)
         
     with ne_cols[0]:
         
