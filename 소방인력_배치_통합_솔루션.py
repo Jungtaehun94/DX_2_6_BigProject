@@ -88,7 +88,7 @@ df_dpt = pd.read_csv(r"./data2.csv", encoding="cp949")
 
 df_dpt = find_close_points(df_dpt, df_dpt.sample(1).reset_index()["출동소방서"][0], 3)
 with st.sidebar:
-    to_show = st.radio("상황 선택", ("평시", "재난 발생시"))
+    to_show = st.radio("유형별", ("평시", "재난 발생시"))
 # find_close_points(df_dpt,df_dpt.sample(1).reset_index()['출동소방서'][0],3)
 
 
@@ -289,7 +289,7 @@ def mapping_demo():
         )
 
         #         with st.sidebar:
-        #             to_show = st.radio("상황 선택",('평시', '재난 발생시'))
+        #             to_show = st.radio("유형별",('평시', '재난 발생시'))
         selected_layers = [
             layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name
         ]
