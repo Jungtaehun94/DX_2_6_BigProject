@@ -327,7 +327,7 @@ def mapping_demo():
                     initial_view_state={
                         "latitude": df_dpt["lat"].mean(),
                         "longitude": df_dpt["lng"].mean(),
-                        "zoom": 11,
+                        "zoom": 11.5,
                         "pitch": 40,
                         "width": "100%",
                         "height": 450,
