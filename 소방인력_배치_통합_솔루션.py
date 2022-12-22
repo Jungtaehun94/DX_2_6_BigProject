@@ -451,7 +451,7 @@ df3 = df3.groupby(by=["행정동코드", "기준일ID", "시간대구분"], as_i
 df3 = df3.loc[df3["기준일ID"] == df3["기준일ID"].unique().tolist()[-1], :]
 
 # 최종 데이터 시각
-latest_time_hr = df3.loc[df3["총생활인구수"] != 0, :]["시간대구분"].unique().tolist()[-1]
+latest_time_hr = df3.loc[df3["유동인구"] != 0, :]["시간대구분"].unique().tolist()[-1]
 
 # 실시간 데이터가 없으므로 일단 현재시각 덮어씌우기
 import datetime
@@ -464,8 +464,8 @@ latest_time_hr = latest_time_ = current_time.hour
 df3 = df3.loc[df3["시간대구분"] == latest_time_hr, :]
 ampm = "오후" if latest_time_hr > 12 else "오전"
 latest_time_hr = (latest_time_hr - 12) if latest_time_hr > 12 else latest_time_hr
-df3["총생활인구수"].replace({0: np.NaN}, inplace=True)
-chart_data = df3[["행정동코드", "총생활인구수"]]
+df3["유동인구"].replace({0: np.NaN}, inplace=True)
+chart_data = df3[["행정동코드", "유동인구"]]
 # cols[1].metric('','현재','증원')
 # cols[2].metric('','인력','-감소')
 # cols[3].metric('','현황',' ')
@@ -530,11 +530,10 @@ if to_show == "실시간 출동 현황":
             </div>""",
             unsafe_allow_html=True,
         )
-        st.bar_chart(chart_data, x="행정동코드", y="총생활인구수")
-        st.markdown("#　")
-        st.markdown("#　")
-        st.markdown("#　")
-        st.markdown("#　")
+#         st.markdown("#　")
+#         st.markdown("#　")
+#         st.markdown("#　")
+#         st.markdown("#　")
 
     with ne_cols[0]:
         st.markdown(
@@ -543,7 +542,7 @@ if to_show == "실시간 출동 현황":
         )
         autoplay_muted_video("인구카운팅.mp4", width=260)
         autoplay_muted_video("화재2.mp4", width=260)
-    #         st.bar_chart(chart_data, x="행정동코드", y="총생활인구수")
+    #         st.bar_chart(chart_data, x="행정동코드", y="유동인구")
 
     #         autoplay_muted_video('바디캠3.mp4', width=260)
     with ne_cols[2]:
@@ -552,9 +551,6 @@ if to_show == "실시간 출동 현황":
         st.markdown(" 출동 대응 1단계　 필요 인력")
         st.markdown(" 출동 대응 2단계　 필요 인력")
         st.markdown(" 출동 대응 3단계　 필요 인력")
-        chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-
-        st.line_chart(chart_data, width=4, use_container_width=True)
     #         st.markdown("""<style>[data-testid="stVerticalBlock"] {font-family: &quot;Noto Sans KR&quot;}</style>""",unsafe_allow_html=True)
     #         autoplay_muted_video('화재1.mp4', width=260)
     #         autoplay_muted_video('화재2.mp4', width=260)
@@ -569,6 +565,15 @@ if to_show == "실시간 출동 현황":
         st.markdown("2~5 개 소방서　　출동　")
         st.markdown("6 개 이상 소방서　 출동　")
         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
+    new_ne_cols2 = st.columns((2, 5.5, 2))
+    new_ne_cols2[1].bar_chart(chart_data, x="행정동코드", y="유동인구")
+    chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+    new_ne_cols2[2].line_chart(chart_data2, width=4, use_container_width=True)
+    new_ne_cols = st.columns((5.5, 4))
+    new_ne_cols[0].bar_chart(chart_data, x="행정동코드", y="유동인구")
+    chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+    new_ne_cols[1].line_chart(chart_data2, width=4, use_container_width=True)
+    
 else:
     new_cols = st.columns((12, 1, 1, 1))
     new_cols[0].altair_chart(bar_chart, use_container_width=True)
@@ -582,7 +587,7 @@ else:
 #     nee_cols = st.nee_columns((1,4,6,8))
 #     nee_cols = st.nee_columns((12,1,1,1))
 #     nee_cols[0].markdown(f'### 자치구별 유동 인구 현황 ({ampm} {latest_time_hr}시 기준)')
-#     nee_cols[0].bar_chart(chart_data, x="행정동코드", y="총생활인구수")
+#     nee_cols[0].bar_chart(chart_data, x="행정동코드", y="유동인구")
 
 #     metric_counter = 0
 #     for dpt in df['출동소방서'].unique().tolist()[17:]:
