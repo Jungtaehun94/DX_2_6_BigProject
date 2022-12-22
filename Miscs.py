@@ -19,7 +19,7 @@ def find_close_points(df_input, gu, n=3):
     df.loc[0, ["차출"]] = 0
     df.loc[1:3, ["차출"]] = list(calculate_abc(df.loc[1:3, ["dpt"]].reset_index(), supp))
     df["소방공무원_22"] = df["소방공무원_22"].astype(str)
-    df.loc[0:0, ["소방공무원_22"]] = df["소방공무원_22"] + f"({int(supp)})\nEst: {est}" 
+    df.loc[0:0, ["소방공무원_22"]] = f'Est: {est}\n' + df["소방공무원_22"] + f"({int(supp)})" 
     df["차출"] = df["차출"].apply(lambda x: str(int(x)) if np.isfinite(x) else "")
     df.loc[1:, ["소방공무원_22"]] = df["소방공무원_22"] + "(" + df["차출"] + ")"
 

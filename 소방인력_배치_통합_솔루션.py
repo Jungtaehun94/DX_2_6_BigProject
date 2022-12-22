@@ -224,7 +224,7 @@ def mapping_demo():
             pdk.Layer(
                 "TextLayer",
                 data=df_dpt,
-                get_position=["lng", "lat-0.003"],
+                get_position=["lng", "lat-0.005"],
                 get_text="소방공무원_22",
                 get_size=30,
                 get_color=["r", "g", "b"],
