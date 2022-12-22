@@ -247,7 +247,7 @@ def mapping_demo():
                 #                 get_fill_color=["deficiency*0.07", 1,"deficiency*7", 128],
                 #                 get_fill_color=["deficiency*10", "0","0", "128"],
                 get_source_color=["255", "127", "0", "32"],
-                get_target_color=["255", "127", "0"],
+                get_target_color=["255", "127", "0", "192"],
                 extruded=True,
                 auto_highlight=True,
             ),
