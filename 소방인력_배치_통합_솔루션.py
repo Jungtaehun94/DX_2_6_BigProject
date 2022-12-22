@@ -513,7 +513,7 @@ else:
             unsafe_allow_html=True,
         )
 if to_show == "실시간 출동 현황":
-    ne_cols = st.columns((2.5, 4, 1, 1))
+    ne_cols = st.columns((2.5, 3.8, 1, 1))
     n_cols = st.columns((9))
     with ne_cols[1]:
         mapping_demo()
@@ -545,9 +545,9 @@ if to_show == "실시간 출동 현황":
     with ne_cols[2]:
         st.metric("충원 필요 소방서", "서초", "15명 ")
         st.metric("충원 필요 소방서", "강남", "20명 ")
-        st.markdown(" 출동 대응 1단계　 필요 인력")
-        st.markdown(" 출동 대응 2단계　 필요 인력")
-        st.markdown(" 출동 대응 3단계　 필요 인력")
+        st.markdown(" 출동 대응 1단계<br>필요 인력",unsafe_allow_html=True)
+        st.markdown(" 출동 대응 2단계<br>필요 인력",unsafe_allow_html=True)
+        st.markdown(" 출동 대응 3단계<br>필요 인력",unsafe_allow_html=True)
     #         st.markdown("""<style>[data-testid="stVerticalBlock"] {font-family: &quot;Noto Sans KR&quot;}</style>""",unsafe_allow_html=True)
     #         autoplay_muted_video('화재1.mp4', width=260)
     #         autoplay_muted_video('화재2.mp4', width=260)
@@ -558,9 +558,9 @@ if to_show == "실시간 출동 현황":
     with ne_cols[3]:
         st.metric("충원 필요 소방서", "동작", "17명")
         st.metric("충원 필요 소방서", "송파", "8명")
-        st.markdown("1 개 소방서　　　출동　")
-        st.markdown("2~5 개 소방서　　출동　")
-        st.markdown("6 개 이상 소방서　 출동　")
+        st.markdown("1 개 소방서　　　출동　<br>&nbsp;",unsafe_allow_html=True)
+        st.markdown("2~5 개 소방서　　출동　<br>&nbsp;",unsafe_allow_html=True)
+        st.markdown("6 개 이상 소방서　 출동　<br>&nbsp;",unsafe_allow_html=True)
         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
     new_ne_cols = st.columns((5.5, 4))
     new_ne_cols[0].bar_chart(chart_data, x="행정동코드", y="유동인구")
