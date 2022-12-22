@@ -238,19 +238,7 @@ def mapping_demo():
         iii = (
             pdk.Layer(
                 "ArcLayer",
-                data=df_dpt.drop(
-                    columns=[
-                        "gu",
-                        "오차",
-                        "deficiency",
-                        "EstReq",
-                        "소방공무원_22",
-                        "distance",
-                        "r",
-                        "g",
-                        "b",
-                    ]
-                ),
+                data=df_dpt,
                 get_width="20",
                 get_source_position=["lng", "lat"],
                 get_target_position=["lng_dest", "lat_dest"],
@@ -266,23 +254,7 @@ def mapping_demo():
         )
         jjj = pdk.Layer(
             "ScatterplotLayer",
-            data=df_dpt.loc[0:0,].drop(
-                columns=[
-                    "gu",
-                    "출동소방서",
-                    "오차",
-                    "deficiency",
-                    "EstReq",
-                    "소방공무원_22",
-                    "distance",
-                    "lng_dest",
-                    "lat_dest",
-                    "r",
-                    "g",
-                    "b",
-                    "차출",
-                ]
-            ),
+            data=df_dpt.loc[0:0,],
             get_position=["lng", "lat"],
             # radius 0 줘서 숨겨놨음
             get_radius="100",
@@ -569,7 +541,7 @@ if to_show == "실시간 출동 현황":
             """<style>[data-testid="stVerticalBlock"] {font-family: &quot;Noto Sans KR&quot;}</style>""",
             unsafe_allow_html=True,
         )
-        autoplay_muted_video("화재1.mp4", width=260)
+        autoplay_muted_video("인구카운팅.mp4", width=260)
         autoplay_muted_video("화재2.mp4", width=260)
     #         st.bar_chart(chart_data, x="행정동코드", y="총생활인구수")
 

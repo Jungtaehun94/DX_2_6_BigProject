@@ -15,19 +15,20 @@ def find_close_points(df_input, gu, n=3):
     supp = df.loc[0, ["deficiency"]][0]
     supp = int(supp)
     from calculate_abc import calculate_abc
-
+    est = int(df.loc[0, ["EstReq"]][0])
+    df.loc[0, ["차출"]] = 0
     df.loc[1:3, ["차출"]] = list(calculate_abc(df.loc[1:3, ["dpt"]], supp))
     df["소방공무원_22"] = df["소방공무원_22"].astype(str)
-    df.loc[0:0, ["소방공무원_22"]] = df["소방공무원_22"] + f"({int(supp)})"
+    df.loc[0:0, ["소방공무원_22"]] = df["소방공무원_22"] + f"({int(supp)})\nEst: {est}" 
     df["차출"] = df["차출"].apply(lambda x: str(int(x)) if np.isfinite(x) else "")
     df.loc[1:, ["소방공무원_22"]] = df["소방공무원_22"] + "(" + df["차출"] + ")"
 
     assign_icons(
         df,
-        "https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/100_green_marker.png",
+        "https://img.icons8.com/plasticine/100/000000/marker.png",
     )
     df.loc[0, ["icon_data"]] = [
-        URL_to_Icon_Data("https://img.icons8.com/plasticine/100/000000/marker.png")
+        URL_to_Icon_Data("https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/100_green_marker.png")
     ]
     # Select the 3 closest points
     closest_points = df.head(n + 1).copy()
