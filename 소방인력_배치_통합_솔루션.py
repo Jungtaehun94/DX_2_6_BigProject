@@ -330,7 +330,7 @@ def mapping_demo():
                         "zoom": 11,
                         "pitch": 40,
                         "width": '100%',
-                        "height": 385,
+                        "height": 430,
                     },
                     tooltip={
                         "html": "<b>{출동소방서}</b><br>가용인원: {dpt}<br>차출: {차출}",
