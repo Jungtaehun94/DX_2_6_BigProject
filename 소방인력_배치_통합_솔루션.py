@@ -327,10 +327,10 @@ def mapping_demo():
                     initial_view_state={
                         "latitude": df_dpt["lat"].mean(),
                         "longitude": df_dpt["lng"].mean(),
-                        "zoom": 11.5,
+                        "zoom": 11,
                         "pitch": 40,
-                        "width": "100%",
-                        "height": 450,
+                        "width": '100%',
+                        "height": 385,
                     },
                     tooltip={
                         "html": "<b>{출동소방서}</b><br>가용인원: {dpt}<br>차출: {차출}",
@@ -513,12 +513,12 @@ else:
             unsafe_allow_html=True,
         )
 if to_show == "실시간 출동 현황":
-    ne_cols = st.columns((2, 5.5, 1, 1))
+    ne_cols = st.columns((2.5, 4, 1, 1))
     n_cols = st.columns((9))
     with ne_cols[1]:
         mapping_demo()
         st.markdown(
-            """<div style="margin-left: 28px;margin-top: -450px;z-index: 999;position: relative;width: 376px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
+            """<div style="margin-left: 28px;margin-top: -385px;z-index: 999;position: relative;width: 376px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
             <ul style="display: flex;flex-direction: row;width: 342px;align-items: center;padding-left: 0px;padding-top: 7px;padding-bottom: 7px;">
             <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 10px; margin-top: auto; align-content: center;"><span style="background: rgba(192, 64, 64, 0.8); border-color: rgb(255, 99, 132); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
             <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">지원 출동 소방서</p>
@@ -536,12 +536,9 @@ if to_show == "실시간 출동 현황":
 #         st.markdown("#　")
 
     with ne_cols[0]:
-        st.markdown(
-            """<style>[data-testid="stVerticalBlock"] {font-family: &quot;Noto Sans KR&quot;}</style>""",
-            unsafe_allow_html=True,
-        )
-        autoplay_muted_video("인구카운팅.mp4", width=260)
-        autoplay_muted_video("화재2.mp4", width=260)
+        st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
+        autoplay_muted_video("인구카운팅.mp4", width=400)
+        autoplay_muted_video("화재2.mp4", width=400)
     #         st.bar_chart(chart_data, x="행정동코드", y="유동인구")
 
     #         autoplay_muted_video('바디캠3.mp4', width=260)
