@@ -88,7 +88,7 @@ df_dpt = pd.read_csv(r"./data2.csv", encoding="cp949")
 
 df_dpt = find_close_points(df_dpt, df_dpt.sample(1).reset_index()["출동소방서"][0], 3)
 with st.sidebar:
-    to_show = st.radio("지도 레이어 선택", ("자치구별 인력 배치", "실시간 출동 현황"))
+    to_show = st.radio("지도 레이어 선택", ("평시", "재난 발생시"))
 # find_close_points(df_dpt,df_dpt.sample(1).reset_index()['출동소방서'][0],3)
 
 
@@ -104,7 +104,7 @@ def mapping_demo():
             "https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/100_green_marker.png",
         )
         ALL_LAYERS = {
-            "자치구별 인력 배치": pdk.Layer(
+            "평시": pdk.Layer(
                 "ScatterplotLayer",
                 data=df,
                 get_position=["lng", "lat"],
@@ -120,7 +120,7 @@ def mapping_demo():
                 get_fill_color=["255", "128", 0, "192"],
                 extruded=True,
             ),
-            "실시간 출동 현황": pdk.Layer(
+            "재난 발생시": pdk.Layer(
                 "ColumnLayer",
                 data=df_dpt,
                 get_position=["lng", "lat"],
@@ -289,7 +289,7 @@ def mapping_demo():
         )
 
         #         with st.sidebar:
-        #             to_show = st.radio("지도 레이어 선택",('자치구별 인력 배치', '실시간 출동 현황'))
+        #             to_show = st.radio("지도 레이어 선택",('평시', '재난 발생시'))
         selected_layers = [
             layer for layer_name, layer in ALL_LAYERS.items() if to_show == layer_name
         ]
@@ -298,7 +298,7 @@ def mapping_demo():
             for layer_name, layer in ALL_LAYERS.items()
             if to_show == layer_name
         ]
-        if selected_layer_name[0] == "자치구별 인력 배치":
+        if selected_layer_name[0] == "평시":
             selected_layers += [ccc, ddd, eee, fff, ggg]
             #             selected_layers = [ccc]
             st.pydeck_chart(
@@ -319,7 +319,7 @@ def mapping_demo():
                     layers=selected_layers,
                 )
             )
-        elif selected_layer_name[0] == "실시간 출동 현황":
+        elif selected_layer_name[0] == "재난 발생시":
             selected_layers += [hhh, iii, jjj, kkk]
             st.pydeck_chart(
                 pdk.Deck(
@@ -351,7 +351,7 @@ def mapping_demo():
         )
 
 
-if to_show == "실시간 출동 현황":
+if to_show == "재난 발생시":
     cols_head = st.columns((3, 8, 3))
     #     with cols_head[0]:
 
@@ -396,7 +396,7 @@ if to_show == "실시간 출동 현황":
 
 #         c1 + c2
 
-if to_show == "자치구별 인력 배치":
+if to_show == "평시":
     cols_title = st.columns((12, 2, 1))
     i = 0
     with cols_title[0]:
@@ -470,7 +470,7 @@ chart_data = df3[["행정동코드", "유동인구"]]
 # cols[2].metric('','인력','-감소')
 # cols[3].metric('','현황',' ')
 # cols[3].markdown('###')
-if to_show == "실시간 출동 현황":
+if to_show == "재난 발생시":
     st.empty()
 #     metric_counter = 0
 #     for dpt in df_dpt['출동소방서'].unique().tolist():
@@ -512,7 +512,7 @@ else:
             """ <style>[class~="css-1sdqqxz e1tzin5v2"] {font-family: &quot;Noto Sans KR&quot;}</style> """,
             unsafe_allow_html=True,
         )
-if to_show == "실시간 출동 현황":
+if to_show == "재난 발생시":
     ne_cols = st.columns((2.5, 3.8, 1, 1))
     n_cols = st.columns((9))
     with ne_cols[1]:
@@ -570,7 +570,7 @@ if to_show == "실시간 출동 현황":
 else:
     new_cols = st.columns((12, 1, 1, 1))
     new_cols[0].altair_chart(bar_chart, use_container_width=True)
-# if to_show == '실시간 출동 현황':
+# if to_show == '재난 발생시':
 # #     st.empty()
 #     chart_data = pd.DataFrame(
 #     np.random.randn(20, 3),
@@ -601,7 +601,7 @@ else:
 #             break;
 
 
-if to_show == "실시간 출동 현황":
+if to_show == "재난 발생시":
     with st.sidebar:
         st.title("119 종합 상황 센터")
     add_selectbox = st.sidebar.selectbox("신고 유형을 선택하세요", ("재난", "범죄", "민원/상담"))
