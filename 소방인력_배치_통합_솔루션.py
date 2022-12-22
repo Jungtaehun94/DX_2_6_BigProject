@@ -544,30 +544,26 @@ if to_show == "실시간 출동 현황":
     ne_cols = st.columns((2, 5.5, 1, 1))
     n_cols = st.columns((9))
     with ne_cols[1]:
+        mapping_demo()
         st.markdown(
-            """ <style>[class~="css-1sdqqxz e1tzin5v2"] {font-family: &quot;Noto Sans KR&quot;}</style> """,
+            """<div style="margin-left: 28px;margin-top: -450px;z-index: 999;position: relative;width: 376px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
+            <ul style="display: flex;flex-direction: row;width: 342px;align-items: center;padding-left: 0px;padding-top: 7px;padding-bottom: 7px;">
+            <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 10px; margin-top: auto; align-content: center;"><span style="background: rgba(192, 64, 64, 0.8); border-color: rgb(255, 99, 132); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
+            <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">지원 출동 소방서</p>
+            </li>
+            <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 20px;"><span style="background: rgba(64, 192, 64, 0.8); border-color: rgb(54, 162, 235); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
+            <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">지원 대상 지점</p>
+            </li>
+            </ul>
+            </div>""",
             unsafe_allow_html=True,
         )
-        mapping_demo()
         st.bar_chart(chart_data, x="행정동코드", y="총생활인구수")
         st.markdown("#　")
         st.markdown("#　")
         st.markdown("#　")
         st.markdown("#　")
 
-        st.markdown(
-            """<div style="margin-left: 28px;margin-top: -650px;z-index: 999;position: relative;width: 276px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
-        <ul style="display: flex; flex-direction: row; width: 280px; align-items: center; padding-left: 0px; padding-top: 7px; padding-bottom: 7px;">
-        <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 10px; margin-top: auto; align-content: center;"><span style="background: rgba(192, 64, 64, 0.8); border-color: rgb(255, 99, 132); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
-        <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">감원 필요</p>
-        </li>
-        <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 20px;"><span style="background: rgba(64, 192, 64, 0.8); border-color: rgb(54, 162, 235); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
-        <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">증원 필요</p>
-        </li>
-        </ul>
-        </div>""",
-            unsafe_allow_html=True,
-        )
     with ne_cols[0]:
         st.markdown(
             """<style>[data-testid="stVerticalBlock"] {font-family: &quot;Noto Sans KR&quot;}</style>""",
