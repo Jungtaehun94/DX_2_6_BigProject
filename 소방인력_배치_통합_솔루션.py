@@ -352,7 +352,7 @@ def mapping_demo():
 
 
 if to_show == "실시간 출동 현황":
-    cols_head = st.columns((3, 5, 6))
+    cols_head = st.columns((3, 8, 3))
     #     with cols_head[0]:
 
     #         imagee = Image.open('캡쳐5.png')
@@ -361,11 +361,11 @@ if to_show == "실시간 출동 현황":
     with cols_head[1]:
         #         st.markdown("#             ")
         #         st.markdown("#             ")
-        st.markdown("# 🚨　출 동 대 응 단 계 :  ")
+        st.markdown("<div><h1 id='-' style='background-color: IndianRed;'align='center'>🚨　출 동 대 응 단 계 : 2　단계　 🚨</h1></div>", unsafe_allow_html=True)
     #         st.markdown("# 적정 인력 : 0 3 0 0 명　　 출동 인력 : 0 2 5 5 명")
-    with cols_head[2]:
-        #         st.markdown("#             ")
-        st.markdown("# 2　단계　 🚨　  ")
+#     with cols_head[2]:
+#         #         st.markdown("#             ")
+#         st.markdown("<div style='background-color: aqua;'><h1 id='-'>2　단계　 🚨　  </h1></div>", unsafe_allow_html=True)
 #         st.markdown("# 필요 인력　　 + 0 0 4 5 명")
 #     with cols_head[3]:
 #         image = Image.open('캡처.PNG')
