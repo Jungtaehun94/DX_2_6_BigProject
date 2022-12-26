@@ -361,7 +361,8 @@ if to_show == "재난 발생시":
     with cols_head[1]:
         #         st.markdown("#             ")
         #         st.markdown("#             ")
-        st.markdown("<div><h1 id='-' style='background-color: #FFFF00; color: blue; letter-spacing: 10px;'align='center';>🚨　출동대응단계 :  2단계　🚨</h1></div>", unsafe_allow_html=True)
+#         st.markdown("<div><h1 id='-' style='background-color: #FFFF00; color: blue; letter-spacing: 10px;'align='center';>🚨　출동대응단계 :  2단계　🚨</h1></div>", unsafe_allow_html=True)
+        st.markdown("<div><h1 id='-' style='letter-spacing: 10px;'align='center';>🚨　출동대응단계 :  2단계　🚨</h1></div>", unsafe_allow_html=True)
     #         st.markdown("# 적정 인력 : 0 3 0 0 명　　 출동 인력 : 0 2 5 5 명")
 #     with cols_head[2]:
 #         #         st.markdown("#             ")
