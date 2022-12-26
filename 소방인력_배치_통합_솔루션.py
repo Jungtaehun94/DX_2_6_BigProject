@@ -401,7 +401,7 @@ if to_show == "평시":
     cols_title = st.columns((12, 2, 1))
     i = 0
     with cols_title[0]:
-        st.markdown("## 서울시 소방서별 필요인력")
+        st.markdown("##  소방서별 필요인력")
     with cols_title[1]:
         st.markdown("## 인력현황")
     with cols_title[2]:
