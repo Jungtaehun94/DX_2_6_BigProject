@@ -1,4 +1,5 @@
 import numpy as np
+import streamlit as st
 def find_close_points(df_input, gu, n=3):
     df = df_input.copy()
     row = df.loc[df["출동소방서"] == gu].reset_index()
@@ -17,7 +18,8 @@ def find_close_points(df_input, gu, n=3):
     from calculate_abc import calculate_abc
     est = int(df.loc[0, ["EstReq"]][0])
     df.loc[0, ["차출"]] = 0
-    df.loc[1:3, ["차출"]] = list(calculate_abc(df.loc[1:3, ["dpt"]].reset_index(), supp))
+    supp_list = list(calculate_abc(df.loc[1:3, ["dpt"]].reset_index(), supp))
+    df.loc[1:3, ["차출"]] = supp_list
     df["소방공무원_22"] = df["소방공무원_22"].astype(str)
     df.loc[0:0, ["소방공무원_22"]] = f'Est: {est}\n' + df["소방공무원_22"] + f"({int(supp)})" 
     df["차출"] = df["차출"].apply(lambda x: str(int(x)) if np.isfinite(x) else "")
@@ -32,7 +34,7 @@ def find_close_points(df_input, gu, n=3):
     ]
     # Select the 3 closest points
     closest_points = df.head(n + 1).copy()
-    return closest_points
+    return closest_points, supp_list
 
 def URL_to_Icon_Data(image_url):
     import base64

@@ -44,7 +44,7 @@ df_text = df.copy()
 df_text["증원"] = df_text["증원"].where(df_text["증원"] > 0, "")
 df_text["감원"] = df_text["감원"].where(df_text["감원"] < 0, "")
 
-df_text["소방공무원_22"] = df_text["소방공무원_22"].astype(str)
+df_text["현원"] = df_text["현원"].astype(str)
 
 df_text["오차"] = df_text["오차"].astype(str)
 
@@ -54,11 +54,11 @@ df_text["감원"] = df_text["감원"].str[1:]
 df_text["증원"] = ("(" + df_text["증원"] + ")").where(df_text["증원"] != "", "")
 df_text["감원"] = ("(" + df_text["감원"] + ")").where(df_text["감원"] != "", "")
 df_inc = df_text.copy()
-df_inc["소방공무원_22"] = df_inc["소방공무원_22"].where(df_text["증원"] != "", "")
+df_inc["현원"] = df_inc["현원"].where(df_text["증원"] != "", "")
 df_dec = df_text.copy()
-df_dec["소방공무원_22"] = df_dec["소방공무원_22"].where(df_text["감원"] != "", "")
+df_dec["현원"] = df_dec["현원"].where(df_text["감원"] != "", "")
 df_zero = df_text.copy()
-df_zero["소방공무원_22"] = df_zero["소방공무원_22"].where(df_zero["오차"] == "0", "")
+df_zero["현원"] = df_zero["현원"].where(df_zero["오차"] == "0", "")
 df_dpt = pd.read_csv(r"./data2.csv", encoding="cp949")
 
 # import pandas as pd
@@ -86,7 +86,9 @@ df_dpt = pd.read_csv(r"./data2.csv", encoding="cp949")
 # df_grid
 
 
-df_dpt = find_close_points(df_dpt, df_dpt.sample(1).reset_index()["출동소방서"][0], 3)
+df_dpt, supp_list = find_close_points(df_dpt, df_dpt.sample(1).reset_index()["출동소방서"][0], 3)
+gu_loc = df_dpt.columns.get_loc('출동소방서')
+
 with st.sidebar:
     to_show = st.radio("유형별", ("평시", "재난 발생시"))
 # find_close_points(df_dpt,df_dpt.sample(1).reset_index()['출동소방서'][0],3)
@@ -165,7 +167,7 @@ def mapping_demo():
             "TextLayer",
             data=df_inc,
             get_position=["lng", "lat-0.01"],
-            get_text="소방공무원_22 + 증원",
+            get_text="현원 + 증원",
             get_size=30,
             get_color=[64, 192, 64],
             get_angle=0,
@@ -178,7 +180,7 @@ def mapping_demo():
             "TextLayer",
             data=df_dec,
             get_position=["lng+0.017", "lat-0.005"],
-            get_text="소방공무원_22 + 감원",
+            get_text="현원 + 감원",
             get_size=30,
             get_color=[192, 64, 64],
             get_angle=0,
@@ -191,7 +193,7 @@ def mapping_demo():
             "TextLayer",
             data=df_zero,
             get_position=["lng", "lat-0.01"],
-            get_text="소방공무원_22",
+            get_text="현원",
             get_size=30,
             get_color=[64, 64, 64],
             get_angle=0,
@@ -313,7 +315,7 @@ def mapping_demo():
                         "height": 650,
                     },
                     tooltip={
-                        "html": "<b>{출동소방서}</b><br>현원: {소방공무원_22}<br>예측 적정인력: {소방공무원_22} + {오차}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}",
+                        "html": "<b>{출동소방서}</b><br>현원: {현원}<br>예측 적정인력: {현원} + {오차}<br>전체출동건수: {전체출동건수}<br>1인출동건수: {1인출동건수}<br>구급이송인원: {구급이송인원}<br>생존구조인원: {생존구조인원}<br>재산피해경감율: {재산피해경감율}",
                         "style": {"color": "white"},
                     },
                     layers=selected_layers,
@@ -352,17 +354,18 @@ def mapping_demo():
 
 
 if to_show == "재난 발생시":
-    cols_head = st.columns((3, 8, 3))
+    cols_head = st.columns((2.5, 3.8, 2))
     #     with cols_head[0]:
 
     #         imagee = Image.open('캡쳐5.png')
 
     #         st.image(imagee,width=250)
+    with cols_head[0]:
+        st.markdown("<div><h2 id='-' style='letter-spacing: 6px;'align='left';>현장CCTV</h1></div>", unsafe_allow_html=True)
     with cols_head[1]:
-        #         st.markdown("#             ")
-        #         st.markdown("#             ")
-#         st.markdown("<div><h1 id='-' style='background-color: #FFFF00; color: blue; letter-spacing: 10px;'align='center';>🚨　출동대응단계 :  2단계　🚨</h1></div>", unsafe_allow_html=True)
-        st.markdown("<div><h1 id='-' style='letter-spacing: 10px;'align='center';>🚨　출동대응단계 :  2단계　🚨</h1></div>", unsafe_allow_html=True)
+        st.markdown("<div><h2 id='-' style='letter-spacing: 2px;'align='left';>재난 발생시 소방서별 필요인력</h1></div>", unsafe_allow_html=True)
+    with cols_head[2]:
+        st.markdown("<div><h2 id='-' style='letter-spacing: 6px;'align='left';>인력 현황</h1></div>", unsafe_allow_html=True)
     #         st.markdown("# 적정 인력 : 0 3 0 0 명　　 출동 인력 : 0 2 5 5 명")
 #     with cols_head[2]:
 #         #         st.markdown("#             ")
@@ -410,8 +413,8 @@ if to_show == "평시":
         st.markdown(down(), unsafe_allow_html=True)
     cols = st.columns((12, 1, 1, 1))
 else:
-    cols_title = st.columns((0.9, 1.5, 1.5, 0.9))
-    i = 1
+#     cols_title = st.columns((0.9, 1.5, 1.5, 0.9))
+#     i = 1
     #     with cols_title[0]:
     #         st.markdown("## 화재 발생지역")
     #     with cols_title[3]:
@@ -422,49 +425,33 @@ else:
 import altair as alt
 
 df = pd.read_csv(r"./data.csv", encoding="cp949")
-df["소방공무원_22"] = df["소방공무원_22"] + df["감원"]
+df["현원"] = df["현원"] + df["감원"]
 df["감원"] = df["감원"].abs()
-order = "{'소방공무원_22':0, '증원': 1, '감원': 2}"
+order = "{'현원':0, '증원': 1, '감원': 2}"
 column = "['#0000FF', '#00FF00', '#FF0000]"
 bar_chart = (
     alt.Chart(df, height=500)
-    .transform_fold(["소방공무원_22", "증원", "감원"], as_=["column", "value"])
+    .transform_fold(["현원", "증원", "감원"], as_=["column", "value"])
     .mark_bar(size=13)
     .encode(
-        y="gu:N",
-        x="value:Q",
-        color=alt.Color(
-            "column:N",
-            scale=alt.Scale(
-                domain=["소방공무원_22", "증원", "감원"], range=["#264b96", "green", "red"]
-            ),
-        ),
-        #     color=alt.Color('column:N',scale=alt.Scale(domain=['소방공무원_22', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),
+        y=alt.Y("gu:N",title='자치구'),
+        x=alt.X("value:Q",title='소방인력'),
+        color=alt.Color("column:N",
+                        title='범례',
+                        scale=alt.Scale(domain=["현원", "증원", "감원"],
+                                        range=["#264b96", "green", "red"]),
+                       ),
+        #     color=alt.Color('column:N',scale=alt.Scale(domain=['현원', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),
         order="order:O",
     )
-)
+).configure_legend(titleFontSize=20, labelFontSize=16)
 df3 = pd.read_csv(
     "LOCAL_PEOPLE_20221211.csv", encoding="cp949", low_memory=False, index_col=False
 )
 
 #     df3['TOT_LVPOP_CO'].astype(float)
 df3 = df3.groupby(by=["행정동코드", "기준일ID", "시간대구분"], as_index=False).sum()
-# from datetime import datetime
-# start_time = st.slider(
-#     "When do you start?",
-#     value=datetime(2020, 1, 1, 9, 30),
-#     format="MM/DD/YY - hh:mm")
-# from datetime import time
-# appointment = st.slider(
-#     "Schedule your appointment:",
-#     value=(time(11, 30), time(12, 45)))
-# st.write("You're scheduled for:", appointment)
-# st.write("Start time:", start_time)
 df3 = df3.loc[df3["기준일ID"] == df3["기준일ID"].unique().tolist()[-1], :]
-
-# 최종 데이터 시각
-
-latest_time_hr = df3.loc[df3["유동인구"] != 0, :]["시간대구분"].unique().tolist()[-1]
 
 # 실시간 데이터가 없으므로 일단 현재시각 덮어씌우기
 import datetime
@@ -472,13 +459,11 @@ import pytz
 
 kst = pytz.timezone("Asia/Seoul")
 current_time = datetime.datetime.now(kst)
-latest_time_hr = latest_time_ = current_time.hour
+# # 현재 시각
+# latest_time_hr = latest_time_ = current_time.hour
+# # 마지막 데이터 시각
+# latest_time_hr = df3.loc[df3["유동인구"] != 0, :]["시간대구분"].unique().tolist()[-1]
 
-df3 = df3.loc[df3["시간대구분"] == latest_time_hr, :]
-ampm = "오후" if latest_time_hr > 12 else "오전"
-latest_time_hr = (latest_time_hr - 12) if latest_time_hr > 12 else latest_time_hr
-df3["유동인구"].replace({0: np.NaN}, inplace=True)
-chart_data = df3[["행정동코드", "유동인구"]]
 # cols[1].metric('','현재','증원')
 # cols[2].metric('','인력','-감소')
 # cols[3].metric('','현황',' ')
@@ -498,7 +483,7 @@ else:
     for dpt in df["출동소방서"].unique().tolist():
         temp_df = df.loc[df["출동소방서"] == dpt, :].reset_index()
         with cols[metric_counter % 3 + i + 1]:
-            st.metric(dpt, temp_df["소방공무원_22"][0], temp_df["오차"][0].astype(str))
+            st.metric(dpt, temp_df["현원"][0], temp_df["오차"][0].astype(str))
         metric_counter += 1
         if metric_counter > 17:
             break
@@ -556,11 +541,14 @@ if to_show == "재난 발생시":
 
     #         autoplay_muted_video('바디캠3.mp4', width=260)
     with ne_cols[2]:
-        st.metric("충원 필요 소방서", "서초", "15명 ")
-        st.metric("충원 필요 소방서", "강남", "20명 ")
-        st.markdown(" 출동 대응 1단계<br>필요 인력",unsafe_allow_html=True)
-        st.markdown(" 출동 대응 2단계<br>필요 인력",unsafe_allow_html=True)
-        st.markdown(" 출동 대응 3단계<br>필요 인력",unsafe_allow_html=True)
+        st.metric("충원 필요 소방서", df_dpt.iloc[0, gu_loc].replace('소방서', ''), sum(supp_list))
+        st.metric("차출 대상 소방서", df_dpt.iloc[1, gu_loc].replace('소방서', ''), -supp_list[0])
+        
+#         st.metric("충원 필요 소방서", "서초", "15명 ")
+#         st.metric("충원 필요 소방서", "강남", "20명 ")
+#         st.markdown(" 출동 대응 1단계<br>필요 인력",unsafe_allow_html=True)
+#         st.markdown(" 출동 대응 2단계<br>필요 인력",unsafe_allow_html=True)
+#         st.markdown(" 출동 대응 3단계<br>필요 인력",unsafe_allow_html=True)
     #         st.markdown("""<style>[data-testid="stVerticalBlock"] {font-family: &quot;Noto Sans KR&quot;}</style>""",unsafe_allow_html=True)
     #         autoplay_muted_video('화재1.mp4', width=260)
     #         autoplay_muted_video('화재2.mp4', width=260)
@@ -569,16 +557,32 @@ if to_show == "재난 발생시":
 
     #         st.image(imagee,width=260)
     with ne_cols[3]:
-        st.metric("충원 필요 소방서", "동작", "17명")
-        st.metric("충원 필요 소방서", "송파", "8명")
-        st.markdown("1 개 소방서　　　출동　<br>&nbsp;",unsafe_allow_html=True)
-        st.markdown("2~5 개 소방서　　출동　<br>&nbsp;",unsafe_allow_html=True)
-        st.markdown("6 개 이상 소방서　 출동　<br>&nbsp;",unsafe_allow_html=True)
+        metrics = []
+        for i in range(1,len(supp_list)):
+            st.metric("차출 대상 소방서", df_dpt.iloc[i+1, gu_loc].replace('소방서', ''), -supp_list[i])
+#             st.metric("충원 필요 소방서", df_dpt.iloc[i, gu_loc], supp_list[i])
+#         st.metric("충원 필요 소방서", "동작", "17명")
+#         st.metric("충원 필요 소방서", "송파", "8명")
+#         st.markdown("1 개 소방서　　　출동　<br>&nbsp;",unsafe_allow_html=True)
+#         st.markdown("2~5 개 소방서　　출동　<br>&nbsp;",unsafe_allow_html=True)
+#         st.markdown("6 개 이상 소방서　 출동　<br>&nbsp;",unsafe_allow_html=True)
         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
-    new_ne_cols = st.columns((5.5, 4))
-    new_ne_cols[0].bar_chart(chart_data, x="행정동코드", y="유동인구")
+    st.markdown('### 자치구별 유동 인구')
+    new_ne_cols = st.columns((7.5, 2))
+    df_4_chart3 = df3.copy()
+    df_4_chart3["유동인구"].replace({0: np.NaN}, inplace=True)
+    def update_chart_data(latest_time_hr):
+            return df_4_chart3[df_4_chart3["시간대구분"] == latest_time_hr]
+#     ampm = "오후" if latest_time_hr > 12 else "오전"
+#     latest_time_hr = (latest_time_hr - 12) if latest_time_hr > 12 else latest_time_hr
+    with new_ne_cols[1]:
+            latest_time_hr = st.slider("조회할 시간대 선택:", 0, 24, step=1)
+    with new_ne_cols[0]:
+        st.bar_chart(update_chart_data(latest_time_hr), x="행정동코드", y="유동인구")
+#     df_4_chart3 = df_4_chart3[["행정동코드", "유동인구"]]
+    
     chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
-    new_ne_cols[1].line_chart(chart_data2, width=4, use_container_width=True)
+#         line_chart(chart_data2, width=4, use_container_width=True)
     
 else:
     new_cols = st.columns((12, 1, 1, 1))
