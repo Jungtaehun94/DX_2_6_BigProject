@@ -449,9 +449,21 @@ df3 = pd.read_csv(
 
 #     df3['TOT_LVPOP_CO'].astype(float)
 df3 = df3.groupby(by=["행정동코드", "기준일ID", "시간대구분"], as_index=False).sum()
+# from datetime import datetime
+# start_time = st.slider(
+#     "When do you start?",
+#     value=datetime(2020, 1, 1, 9, 30),
+#     format="MM/DD/YY - hh:mm")
+# from datetime import time
+# appointment = st.slider(
+#     "Schedule your appointment:",
+#     value=(time(11, 30), time(12, 45)))
+# st.write("You're scheduled for:", appointment)
+# st.write("Start time:", start_time)
 df3 = df3.loc[df3["기준일ID"] == df3["기준일ID"].unique().tolist()[-1], :]
 
 # 최종 데이터 시각
+
 latest_time_hr = df3.loc[df3["유동인구"] != 0, :]["시간대구분"].unique().tolist()[-1]
 
 # 실시간 데이터가 없으므로 일단 현재시각 덮어씌우기
@@ -519,13 +531,13 @@ if to_show == "재난 발생시":
     with ne_cols[1]:
         mapping_demo()
         st.markdown(
-            """<div style="margin-left: 12px;margin-top: -435px;z-index: 999;position: relative;width: 376px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
-            <ul style="display: flex;flex-direction: row;width: 342px;align-items: center;padding-left: 0px;padding-top: 7px;padding-bottom: 7px;">
+            """<div style="margin-left: 12px;margin-top: -435px;z-index: 999;position: relative;width: 315px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
+            <ul style="display: flex; flex-direction: row; width: 342px; align-items: center; padding-left: 0px; padding-top: 7px; padding-bottom: 7px;">
             <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 10px; margin-top: auto; align-content: center;"><span style="background: rgba(192, 64, 64, 0.8); border-color: rgb(255, 99, 132); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
-            <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">지원 출동 소방서</p>
+            <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">지원 소방서</p>
             </li>
             <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 20px;"><span style="background: rgba(64, 192, 64, 0.8); border-color: rgb(54, 162, 235); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
-            <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">지원 대상 지점</p>
+            <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">관할 소방서</p>
             </li>
             </ul>
             </div>""",
