@@ -22,7 +22,7 @@ add_selectbox = st.sidebar.selectbox('소방서를 선택하세요',gu_list)
 if add_selectbox:
     st.title(add_selectbox)
     
-    col1,col2=st.columns([2,2])
+    col1,col1_point_5,col2=st.columns([1.75,0.25,2])
     with col1:
         st.subheader('센터 CCTV')
         rand_video(2)
