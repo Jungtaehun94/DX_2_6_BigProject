@@ -85,7 +85,7 @@ df_dpt = pd.read_csv(r"./data2.csv", encoding="cp949")
 # df_grid = pd.DataFrame(rows)
 # df_grid
 @st.cache(persist=True)
-def fix_layers():
+def fix_layers(selected_layers):
     return pdk.Deck(
         map_style=None,
         initial_view_state={
@@ -339,9 +339,7 @@ def mapping_demo():
             )
         elif selected_layer_name[0] == "재난 발생시":
             selected_layers += [hhh, iii, jjj, kkk]
-            st.pydeck_chart(
-                fix_layers()
-            )
+            st.pydeck_chart(fix_layers(selected_layers))
         else:
             st.error("Please choose at least one layer above.")
     except URLError as e:
