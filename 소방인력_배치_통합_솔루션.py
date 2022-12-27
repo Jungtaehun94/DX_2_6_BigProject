@@ -591,7 +591,7 @@ if to_show == "재난 발생시":
 #     latest_time_hr = (latest_time_hr - 12) if latest_time_hr > 12 else latest_time_hr
     with new_ne_cols[1]:
         slider = new_ne_cols[1].slider("조회할 시간대 선택:", 0, 23, step=1)
-        @st.experimental_memo(ttl=60)
+        @st.experimental_memo(persist="disk")
         def cached_chart_by_slider(slider):
             st.bar_chart(df_4_chart3[df_4_chart3["시간대구분"] == slider], x="행정동코드", y="유동인구")
                 
