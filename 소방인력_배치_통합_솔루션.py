@@ -600,7 +600,8 @@ if to_show == "재난 발생시":
                 y=alt.Y('유동인구:Q', axis=alt.Axis(title='유동인구'), scale=alt.Scale(domain=[173000, 1100000]))
             ).properties(height=600)
 
-            st.altair_chart(bar, use_container_width=True, theme="streamlit")
+            st.altair_chart(bar, use_container_width=True)
+#             , theme="streamlit"
 #             st.bar_chart(df_4_chart3[df_4_chart3["시간대구분"] == slider], x="행정동코드", y="유동인구")
                 
     with new_ne_cols[0]:
