@@ -36,7 +36,7 @@ if add_selectbox:
     second_col = st.columns((1.6,0.2,2,0.2))
     with second_col[0]:
         rand_video(1)
-    with second_col[1]:
+    with second_col[2]:
         st.subheader('월별 출동현황')
 #         np.random.seed(1)
         source = pd.DataFrame({'월': np.arange(13),'화재': np.random.randn(13).cumsum(),'구급': np.random.randn(13).cumsum(),'구조': np.random.randn(13).cumsum(),})
