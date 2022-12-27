@@ -599,7 +599,7 @@ if to_show == "재난 발생시":
             # Create the bar chart
             bar = alt.Chart(df_4_chart3[df_4_chart3["시간대구분"] == slider]).mark_bar().encode(
                 x=alt.X('행정동코드:N', axis=alt.Axis(title='자치구')),
-                y=alt.Y('유동인구:Q', axis=alt.Axis(title='유동인구'), scale=alt.Scale(domain=[0, 1200000]))
+                y=alt.Y('유동인구:Q', axis=alt.Axis(title='유동인구'), scale=alt.Scale(domain=[173000, 1100000]))
             )
 
             # Create a text label for the bar chart
