@@ -586,6 +586,8 @@ if to_show == "재난 발생시":
     new_ne_cols = st.columns((7.5, 2))
     df_4_chart3 = df3.copy()
     df_4_chart3["유동인구"].replace({0: np.NaN}, inplace=True)
+    
+    @st.experimental_memo
     def update_chart_data(latest_time_hr):
             return df_4_chart3[df_4_chart3["시간대구분"] == latest_time_hr]
 #     ampm = "오후" if latest_time_hr > 12 else "오전"
