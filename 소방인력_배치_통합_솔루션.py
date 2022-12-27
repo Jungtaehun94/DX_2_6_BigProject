@@ -427,7 +427,7 @@ import altair as alt
 df = pd.read_csv(r"./data.csv", encoding="cp949")
 df_copy = df.copy()
 df_copy.rename(columns={'증원': '증원 필요',
-                       '감원': '감원 가능'})
+                       '감원': '감원 가능'}, inplace=True)
 df_copy["현원"] = df_copy["현원"] + df_copy["감원 가능"]
 df_copy["감원 가능"] = df_copy["감원 가능"].abs()
 order = "{'현원':0, '증원 필요': 1, '감원 가능': 2}"
