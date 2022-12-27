@@ -598,7 +598,7 @@ if to_show == "재난 발생시":
         cached_chart_by_slider()
 #     df_4_chart3 = df_4_chart3[["행정동코드", "유동인구"]]
     
-    chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+#     chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
 #         line_chart(chart_data2, width=4, use_container_width=True)
     
 else:
