@@ -93,7 +93,6 @@ with st.sidebar:
     to_show = st.radio("유형별", ("평시", "재난 발생시"))
 # find_close_points(df_dpt,df_dpt.sample(1).reset_index()['출동소방서'][0],3)
 
-@st.cache(persist=True)
 def mapping_demo():
     try:
         df_dec_icons = df_dec.loc[df_dec["감원"] != "", :].copy()
@@ -323,7 +322,7 @@ def mapping_demo():
             )
         elif selected_layer_name[0] == "재난 발생시":
             selected_layers += [hhh, iii, jjj, kkk]
-            @st.cache
+            @st.cache(persist=True)
             def fix_layers():
                 return pdk.Deck(
                     map_style=None,
