@@ -595,8 +595,9 @@ if to_show == "재난 발생시":
     with new_ne_cols[1]:
         @st.experimental_singleton(experimental_allow_widgets=True)
         def cached_slider():
-            latest_time_hr = st.slider("조회할 시간대 선택:", 0, 24, step=1)
-        cached_slider()
+             return st.slider("조회할 시간대 선택:", 0, 24, step=1)
+        
+        latest_time_hr = cached_slider()
     with new_ne_cols[0]:
         st.bar_chart(update_chart_data(latest_time_hr), x="행정동코드", y="유동인구")
         update_chart_data(latest_time_hr)
