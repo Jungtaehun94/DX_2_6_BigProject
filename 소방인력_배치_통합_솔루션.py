@@ -425,24 +425,28 @@ else:
 import altair as alt
 
 df = pd.read_csv(r"./data.csv", encoding="cp949")
-df["현원"] = df["현원"] + df["감원"]
-df["감원"] = df["감원"].abs()
-order = "{'현원':0, '증원': 1, '감원': 2}"
+df_copy = df.copy()
+df_copy.rename(columns={'증원': '증원 필요',
+                       '감원': '감원 가능'})
+df_copy["현원"] = df_copy["현원"] + df_copy["감원 필요"]
+df_copy["감원 필요"] = df_copy["감원 필요"].abs()
+order = "{'현원':0, '증원 가능': 1, '감원 필요': 2}"
 column = "['#0000FF', '#00FF00', '#FF0000]"
 bar_chart = (
-    alt.Chart(df, height=500)
-    .transform_fold(["현원", "증원", "감원"], as_=["column", "value"])
+    alt.Chart(df_copy, height=500)
+    .transform_fold(["현원", "증원 가능", "감원 필요"], as_=["column", "value"])
     .mark_bar(size=13)
     .encode(
         y=alt.Y("gu:N",title='자치구'),
         x=alt.X("value:Q",title='소방인력'),
         color=alt.Color("column:N",
                         title='범례',
-                        scale=alt.Scale(domain=["현원", "증원 필요", "감원 가능"],
+                        scale=alt.Scale(domain=["현원", "증원 가능", "감원 필요"],
                                         range=["#264b96", "green", "red"]),
                        ),
-        #     color=alt.Color('column:N',scale=alt.Scale(domain=['현원', '증원', '감원'],range=['#264b96', '#006f3c', '#bf212f'])),
+        #     color=alt.Color('column:N',scale=alt.Scale(domain=['현원', '증원 가능', '감원 필요'],range=['#264b96', '#006f3c', '#bf212f'])),
         order="order:O",
+        
     )
 ).configure_legend(titleFontSize=20, labelFontSize=16)
 df3 = pd.read_csv(
