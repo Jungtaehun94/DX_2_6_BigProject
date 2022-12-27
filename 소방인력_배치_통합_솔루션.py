@@ -329,23 +329,25 @@ def mapping_demo():
             selected_layers += [hhh, iii, jjj, kkk]
             @st.experimental_singleton
             def fix_layers():
-                return pdk.Deck(
-                    map_style=None,
-                    initial_view_state={
-                        "latitude": df_dpt["lat"].mean(),
-                        "longitude": df_dpt["lng"].mean(),
-                        "zoom": 11,
-                        "pitch": 40,
-                        "width": '100%',
-                        "height": 430,
-                    },
-                    tooltip={
-                        "html": "<b>{출동소방서}</b><br>가용인원: {dpt}<br>차출: {차출}",
-                        "style": {"color": "white"},
-                    },
-                    layers=selected_layers,
+                st.pydeck_chart(
+                    pdk.Deck(
+                        map_style=None,
+                        initial_view_state={
+                            "latitude": df_dpt["lat"].mean(),
+                            "longitude": df_dpt["lng"].mean(),
+                            "zoom": 11,
+                            "pitch": 40,
+                            "width": '100%',
+                            "height": 430,
+                        },
+                        tooltip={
+                            "html": "<b>{출동소방서}</b><br>가용인원: {dpt}<br>차출: {차출}",
+                            "style": {"color": "white"},
+                        },
+                        layers=selected_layers,
+                    )
                 )
-            st.pydeck_chart(fix_layers())
+            fix_layers()
         else:
             st.error("Please choose at least one layer above.")
     except URLError as e:
