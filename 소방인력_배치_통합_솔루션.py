@@ -323,6 +323,7 @@ def mapping_demo():
             )
         elif selected_layer_name[0] == "재난 발생시":
             selected_layers += [hhh, iii, jjj, kkk]
+            @st.cache
             def fix_layers():
                 return pdk.Deck(
                     map_style=None,
