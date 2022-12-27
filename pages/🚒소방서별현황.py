@@ -25,9 +25,7 @@ if add_selectbox:
     col1,col2=st.columns([2,2])
     with col1:
         st.subheader('센터 CCTV')
-        rand_video(1)
-        st.subheader('　')
-        rand_video(1)
+        rand_video(2)
     with col2:
         st.subheader('인력현황')
         source = pd.DataFrame({"category": ["장비조작", "구조", "화재", "예방", "조사"], "value": [random.randint(5, 20) for _ in range(5)]})
