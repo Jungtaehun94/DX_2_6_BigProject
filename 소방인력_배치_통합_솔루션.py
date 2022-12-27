@@ -84,24 +84,7 @@ df_dpt = pd.read_csv(r"./data2.csv", encoding="cp949")
 # # Create a dataframe from the rows
 # df_grid = pd.DataFrame(rows)
 # df_grid
-@st.cache(persist=True)
-def fix_layers(selected_layers):
-    return pdk.Deck(
-        map_style=None,
-        initial_view_state={
-            "latitude": df_dpt["lat"].mean(),
-            "longitude": df_dpt["lng"].mean(),
-            "zoom": 11,
-            "pitch": 40,
-            "width": '100%',
-            "height": 430,
-        },
-        tooltip={
-            "html": "<b>{출동소방서}</b><br>가용인원: {dpt}<br>차출: {차출}",
-            "style": {"color": "white"},
-        },
-        layers=selected_layers,
-    )
+
 
 df_dpt, supp_list = find_close_points(df_dpt, df_dpt.sample(1).reset_index()["출동소방서"][0], 3)
 gu_loc = df_dpt.columns.get_loc('출동소방서')
@@ -339,7 +322,25 @@ def mapping_demo():
             )
         elif selected_layer_name[0] == "재난 발생시":
             selected_layers += [hhh, iii, jjj, kkk]
-            st.pydeck_chart(fix_layers(selected_layers))
+            @st.experimental_singleton
+            def fix_layers():
+                return pdk.Deck(
+                    map_style=None,
+                    initial_view_state={
+                        "latitude": df_dpt["lat"].mean(),
+                        "longitude": df_dpt["lng"].mean(),
+                        "zoom": 11,
+                        "pitch": 40,
+                        "width": '100%',
+                        "height": 430,
+                    },
+                    tooltip={
+                        "html": "<b>{출동소방서}</b><br>가용인원: {dpt}<br>차출: {차출}",
+                        "style": {"color": "white"},
+                    },
+                    layers=selected_layers,
+                )
+            st.pydeck_chart(fix_layers())
         else:
             st.error("Please choose at least one layer above.")
     except URLError as e:
