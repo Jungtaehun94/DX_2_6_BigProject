@@ -593,7 +593,30 @@ if to_show == "재난 발생시":
         slider = new_ne_cols[1].slider("조회할 시간대 선택:", 0, 23, step=1)
         @st.experimental_memo(persist="disk")
         def cached_chart_by_slider(slider):
-            st.bar_chart(df_4_chart3[df_4_chart3["시간대구분"] == slider], x="행정동코드", y="유동인구")
+            # Create a selection object that allows you to filter the data using the slider value
+            selection = alt.selection_single(name='select', fields=['시간대구분'], bind=alt.binding_range(min=slider, max=slider))
+
+            # Create the bar chart
+            bar = alt.Chart(df_4_chart3).mark_bar().encode(
+                x=alt.X('행정동코드:N', axis=alt.Axis(title='Administrative District Code')),
+                y=alt.Y('유동인구:Q', axis=alt.Axis(title='Floating Population')),
+                color=alt.condition(selection, '시간대구분:N', alt.value('lightgray'))
+            )
+
+            # Create a text label for the bar chart
+            text = alt.Chart(df_4_chart3).mark_text(align='center', baseline='bottom').encode(
+                x=alt.X('행정동코드:N', axis=alt.Axis(title='Administrative District Code')),
+                y=alt.Y('유동인구:Q', axis=alt.Axis(title='Floating Population')),
+                text=alt.Text('유동인구:Q', format='.2s'),
+                color=alt.condition(selection, '시간대구분:N', alt.value('black'))
+            )
+
+            # Combine the bar chart and text label into a single chart
+            chart = alt.layer(bar, text).properties(width=600, height=400).add_selection(selection)
+
+            # Display the chart
+            chart
+#             st.bar_chart(df_4_chart3[df_4_chart3["시간대구분"] == slider], x="행정동코드", y="유동인구")
                 
     with new_ne_cols[0]:
         cached_chart_by_slider(slider)
