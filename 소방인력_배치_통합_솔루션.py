@@ -456,7 +456,7 @@ df3 = pd.read_csv(
 #     df3['TOT_LVPOP_CO'].astype(float)
 df3 = df3.groupby(by=["행정동코드", "기준일ID", "시간대구분"], as_index=False).sum()
 df3 = df3.loc[df3["기준일ID"] == df3["기준일ID"].unique().tolist()[-1], :]
-
+df3
 # 실시간 데이터가 없으므로 일단 현재시각 덮어씌우기
 import datetime
 import pytz
@@ -583,6 +583,7 @@ if to_show == "재난 발생시":
             latest_time_hr = st.slider("조회할 시간대 선택:", 0, 24, step=1)
     with new_ne_cols[0]:
         st.bar_chart(update_chart_data(latest_time_hr), x="행정동코드", y="유동인구")
+        update_chart_data(latest_time_hr)
 #     df_4_chart3 = df_4_chart3[["행정동코드", "유동인구"]]
     
     chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
