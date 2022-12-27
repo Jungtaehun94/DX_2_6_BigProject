@@ -591,6 +591,12 @@ if to_show == "재난 발생시":
 else:
     new_cols = st.columns((12, 1, 1, 1))
     new_cols[0].altair_chart(bar_chart, use_container_width=True)
+    metric_counter = 0
+    for dpt in df['출동소방서'].unique().tolist()[17:]:
+        temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
+        with new_cols[metric_counter%3+1]:
+            st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+        metric_counter +=1
 # if to_show == '재난 발생시':
 # #     st.empty()
 #     chart_data = pd.DataFrame(
@@ -612,14 +618,7 @@ else:
 #         if metric_counter > 17:
 #             break;
 # else:
-#     metric_counter = 0
-#     for dpt in df['출동소방서'].unique().tolist()[17:]:
-#         temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
-#         with nee_cols[metric_counter%3+1]:
-#             st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
-#         metric_counter +=1
-#         if metric_counter > 17:
-#             break;
+#     
 
 
 # if to_show == "재난 발생시":
