@@ -542,8 +542,11 @@ if to_show == "재난 발생시":
 
     with ne_cols[0]:
         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
-        autoplay_muted_video("인구카운팅.mp4", width=400)
-        autoplay_muted_video("화재2.mp4", width=400)
+        @st.experimental_singleton
+        def Disast_Respns_CCTV():
+            autoplay_muted_video("인구카운팅.mp4", width=400)
+            autoplay_muted_video("화재2.mp4", width=400)
+        Disast_Respns_CCTV()
     #         st.bar_chart(chart_data, x="행정동코드", y="유동인구")
 
     #         autoplay_muted_video('바디캠3.mp4', width=260)
