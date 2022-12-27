@@ -587,19 +587,15 @@ if to_show == "재난 발생시":
     df_4_chart3 = df3.copy()
     df_4_chart3["유동인구"].replace({0: np.NaN}, inplace=True)
     
-    @st.experimental_memo
-    def update_chart_data(latest_time_hr):
-            return df_4_chart3[df_4_chart3["시간대구분"] == latest_time_hr]
 #     ampm = "오후" if latest_time_hr > 12 else "오전"
 #     latest_time_hr = (latest_time_hr - 12) if latest_time_hr > 12 else latest_time_hr
     with new_ne_cols[1]:
         @st.experimental_singleton(experimental_allow_widgets=True)
-        def cached_slider():
-             return st.slider("조회할 시간대 선택:", 0, 23, step=1)
-        
-        latest_time_hr = cached_slider()
+        def cached_chart_by_slider():
+            st.bar_chart(df_4_chart3[df_4_chart3["시간대구분"] == new_ne_cols[0].slider("조회할 시간대 선택:", 0, 23, step=1)], x="행정동코드", y="유동인구")
+                
     with new_ne_cols[0]:
-        st.bar_chart(update_chart_data(latest_time_hr), x="행정동코드", y="유동인구")
+        
 #     df_4_chart3 = df_4_chart3[["행정동코드", "유동인구"]]
     
     chart_data2 = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
