@@ -592,7 +592,7 @@ if to_show == "재난 발생시":
     with new_ne_cols[1]:
         @st.experimental_singleton(experimental_allow_widgets=True)
         def cached_chart_by_slider():
-            st.bar_chart(df_4_chart3[df_4_chart3["시간대구분"] == new_ne_cols[0].slider("조회할 시간대 선택:", 0, 23, step=1)], x="행정동코드", y="유동인구")
+            st.bar_chart(df_4_chart3[df_4_chart3["시간대구분"] == new_ne_cols[1].slider("조회할 시간대 선택:", 0, 23, step=1)], x="행정동코드", y="유동인구")
                 
     with new_ne_cols[0]:
         cached_chart_by_slider()
