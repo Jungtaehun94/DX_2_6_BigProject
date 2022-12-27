@@ -25,7 +25,10 @@ logo_im = Image.open(BytesIO(res))
 st.set_page_config(layout="wide", page_title="2반6조빅프로젝트 ", page_icon="🚒")
 
 #     st.markdown('### 소방인력 배치 통합 솔루션')
-add_logo()
+@st.experimental_singleton
+def show_cached_logo():
+    add_logo()
+show_cached_logo()
 # pages = st.source_util.get_pages('소방인력_배치_통합_솔루션.py')
 # pages
 # new_page_names = {
