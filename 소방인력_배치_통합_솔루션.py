@@ -607,7 +607,6 @@ if to_show == "재난 발생시":
                 x=alt.X('행정동코드:N', axis=alt.Axis(title='Administrative District Code')),
                 y=alt.Y('유동인구:Q', axis=alt.Axis(title='Floating Population')),
                 text=alt.Text('유동인구:Q', format='.2s'),
-                color=alt.condition(selection, '시간대구분:N', alt.value('black'))
             )
 
             # Combine the bar chart and text label into a single chart
