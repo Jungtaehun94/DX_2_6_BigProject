@@ -85,8 +85,10 @@ df_dpt = pd.read_csv(r"./data2.csv", encoding="cp949")
 # df_grid = pd.DataFrame(rows)
 # df_grid
 
-
-df_dpt, supp_list = find_close_points(df_dpt, df_dpt.sample(1).reset_index()["출동소방서"][0], 3)
+@st.experimental_singleton
+def fix_rand():
+    return find_close_points(df_dpt, df_dpt.sample(1).reset_index()["출동소방서"][0], 3)
+df_dpt, supp_list = fix_rand()
 gu_loc = df_dpt.columns.get_loc('출동소방서')
 
 with st.sidebar:
