@@ -323,8 +323,8 @@ def mapping_demo():
             )
         elif selected_layer_name[0] == "재난 발생시":
             selected_layers += [hhh, iii, jjj, kkk]
-            st.pydeck_chart(
-                pdk.Deck(
+            def fix_layers():
+                return pdk.Deck(
                     map_style=None,
                     initial_view_state={
                         "latitude": df_dpt["lat"].mean(),
@@ -340,6 +340,8 @@ def mapping_demo():
                     },
                     layers=selected_layers,
                 )
+            st.pydeck_chart(
+                fix_layers()
             )
         else:
             st.error("Please choose at least one layer above.")
