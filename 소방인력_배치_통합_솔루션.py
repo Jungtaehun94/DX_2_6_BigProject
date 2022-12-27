@@ -23,6 +23,8 @@ res = request.urlopen(url).read()
 logo_im = Image.open(BytesIO(res))
 
 st.set_page_config(layout="wide", page_title="2반6조빅프로젝트 ", page_icon="🚒")
+st.experimental_memo.clear()
+
 
 #     st.markdown('### 소방인력 배치 통합 솔루션')
 @st.experimental_singleton
