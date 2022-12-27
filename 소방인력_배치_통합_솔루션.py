@@ -23,7 +23,7 @@ res = request.urlopen(url).read()
 logo_im = Image.open(BytesIO(res))
 
 st.set_page_config(layout="wide", page_title="2반6조빅프로젝트 ", page_icon="🚒")
-st.experimental_memo.clear()
+# st.experimental_memo.clear()
 
 
 #     st.markdown('### 소방인력 배치 통합 솔루션')
@@ -598,7 +598,7 @@ if to_show == "재난 발생시":
             bar = alt.Chart(df_4_chart3[df_4_chart3["시간대구분"] == slider]).mark_bar().encode(
                 x=alt.X('행정동코드:N', axis=alt.Axis(title='자치구')),
                 y=alt.Y('유동인구:Q', axis=alt.Axis(title='유동인구'), scale=alt.Scale(domain=[173000, 1100000]))
-            )
+            ).properties(height=600)
 
             st.altair_chart(bar, use_container_width=True, theme="streamlit")
 #             st.bar_chart(df_4_chart3[df_4_chart3["시간대구분"] == slider], x="행정동코드", y="유동인구")
