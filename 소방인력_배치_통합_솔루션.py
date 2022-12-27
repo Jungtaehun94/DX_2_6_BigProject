@@ -452,13 +452,12 @@ bar_chart = (
 df3 = pd.read_csv(
     "LOCAL_PEOPLE_20221211.csv", encoding="cp949", low_memory=False, index_col=False
 )
-df3
 
 #     df3['TOT_LVPOP_CO'].astype(float)
 df3 = df3.groupby(by=["행정동코드", "기준일ID", "시간대구분"], as_index=False).sum()
-df3
+
 df3 = df3.loc[df3["기준일ID"] == df3["기준일ID"].unique().tolist()[-1], :]
-df3
+
 # 실시간 데이터가 없으므로 일단 현재시각 덮어씌우기
 import datetime
 import pytz
