@@ -595,7 +595,7 @@ else:
     for dpt in df['출동소방서'].unique().tolist()[17:]:
         temp_df = df.loc[df['출동소방서'] == dpt,:].reset_index()
         with new_cols[metric_counter%3+1]:
-            st.metric(dpt, temp_df['22년 실제 소방공무원'][0], temp_df['오차'][0].astype(str))
+            st.metric(dpt, temp_df['현원'][0], temp_df['오차'][0].astype(str))
         metric_counter +=1
 # if to_show == '재난 발생시':
 # #     st.empty()
