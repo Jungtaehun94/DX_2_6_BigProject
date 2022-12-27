@@ -22,10 +22,10 @@ add_selectbox = st.sidebar.selectbox('소방서를 선택하세요',gu_list)
 if add_selectbox:
     st.title(add_selectbox)
     
-    col1,col1_point_5,col2=st.columns([1.6,0.4,2])
+    col1,col2,col3=st.columns([1.6,2,0.4])
     with col1:
         st.subheader('센터 CCTV')
-        rand_video(2)
+        rand_video(1)
     with col2:
         st.subheader('인력현황')
         source = pd.DataFrame({"category": ["장비조작", "구조", "화재", "예방", "조사"], "value": [random.randint(5, 20) for _ in range(5)]})
@@ -33,6 +33,10 @@ if add_selectbox:
         pie = base.mark_arc(outerRadius=120)
         text = base.mark_text(radius=140, size=20).encode(text="category:N")
         pie + text
+    2nd_col = st.columns((1.6,2,0.4))
+    with 2nd_col[0]:
+        rand_video(1)
+    with 2nd_col[1]:
         st.subheader('월별 출동현황')
 #         np.random.seed(1)
         source = pd.DataFrame({'월': np.arange(13),'화재': np.random.randn(13).cumsum(),'구급': np.random.randn(13).cumsum(),'구조': np.random.randn(13).cumsum(),})
