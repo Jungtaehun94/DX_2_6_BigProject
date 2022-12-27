@@ -33,10 +33,10 @@ if add_selectbox:
         pie = base.mark_arc(outerRadius=120)
         text = base.mark_text(radius=140, size=20).encode(text="category:N")
         pie + text
-    2nd_col = st.columns((1.6,2,0.4))
-    with 2nd_col[0]:
+    second_col = st.columns((1.6,2,0.4))
+    with second_col[0]:
         rand_video(1)
-    with 2nd_col[1]:
+    with second_col[1]:
         st.subheader('월별 출동현황')
 #         np.random.seed(1)
         source = pd.DataFrame({'월': np.arange(13),'화재': np.random.randn(13).cumsum(),'구급': np.random.randn(13).cumsum(),'구조': np.random.randn(13).cumsum(),})
