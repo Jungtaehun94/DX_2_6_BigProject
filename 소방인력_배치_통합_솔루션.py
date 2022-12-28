@@ -52,8 +52,9 @@ df_text["감원"] = df_text["감원"].abs()
 df_text["감원"] = df_text["감원"].where(df_text["감원"] > 0, "")
 df_text.info()
 df_text["현원"] = df_text["현원"].astype(str)
-df_text["오차"] = df_text["오차"].abs()
+# df_text["오차"] = df_text["오차"].abs()
 df_text["오차"] = df_text["오차"].astype(str)
+df_text["오차"] = ('-' + df_text["오차"]).where(df_text["감원"] > 0, '+' + df_text["오차"])
 
 # df_text_copy_for_dec = df_text.copy()
 
