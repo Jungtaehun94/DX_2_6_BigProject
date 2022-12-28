@@ -591,7 +591,7 @@ if to_show == "재난 발생시":
 #         st.markdown("6 개 이상 소방서　 출동　<br>&nbsp;",unsafe_allow_html=True)
         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
     st.markdown('### 자치구별 유동 인구')
-    new_ne_cols = st.columns((7.5, 2))
+    
     df_4_chart3 = df3.copy()
     df_4_chart3["유동인구"].replace({0: np.NaN}, inplace=True)
     
@@ -600,6 +600,7 @@ if to_show == "재난 발생시":
 #     with new_ne_cols[1]:
     @st.experimental_memo(experimental_allow_widgets=True)
     def cached_chart_by_slider():
+        new_ne_cols = st.columns((7.5, 2))
         slider = new_ne_cols[1].slider("조회할 시간대 선택:", 0, 23, step=1)
         bar = alt.Chart(df_4_chart3[df_4_chart3["시간대구분"] == slider]).mark_bar().encode(
             x=alt.X('행정동코드:N', axis=alt.Axis(title='자치구')),
