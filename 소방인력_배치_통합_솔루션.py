@@ -50,7 +50,7 @@ df_text = df.copy()
 df_text["증원"] = df_text["증원"].astype(int)
 df_text["오차"] = df_text["오차"].astype(str)
 df_text
-df_text["오차"] = ('-' + df_text["오차"]).where(df_text["증원"] > 0, '+' + df_text["오차"])
+df_text["오차"] = ('+' + df_text["오차"]).where(df_text["증원"] > 0, '-' + df_text["오차"])
 df_text
 df_text["증원"] = df_text["증원"].where(df_text["증원"] > 0, "")
 df_text["감원"] = df_text["감원"].abs()
