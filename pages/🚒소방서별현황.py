@@ -22,7 +22,7 @@ add_selectbox = st.sidebar.selectbox('소방서를 선택하세요',gu_list)
 if add_selectbox:
     st.title(add_selectbox)
     
-    col1,spacing,col2,col3=st.columns([1.4,0.2,2,0.4])
+    col1,spacing,col2,col3=st.columns([1.6,0.2,2,0.2])
     with col1:
         st.subheader('센터 CCTV')
         rand_video(1)
@@ -33,7 +33,7 @@ if add_selectbox:
         pie = base.mark_arc(outerRadius=120)
         text = base.mark_text(radius=140, size=20).encode(text="category:N")
         pie + text
-    second_col = st.columns((1.4,0.2,2,0.4))
+    second_col = st.columns((1.6,0.2,2,0.2))
     with second_col[0]:
         rand_video(1)
     with second_col[2]:
