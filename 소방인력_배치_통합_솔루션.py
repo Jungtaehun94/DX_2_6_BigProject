@@ -115,6 +115,7 @@ def mapping_demo():
             df_inc_icons,
             "https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/100_green_marker.png",
         )
+        df_dec
         ALL_LAYERS = {
             "평시": pdk.Layer(
                 "ScatterplotLayer",
