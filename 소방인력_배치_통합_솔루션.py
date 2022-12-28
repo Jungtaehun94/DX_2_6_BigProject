@@ -61,7 +61,7 @@ df_text["현원"] = df_text["현원"].astype(str)
 
 df_text["증원"] = df_text["증원"].astype(str)
 df_text["감원"] = df_text["감원"].astype(str)
-df_text["감원"] = df_text["감원"].str[1:]
+# df_text["감원"] = df_text["감원"].str[1:]
 df_text["증원"] = ("(" + df_text["증원"] + ")").where(df_text["증원"] != "", "")
 df_text["감원"] = ("(" + df_text["감원"] + ")").where(df_text["감원"] != "", "")
 df_inc = df_text.copy()
