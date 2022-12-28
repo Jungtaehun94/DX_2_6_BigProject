@@ -53,6 +53,9 @@ df_text["현원"] = df_text["현원"].astype(str)
 
 df_text["오차"] = df_text["오차"].astype(str)
 
+df_text_copy_for_dec = df_text.copy()
+df_text["감원"] = df_text_copy_for_dec["감원"].abs()
+
 df_text["증원"] = df_text["증원"].astype(str)
 df_text["감원"] = df_text["감원"].astype(str)
 df_text["감원"] = df_text["감원"].str[1:]
