@@ -49,13 +49,10 @@ df_text = df.copy()
 
 df_text["증원"] = df_text["증원"].astype(int)
 df_text["오차"] = df_text["오차"].astype(str)
-df_text
 df_text["오차"] = ('+' + df_text["오차"]).where(df_text["증원"] > 0, df_text["오차"])
-df_text
 df_text["증원"] = df_text["증원"].where(df_text["증원"] > 0, "")
 df_text["감원"] = df_text["감원"].abs()
 df_text["감원"] = df_text["감원"].where(df_text["감원"] > 0, "")
-df_text.info()
 df_text["현원"] = df_text["현원"].astype(str)
 # df_text["오차"] = df_text["오차"].abs()
 
@@ -120,7 +117,6 @@ def mapping_demo():
             df_inc_icons,
             "https://github.com/Jungtaehun94/streramlit_temp_app/raw/main/100_green_marker.png",
         )
-        df_dec
         ALL_LAYERS = {
             "평시": pdk.Layer(
                 "ScatterplotLayer",
