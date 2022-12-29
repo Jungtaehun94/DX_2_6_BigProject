@@ -19,7 +19,7 @@ add_logo()
 
 ques = st.sidebar.radio(
 #     "선택하세요",('실시간 전국 화재발생 현황', '한 눈에 보는 화재현황','전국출동현황')
-    "유형별",('실시간 전국 화재발생 현황', '한 눈에 보는 화재현황','전국출동현황')
+    "유형별",('실시간 전국 화재발생 현황', '실시간 전국 CCTV', '한 눈에 보는 화재현황','전국출동현황')
 )
 
 
@@ -34,6 +34,17 @@ if ques == '한 눈에 보는 화재현황':
     </div>
 </body>
 """, unsafe_allow_html = True)
+
+elif ques =='실시간 전국 CCTV':
+    st.markdown("# 실시간 전국 CCTV")
+    st.markdown("""
+        <body>
+            <div style="border: 0px none; overflow: hidden; margin: 15px auto; max-width: 1600px; ">
+                <iframe scrolling="no" src=https://d.kbs.co.kr/special/cctv style="border: 0px none; margin-left: -10px; height: 965px; width: 100%; margin-top: -408px; width: 790px;">
+                </iframe>
+            </div>
+        </body>
+        """, unsafe_allow_html = True)
 
 elif ques =='전국출동현황':
 #     st.markdown("### 서울 출동 건수")
