@@ -380,7 +380,7 @@ if to_show == "재난 발생시":
     with cols_head[1]:
         st.markdown("<div><h2 id='-' style='letter-spacing: 2px;'align='left';>재난 발생시 소방서별 필요인력</h1></div>", unsafe_allow_html=True)
     with cols_head[2]:
-        st.markdown("<div><h2 id='-' style='letter-spacing: 6px;'align='left';>인력 현황</h1></div>", unsafe_allow_html=True)
+        st.markdown("<div><h2 id='-' align='left';>인력현황</h1></div>", unsafe_allow_html=True)
     #         st.markdown("# 적정 인력 : 0 3 0 0 명　　 출동 인력 : 0 2 5 5 명")
 #     with cols_head[2]:
 #         #         st.markdown("#             ")
