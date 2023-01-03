@@ -376,7 +376,7 @@ if to_show == "재난 발생시":
 
     #         st.image(imagee,width=250)
     with cols_head[0]:
-        st.markdown("<div><h2 id='-' style='letter-spacing: 6px;'align='left';>현장CCTV</h1></div>", unsafe_allow_html=True)
+        st.markdown("<div><h2 id='-' align='left';>현장CCTV</h1></div>", unsafe_allow_html=True)
     with cols_head[1]:
         st.markdown("<div><h2 id='-' style='letter-spacing: 2px;'align='left';>재난 발생시 소방서별 필요인력</h1></div>", unsafe_allow_html=True)
     with cols_head[2]:
