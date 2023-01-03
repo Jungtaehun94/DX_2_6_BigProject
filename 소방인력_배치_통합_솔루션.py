@@ -583,7 +583,7 @@ if to_show == "재난 발생시":
     with ne_cols[3]:
         metrics = []
         for i in range(1,len(supp_list)):
-            st.metric("차출 대상 소방서", df_dpt.iloc[i+1, gu_loc].replace('소방서', ''), -supp_list[i])
+            st.metric("지원  소방서", df_dpt.iloc[i+1, gu_loc].replace('소방서', ''), -supp_list[i])
 #             st.metric("충원 필요 소방서", df_dpt.iloc[i, gu_loc], supp_list[i])
 #         st.metric("충원 필요 소방서", "동작", "17명")
 #         st.metric("충원 필요 소방서", "송파", "8명")
