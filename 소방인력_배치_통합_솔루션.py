@@ -539,12 +539,12 @@ if to_show == "재난 발생시":
         st.markdown(
             """<div style="margin-left: 12px;margin-top: -435px;z-index: 999;position: relative;width: 315px;height: 50px;background-color: rgba(0, 0, 0, 0.5);">
             <ul style="display: flex; flex-direction: row; width: 342px; align-items: center; padding-left: 0px; padding-top: 7px; padding-bottom: 7px;">
-            <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 10px; margin-top: auto; align-content: center;"><span style="background: rgba(192, 64, 64, 0.8); border-color: rgb(255, 99, 132); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
-            <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">지원 소방서</p>
-            </li>
             <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 20px;"><span style="background: rgba(64, 192, 64, 0.8); border-color: rgb(54, 162, 235); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
             <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">관할 소방서</p>
             </li>
+            <li style="align-items: center; cursor: pointer; display: flex; flex-direction: row; margin-left: 10px; margin-top: auto; align-content: center;"><span style="background: rgba(192, 64, 64, 0.8); border-color: rgb(255, 99, 132); border-width: 3px; display: inline-block; height: 20px; margin-right: 10px; width: 20px;"></span>
+            <p style="color: rgb(218, 218, 218); margin: 0px; padding: 0px; font-family: &quot;Noto Sans KR&quot;, sans-serif; font-size: 18px;">지원 소방서</p>
+            </li>            
             </ul>
             </div>""",
             unsafe_allow_html=True,
@@ -565,8 +565,8 @@ if to_show == "재난 발생시":
 
     #         autoplay_muted_video('바디캠3.mp4', width=260)
     with ne_cols[2]:
-        st.metric("충원 필요 소방서", df_dpt.iloc[0, gu_loc].replace('소방서', ''), sum(supp_list))
-        st.metric("차출 대상 소방서", df_dpt.iloc[1, gu_loc].replace('소방서', ''), -supp_list[0])
+        st.metric("관할 소방서", df_dpt.iloc[0, gu_loc].replace('소방서', ''), sum(supp_list))
+        st.metric("지원 소방서", df_dpt.iloc[1, gu_loc].replace('소방서', ''), -supp_list[0])
         
 #         st.metric("충원 필요 소방서", "서초", "15명 ")
 #         st.metric("충원 필요 소방서", "강남", "20명 ")
