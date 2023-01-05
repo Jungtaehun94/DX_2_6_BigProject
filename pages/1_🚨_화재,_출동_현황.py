@@ -29,7 +29,7 @@ if ques == '오늘의 화재현황':
     st.markdown("""
 <body>
     <div style="frameBorder=0; overflow: hidden; margin: 15px auto; max-width: 1600px; ">
-        <iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -800px; width: 1200px;">
+        <iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -700px; width: 1200px;">
         </iframe>
     </div>
 </body>
