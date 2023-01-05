@@ -19,17 +19,17 @@ add_logo()
 
 ques = st.sidebar.radio(
 #     "선택하세요",('실시간 전국 화재발생 현황', '한 눈에 보는 화재현황','전국출동현황')
-    "유형별",('실시간 전국 화재발생 현황', '실시간 전국 CCTV', '한 눈에 보는 화재현황','전국출동현황')
+    "유형별",('실시간 전국 화재발생 현황', '실시간 전국 CCTV', '오늘의 화재현황','전국출동현황')
 )
 
 
 if ques == '한 눈에 보는 화재현황':
     
-    st.markdown("### 한 눈에 보는 화재 현황")
+    st.markdown("### 오늘의 화재 현황")
     st.markdown("""
 <body>
     <div style="frameBorder=0; overflow: hidden; margin: 15px auto; max-width: 1600px; ">
-        <iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -600px; width: 1200px;">
+        <iframe scrolling="no" src=https://nfds.go.kr/dashboard/quicklook.do style="border: 0px none; margin-left: 0px; height: 1380px; margin-top: -800px; width: 1200px;">
         </iframe>
     </div>
 </body>
