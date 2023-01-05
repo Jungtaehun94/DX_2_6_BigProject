@@ -40,7 +40,7 @@ if add_selectbox:
         st.subheader('월별 출동현황')
 #         np.random.seed(1)
         source = pd.DataFrame({'월': np.arange(13),'화재': np.random.randn(13).cumsum(),'구급': np.random.randn(13).cumsum(),'구조': np.random.randn(13).cumsum(),})
-        base = alt.Chart(source).mark_circle(opacity=1).transform_fold(fold=['화재', '구급', '구조'],as_=['category', '출동횟수']).encode(alt.X('월:Q'),alt.Y('출동횟수:Q'),alt.Color('category:N'))
+        base = alt.Chart(source).mark_circle(opacity=1).transform_fold(fold=['화재', '구급', '구조'],as_=['category', '출동횟수']).encode(alt.X('월:Q'),alt.Y('출동횟수:Q'),alt.Color('category:N'), scale=alt.Scale(scheme='darkred'))
         base + base.transform_loess('월', '출동횟수', groupby=['category']).mark_line(size=5)
     # if add_selectbox == '관악소방서':
 #     st.title('관악소방서')
