@@ -53,7 +53,7 @@ if add_selectbox:
 # )
 
 #         base = alt.Chart(source).encode(
-#     theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None)
+#     theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None, scale=alt.Scale(scheme='goldred'))
 # )
 
 #         pie = base.mark_arc(outerRadius=120)
