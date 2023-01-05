@@ -592,6 +592,7 @@ if to_show == "재난 발생시":
 #         st.markdown("6 개 이상 소방서　 출동　<br>&nbsp;",unsafe_allow_html=True)
         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
     st.markdown('## 자치구별 유동 인구')
+    st.markdown('##')
     
     df_4_chart3 = df3.copy()
     df_4_chart3["유동인구"].replace({0: np.NaN}, inplace=True)
