@@ -23,7 +23,7 @@ ques = st.sidebar.radio(
 )
 
 
-if ques == '한 눈에 보는 화재현황':
+if ques == '오늘의 화재현황':
     
     st.markdown("### 오늘의 화재 현황")
     st.markdown("""
