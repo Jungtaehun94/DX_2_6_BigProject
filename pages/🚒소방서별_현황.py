@@ -31,7 +31,7 @@ if add_selectbox:
         source = pd.DataFrame({"category": ["장비조작", "구조", "화재", "예방", "조사"], "value": [random.randint(5, 20) for _ in range(5)]})
         base = alt.Chart(source).encode(theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None, scale=alt.Scale(scheme='darkred'))).properties(height=385)
         pie = base.mark_arc(outerRadius=120)
-        text = base.mark_text(radius=140, size=20).encode(text="category:N")
+        text = base.mark_text(radius=140, size=20, font='Noto Sans KR').encode(text="category:N")
         pie + text
     second_col = st.columns((1.6,0.2,2,0.2))
     with second_col[0]:
