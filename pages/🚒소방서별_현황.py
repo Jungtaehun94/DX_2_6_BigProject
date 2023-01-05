@@ -29,7 +29,7 @@ if add_selectbox:
     with col2:
         st.subheader('인력현황')
         source = pd.DataFrame({"category": ["장비조작", "구조", "화재", "예방", "조사"], "value": [random.randint(5, 20) for _ in range(5)]})
-        base = alt.Chart(source).encode(theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None)).properties(height=385)
+        base = alt.Chart(source).encode(theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None, scale=alt.Scale(scheme='dark2'))).properties(height=385)
         pie = base.mark_arc(outerRadius=120)
         text = base.mark_text(radius=140, size=20).encode(text="category:N")
         pie + text
@@ -53,7 +53,7 @@ if add_selectbox:
 # )
 
 #         base = alt.Chart(source).encode(
-#     theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None, scale=alt.Scale(scheme='dark2'))
+#     theta=alt.Theta("value:Q", stack=True), color=alt.Color("category:N", legend=None)
 # )
 
 #         pie = base.mark_arc(outerRadius=120)
