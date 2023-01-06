@@ -103,7 +103,7 @@ df_dpt, supp_list = fix_rand()
 gu_loc = df_dpt.columns.get_loc('출동소방서')
 
 with st.sidebar:
-    to_show = st.radio("상황별", ("평시", "재난 발생시"))
+    to_show = st.radio("상황별", ("평시", "재난 발생 시"))
 # find_close_points(df_dpt,df_dpt.sample(1).reset_index()['출동소방서'][0],3)
 
 def mapping_demo():
@@ -134,7 +134,7 @@ def mapping_demo():
                 get_fill_color=["255", "128", 0, "192"],
                 extruded=True,
             ),
-            "재난 발생시": pdk.Layer(
+            "재난 발생 시": pdk.Layer(
                 "ColumnLayer",
                 data=df_dpt,
                 get_position=["lng", "lat"],
@@ -378,7 +378,7 @@ if to_show == "재난 발생시":
     with cols_head[0]:
         st.markdown("<div><h2 id='-' align='left';>현장CCTV</h1></div>", unsafe_allow_html=True)
     with cols_head[1]:
-        st.markdown("<div><h2 id='-' align='left';>재난 발생시 소방서별 필요인력</h1></div>", unsafe_allow_html=True)
+        st.markdown("<div><h2 id='-' align='left';>재난 발생 시 소방서별 필요인력</h1></div>", unsafe_allow_html=True)
 #         style='letter-spacing: 2px;'
     with cols_head[2]:
         st.markdown("<div><h2 id='-' align='left';>인력현황</h1></div>", unsafe_allow_html=True)
