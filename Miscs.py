@@ -1,6 +1,6 @@
 import numpy as np
 import streamlit as st
-@st.experimental_singleton
+# @st.experimental_singleton
 def find_close_points(df_input, gu, n=3):
     df = df_input.copy()
     row = df.loc[df["출동소방서"] == gu].reset_index()
