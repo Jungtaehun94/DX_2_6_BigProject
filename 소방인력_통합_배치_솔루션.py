@@ -27,7 +27,7 @@ st.set_page_config(layout="wide", page_title="2반6조빅프로젝트 ", page_ic
 
 
 #     st.markdown('### 소방인력 배치 통합 솔루션')
-# @st.experimental_singleton
+# #@st.experimental_singleton
 def show_cached_logo():
     add_logo()
 show_cached_logo()
@@ -96,7 +96,7 @@ df_dpt = pd.read_csv(r"./data2.csv", encoding="cp949")
 # df_grid = pd.DataFrame(rows)
 # df_grid
 
-@st.experimental_singleton
+#@st.experimental_singleton
 def fix_rand():
     return find_close_points(df_dpt, df_dpt.sample(1).reset_index()["출동소방서"][0], 3)
 df_dpt, supp_list = fix_rand()
@@ -335,7 +335,7 @@ def mapping_demo():
             )
         elif selected_layer_name[0] == "재난 발생시":
             selected_layers += [hhh, iii, jjj, kkk]
-            @st.experimental_singleton
+            #@st.experimental_singleton
             def fix_layers():
                 st.pydeck_chart(
                     pdk.Deck(
@@ -556,7 +556,7 @@ if to_show == "재난 발생시":
 
     with ne_cols[0]:
         st.markdown("""<p style="font-size:10%;"/>""", unsafe_allow_html=True)
-        @st.experimental_singleton
+        #@st.experimental_singleton
         def Disast_Respns_CCTV():
             autoplay_muted_video("인구카운팅.mp4", width=400)
             autoplay_muted_video("화재2.mp4", width=400)
