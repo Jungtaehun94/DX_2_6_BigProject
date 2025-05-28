@@ -27,7 +27,7 @@ st.set_page_config(layout="wide", page_title="2반6조빅프로젝트 ", page_ic
 
 
 #     st.markdown('### 소방인력 배치 통합 솔루션')
-@st.experimental_singleton
+# @st.experimental_singleton
 def show_cached_logo():
     add_logo()
 show_cached_logo()
